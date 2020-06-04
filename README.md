@@ -1,7 +1,7 @@
 <!-- dx-header -->
 # RHtyper (DNAnexus Platform App)
 
-Predict RHD/RHCE allele using Whole-Genome Sequencing data
+Predict *RHD*/*RHCE* allele using Whole-Genome Sequencing data
 
 <!-- /dx-header -->
 
@@ -42,10 +42,10 @@ Likelihood scoring and ranking to predict the RH allele pairs
    * Estimated coverage depth of the WGS data
    * Output prefix. The prefix added to the output files
 2. Other adjustable parameters/options:
-   * Gene for typing. User can select to type only RHD or RHCE gene
+   * Gene for typing. User can select to type only *RHD* or *RHCE* gene
    * Reference sequence. User can provide customized genome reference sequence to be consistent with the one used for alignment
    * Cutoff of alternative read number. The lower bound of read number with alternative nucleotide to call variant
-   * Allele linking database. User can provide customized RHD-RHCE allele linking information to improve the accuracy of the typing. If not specified, RHtyper will use linking information from ISBT database
+   * Allele linking database. User can provide customized *RHD*-*RHCE* allele linking information to improve the accuracy of the typing. If not specified, RHtyper will use linking information from ISBT database
    * Allele population frequency database. User can provide allele population frequency information to improve the accuracy of the typing. If not specified, RHtyper will use internal database
    * Verbose level. Level of log details to report.
 
