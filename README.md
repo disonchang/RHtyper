@@ -60,4 +60,8 @@ The outputs incldue the following files:
    * *final.variant.txt* - variant identified in tab-delimited text format
 
 **How to run RHtyper?**
-![Step1](tutorial/test.png)
+1. Find RHtyper from the DNAnexus Tools library
+![Step1](tutorial/Step1.png)
+
+2. 
+
