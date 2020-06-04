@@ -1,5 +1,5 @@
 <!-- dx-header -->
-# RHtyper (DNAnexus Platform App)
+# RHtyper 
 
 Predict *RHD*/*RHCE* allele using Whole-Genome Sequencing data
 
@@ -58,4 +58,6 @@ The outputs incldue the following files:
    * *bloodtyping.txt* - Information of typed allele pairs in tab-delimited text format
    * *exonCNV.txt* - Copy number variation status per exon in tab-delimited text format
    * *final.variant.txt* - variant identified in tab-delimited text format
-  
+
+**How to run RHtyper?**
+![Step1](tutorial/test.png)
