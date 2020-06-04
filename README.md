@@ -63,5 +63,25 @@ The outputs incldue the following files:
 1. Find RHtyper from the DNAnexus Tools library
 ![Step1](tutorial/Step1.png)
 
-2. 
+2. Click RHtyper to access the app
+![Step2](tutorial/Step1.1.png)
 
+3. Introduction interface of the RHtyper app. Deatils of the app and required/optional parameters can be seen here
+![Step3](tutorial/Step2.png)
+
+4. Click Run icon to setup a run
+![Step4](tutorial/Step2.1.png)
+
+5. Select a project space to run the app. Samples' alignment BAM file, BAM index file and other optional files are required to be accessible from the project.
+![Step5](tutorial/Step2.2.png)
+
+6. Adjust settings in the "Analysis Settings" section
+![Step6](tutorial/Step2.3.png)
+
+7. Provide required inputs (labeled with astrerisks) for the "Analysis Input" section
+![Step7](tutorial/Step2.4.png)
+
+8. Adjust settings in the "Stage Settings" section. NOTE: the instance type can be changed to increase the memory for a run
+![Step8](tutorial/Step2.5.png)
+
+6. 
