@@ -114,3 +114,7 @@ The outputs incldue the following files:
 ![Step8](tutorial/Step2.5.1.png)
 
 9. Click "Run" to execute the analysis 
+
+10. Output is saved in the folder specified at step8
+
+![Step10](tutorial/output.png)
