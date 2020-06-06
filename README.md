@@ -70,7 +70,7 @@ The outputs incldue the following files:
 
 3. Introduction interface of the RHtyper app. Deatils of the app and required/optional parameters can be seen here
 
-![Step3](tutorial/Step2.png)
+![Step3](tutorial/Intro.png)
 
 4. Click Run icon to setup a run
 
