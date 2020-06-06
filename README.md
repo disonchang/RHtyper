@@ -71,7 +71,9 @@ Both databases are in tab-delimited text format and can be created using Excel (
 | ... | ... | ... | ... | ... |
 
 **What does RHtyper output?**
+
 The outputs incldue the following files:
+
 1. Main output:
    * *bloodtyping.pdf* - the PDFs contained information, including typed alleles, called variants and coverage profiles for the sample
    * *bloodtyping.xlsx* - Information of typed allele pairs and allele pair ranking in Excel format
