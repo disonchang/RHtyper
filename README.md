@@ -65,8 +65,8 @@ Both databases are in tab-delimited text format and can be created using Excel (
 | Allele name	| Nucleotide | Allele detail | Alias | PopFreq |
 | :---: | :---: | :---: | :---: | :---: |
 | RHD\*01.01 | c.48G>C | RHD\*48C | RHD\*48C | 0.0006 |
-| RHD\*09.03.01 | RHD\*DAR3.01 | c.602C>G; c.667T>G; c.819G>A |	RHD\*602G,667G | 0.0298 |
-| RHCE\*02 or RHCE\*Ce | RHCE\*C RHCE\*e | c.48G>C | RHCE\*Ce | 0.119 |
+| RHD\*09.03.01 RHD\*DAR3.01 | c.602C>G; c.667T>G; c.819G>A |	RHD\*602G,667G | RHD\*602G,667G | 0.0298 |
+| RHCE\*02 or RHCE\*Ce RHCE\*C RHCE\*e | c.48G>C | | RHCE\*Ce | 0.119 |
 | ... | ... | ... | ... | ... |
 
 ## **What does RHtyper output?**
