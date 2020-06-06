@@ -51,6 +51,7 @@ Likelihood scoring and ranking to predict the RH allele pairs
 ## **What data are the format for Allele linking database and Allele population frequency database?**
 
 Both databases are in tab-delimited text format and can be created using Excel (with headers). Examples are shown below.
+
 1. Allele linking database
 
 | Gene | Allele name | Allele detail | Alias | Linked | comment |
