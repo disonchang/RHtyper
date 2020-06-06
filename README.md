@@ -56,7 +56,7 @@ Both databases are in tab-delimited text format and can be created using Excel (
 
 | Gene | Allele name | Allele detail | Alias | Linked | comment |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| RHCE | RHCE\*01.02.01 | RHCE\*ce.02.01 | RHCE\*ce48C, 1025T | RHCE\*ceTI | RHD\*04.01_RHD\*DIVa | |
+| RHCE | RHCE\*01.02.01 | RHCE\*ce.02.01 | RHCE\*ce48C, 1025T | RHCE\*ceTI | RHD\*04.01_RHD\*DIVa |
 | RHCE | RHCE\*01.06.01 | RHCE\*ce.06.01 | RHCE\*ce254G | RHCE\*ceAG | |
 | RHD | RHD\*01.01 | RHD\*48C | DUC-3 | | |
 | ... | ... | ... | ... | ... | ... |
@@ -66,9 +66,9 @@ Both databases are in tab-delimited text format and can be created using Excel (
 | Allele name	| Nucleotide | Allele detail | Alias | PopFreq |
 | :---: | :---: | :---: | :---: | :---: |
 | RHD\*01.01 | c.48G>C | RHD\*48C | RHD\*48C | 0.0006 |
-| RHD\*09.03.01 | RHD\*DAR3.01 | c.602C>G; c.667T>G; c.819G>A |	RHD\*602G,667G | RHD\*602G,667G |	0.0298 |
-| RHCE\*02 or RHCE\*Ce | RHCE\*C | RHCE\*e | c.48G>C | RHCE\*Ce | 0.119 |
-| ... | ... | ... | ... | ... | ... |
+| RHD\*09.03.01 | RHD\*DAR3.01 | c.602C>G; c.667T>G; c.819G>A |	RHD\*602G,667G | 0.0298 |
+| RHCE\*02 or RHCE\*Ce | RHCE\*C RHCE\*e | c.48G>C | RHCE\*Ce | 0.119 |
+| ... | ... | ... | ... | ... |
 
 **What does RHtyper output?**
 The outputs incldue the following files:
