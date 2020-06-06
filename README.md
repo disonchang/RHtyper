@@ -49,6 +49,18 @@ Likelihood scoring and ranking to predict the RH allele pairs
    * Allele population frequency database. User can provide allele population frequency information to improve the accuracy of the typing. If not specified, RHtyper will use internal database
    * Verbose level. Level of log details to report.
 
+**What data are the format for Allele linking database and Allele population frequency database?**
+
+Both databases are in tab-delimited text format and can be created using Excel (with headers). Examples are shown below.
+1. Allele linking database
+Gene | Allele name | Allele detail | Alias | Linked | comment |
+--- | --- | --- | --- |--- |--- |
+RHCE | RHCE\*01.02.01 | RHCE\*ce.02.01 | RHCE\*ce48C, 1025T | RHCE\*ceTI | RHD\*04.01_RHD\*DIVa | |
+--- | --- | --- | --- |--- |--- |
+RHCE | RHCE\*01.06.01 | RHCE\*ce.06.01 | RHCE\*ce254G | RHCE\*ceAG | |
+--- | --- | --- | --- |--- |--- |
+RHD | RHD\*01.01 | RHD\*48C | DUC-3 | | |
+
 **What does RHtyper output?**
 The outputs incldue the following files:
 1. Main output:
