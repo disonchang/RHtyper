@@ -53,8 +53,9 @@ Likelihood scoring and ranking to predict the RH allele pairs
 
 Both databases are in tab-delimited text format and can be created using Excel (with headers). Examples are shown below.
 1. Allele linking database
+
 | Gene | Allele name | Allele detail | Alias | Linked | comment |
---- | --- | --- | --- |--- |--- |
+| :---: | :---: | :---: | :---: | :---: | :---: |
 | RHCE | RHCE\*01.02.01 | RHCE\*ce.02.01 | RHCE\*ce48C, 1025T | RHCE\*ceTI | RHD\*04.01_RHD\*DIVa | |
 | RHCE | RHCE\*01.06.01 | RHCE\*ce.06.01 | RHCE\*ce254G | RHCE\*ceAG | |
 | RHD | RHD\*01.01 | RHD\*48C | DUC-3 | | |
