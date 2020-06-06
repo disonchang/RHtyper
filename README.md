@@ -86,10 +86,10 @@ The outputs incldue the following files:
 
 7. Provide required inputs (labeled with astrerisks) for the "Analysis Input" section
 
-![Step7](tutorial/Step2.4.png)
+![Step7](tutorial/Step2.4.1.png)
 
 8. Adjust settings in the "Stage Settings" section. NOTE: the instance type can be changed to increase the memory for a run
 
-![Step8](tutorial/Step2.5.png)
+![Step8](tutorial/Step2.5.1.png)
 
 9. Click "Run" to execute the analysis 
