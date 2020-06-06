@@ -28,7 +28,7 @@ Use this app to perform RH allele typing of samples sequenced using Illumina sho
 
 RHtyper performs the following main steps:
 
-Variant calling in the RHD and RHCE gene regions.
+Variant calling in the *RHD* and *RHCE* gene regions.
 RHD and allele zygosity determination using coverage profiles and variant information.
 Likelihood scoring and ranking to predict the RH allele pairs
 
