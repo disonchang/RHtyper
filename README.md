@@ -10,21 +10,20 @@ Predict *RHD*/*RHCE* allele using Whole-Genome Sequencing data
 
 **Please read this important information before running the app**
 
-**Introduction**
+## **Introduction**
 
 The *RHD* and *RHCE* genes encode Rh blood group antigens and exhibit extensive nucleotide polymorphisms and chromosome structural changes, often resulting in expression of Rh variant antigens. RH variation is common in patients with sickle cell disease (SCD) and can drive loss of antigen epitopes or expression of new epitopes, predisposing them to Rh alloimmunization. Serologic antigen typing is limited to common Rh antigens, necessitating a genetic approach to detect variant antigen expression. RHtyper is a novel algorithm developed for comprehensive RH genotyping from whole-genome sequencing (WGS) data.
 
-**What does RHtyper do?**
+## **What does RHtyper do?**
 
 This app implements RHtyper, a novel algorithm to predict RH allele pairs using WGS short reads data. It takes as input WGS alignment as BAM format. The BAM alignemnt can be generated using BWA aligner.
 
 
-**What are typical use cases for RHtyper?**
+## **What are typical use cases for RHtyper?**
 
 Use this app to perform RH allele typing of samples sequenced using Illumina short read sequencing.
 
-
-**How does RHtyper work?**
+## **How does RHtyper work?**
 
 RHtyper performs the following main steps:
 
@@ -33,7 +32,7 @@ RHD and allele zygosity determination using coverage profiles and variant inform
 Likelihood scoring and ranking to predict the RH allele pairs
 
 
-**What data are required for RHtyper to run?**
+## **What data are required for RHtyper to run?**
 
 1. RHtyper requires:
    * WGS short reads alignment in BAM format (bam)
@@ -49,7 +48,7 @@ Likelihood scoring and ranking to predict the RH allele pairs
    * Allele population frequency database. User can provide allele population frequency information to improve the accuracy of the typing. If not specified, RHtyper will use internal database
    * Verbose level. Level of log details to report.
 
-**What data are the format for Allele linking database and Allele population frequency database?**
+## **What data are the format for Allele linking database and Allele population frequency database?**
 
 Both databases are in tab-delimited text format and can be created using Excel (with headers). Examples are shown below.
 1. Allele linking database
@@ -70,7 +69,7 @@ Both databases are in tab-delimited text format and can be created using Excel (
 | RHCE\*02 or RHCE\*Ce | RHCE\*C RHCE\*e | c.48G>C | RHCE\*Ce | 0.119 |
 | ... | ... | ... | ... | ... |
 
-**What does RHtyper output?**
+## **What does RHtyper output?**
 
 The outputs incldue the following files:
 
@@ -82,7 +81,8 @@ The outputs incldue the following files:
    * *exonCNV.txt* - Copy number variation status per exon in tab-delimited text format
    * *final.variant.txt* - variant identified in tab-delimited text format
 
-**How to run RHtyper?**
+## **How to run RHtyper?**
+
 1. Find RHtyper from the DNAnexus Tools library
 
 ![Step1](tutorial/Step1.png)
