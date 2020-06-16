@@ -83,40 +83,59 @@ The outputs incldue the following files:
    * *final.variant.txt* - variant identified in tab-delimited text format
 
 ## **How to run RHtyper?**
+**NOTE**: the latest DNAnexus web interface is used for the following workflow
 
-1. Find RHtyper from the DNAnexus Tools library
+1. Create a new project. If you have an existing project, please skip to step 5.
 
-![Step1](tutorial/Step1.png)
+![Step1](tutorial/S1.png)
 
-2. Click RHtyper to access the app
+2. Name the New Project and click Create Project
 
-![Step2](tutorial/Step1.1.png)
+![Step2](tutorial/S2.png)
 
-3. Introduction interface of the RHtyper app. Deatils of the app and required/optional parameters can be seen here
+3. Upload BAM and BAI files: Under MANAGE, click Add, and select Upload Data
 
-![Step3](tutorial/Intro.png)
+![Step3](tutorial/S3.png)
 
-4. Click Run icon to setup a run
+4. Upload BAM and BAI files following the instructions on the screen 
 
-![Step4](tutorial/Step2.1.png)
+![Step4](tutorial/S4.png)
 
-5. Select a project space to run the app. Samples' alignment BAM file, BAM index file and other optional files are required to be accessible from the project.
+5. Find RHtyper: Click the search icon and type “RHtyper”
 
-![Step5](tutorial/Step2.2.png)
+![Step5](tutorial/S5.png)
 
-6. Adjust settings in the "Analysis Settings" section
+6. Select RHtyper
 
-![Step6](tutorial/Step2.3.png)
+![Step6](tutorial/S6.png)
 
-7. Provide required inputs (labeled with astrerisks) for the "Analysis Input" section
+7. Install RHtyper for the first-time user. **Note**: introduction and parameter settings of RHtyepr can be found on this page
 
-![Step7](tutorial/Step2.4.1.png)
+![Step7](tutorial/S7.png)
 
-8. Adjust settings in the "Stage Settings" section. NOTE: the instance type can be changed to increase the memory for a run
+8. Click "Run" button to set up a new analysis
 
-![Step8](tutorial/Step2.5.1.png)
+![Step8](tutorial/S8.png)
 
-9. Click "Run" to execute the analysis 
+9. Select the project created at step1 or other projects containing the alignment BAM files for analyses.
+
+![Step9](tutorial/S9.png)
+
+10. Select a folder for output results: Under Analysis Settings, click Execution Output Folder
+
+![Step10](tutorial/S10.png)
+
+11. Create an output folder: Create a New Folder or select an exiting folder, then click Select Folder
+
+![Step11](tutorial/S11.png)
+
+
+
+
+
+
+
+
 
 10. Output is saved in the folder specified at step8
 
