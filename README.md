@@ -129,14 +129,14 @@ The outputs incldue the following files:
 
 ![Step11](tutorial/S11.png)
 
+12. Provide input data information: Under Analysis Inputs, select BAM and BAI files and fill the required information (\*) about your input data. 
 
+![Step12](tutorial/S12.png)
 
+13. Adjust output settings under "Stage Settings" section. Click "Run Analysis" button to start the RHtyping. **NOTE**: the instance type can be adjusted to increase memory for a run
 
+![Step13](tutorial/S13.png)
 
+14. Output is saved in the folder specified at step8
 
-
-
-
-10. Output is saved in the folder specified at step8
-
-![Step10](tutorial/output.png)
+![Step13](tutorial/output.png)
