@@ -129,6 +129,6 @@ Both databases are in tab-delimited text format and can be created using Excel (
 
 ![Step13](tutorial/S13.png)
 
-14. Output is saved in the folder specified at step8
+14. Output is saved in the folder specified at step10
 
 ![Step13](tutorial/output.png)
