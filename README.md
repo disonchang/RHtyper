@@ -21,10 +21,10 @@ RHtyper predicts *RHD* and *RHCE* genotypes by using short-read WGS data, specif
 
 ## **How does RHtyper work?**
 
-RHtyper predicts RHD and RHCE genotypes through the following main steps:
+RHtyper predicts *RHD* and *RHCE* genotypes through the following main steps:
 
 1. Variant calling;
-2. Determining RHD gene zygosity and allele zygosity by coverage profiles and variant information; and 
+2. Determining *RHD* gene zygosity and allele zygosity by coverage profiles and variant information; and 
 3. Likelihood scoring and ranking to predict the most fit RH allele pairs.
 
 
@@ -77,15 +77,15 @@ Both databases are in tab-delimited text format and can be created using Excel (
 ## **How to run RHtyper?**
 **NOTE**: the latest DNAnexus web interface is used for the following workflow
 
-1. Create a new project. If you have an existing project, please skip to step 5.
+1. Create a "New Project". If you have an existing project, please skip to step 5.
 
 ![Step1](tutorial/S1.png)
 
-2. Name the New Project and click Create Project
+2. Name the New Project, select “Azure US (West),” and click “Create Project”
 
 ![Step2](tutorial/S2.png)
 
-3. Upload BAM and BAI files: Under MANAGE, click Add, and select Upload Data
+3. Upload BAM and BAI files: Under MANAGE, click "Add", and select "Upload Data"
 
 ![Step3](tutorial/S3.png)
 
@@ -97,11 +97,11 @@ Both databases are in tab-delimited text format and can be created using Excel (
 
 ![Step5](tutorial/S5.png)
 
-6. Select RHtyper
+6. Select "RHtyper"
 
 ![Step6](tutorial/S6.png)
 
-7. Install RHtyper for the first-time user. **Note**: introduction and parameter settings of RHtyepr can be found on this page
+7. "Install" RHtyper for the first-time user. **Note**: A readme and tutorial of RHtyper can be found on this page.
 
 ![Step7](tutorial/S7.png)
 
@@ -113,22 +113,22 @@ Both databases are in tab-delimited text format and can be created using Excel (
 
 ![Step9](tutorial/S9.png)
 
-10. Select a folder for output results: Under Analysis Settings, click Execution Output Folder
+10. Select a folder for output results: Under Analysis Settings, click "Execution Output Folder"
 
 ![Step10](tutorial/S10.png)
 
-11. Create an output folder: Create a New Folder or select an exiting folder, then click Select Folder
+11. Create an output folder: Create a "New Folder" or select an exiting folder, then click "Select Folder"
 
 ![Step11](tutorial/S11.png)
 
-12. Provide input data information: Under Analysis Inputs, select BAM and BAI files and fill the required information (\*) about your input data. 
+12. Provide input data information: Under Analysis Inputs, select "BAM" and "BAI" files and fill the required information (\*) about your input data. 
 
 ![Step12](tutorial/S12.png)
 
-13. Adjust output settings under "Stage Settings" section. Click "Run Analysis" button to start the RHtyping. **NOTE**: the instance type can be adjusted to increase memory for a run
+13. Adjust output settings under "Stage Settings" section. Click "Run Analysis" button to start the RHtyping. **NOTE**: the instance type can be adjusted to increase memory for a run.
 
 ![Step13](tutorial/S13.png)
 
-14. Output is saved in the folder specified at step10
+14. Output is saved in the folder specified at step10.
 
 ![Step13](tutorial/output.png)
