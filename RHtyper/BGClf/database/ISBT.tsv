@@ -1,0 +1,544 @@
+Gene	Phenotype	Allele name	Nucleotide	Exon	Amino Acid	rs number	Allele detail	Alias	Comments	PopFreq
+RHCE	RH:4 or c RH:5 or e RH:6 or f (ce)	RHCE*01 or RHCE*ce RHCE*c RHCE*e	RHCE reference	25	p.Pro103 p.Ala226	rs676785 rs609320		RHCE*ce		0.2456
+RHCE		RHCE*01.01 RHCE*ce.01	c.48G>C	1	p.Trp16Cys	rs586178	RHCE*ce48C	RHCE*ce48C		0.1931
+RHCE	partial e partial c	RHCE*01.02.01 RHCE*ce.02.01	c.48G>C; c.1025C>T	"1, 7"	p.Trp16Cys; p.Thr342Ile	rs586178 rs1053374	"RHCE*ce48C, 1025T"	RHCE*ceTI	often linked to RHD*DIVa	0.0233
+RHCE		RHCE*01.02.02 RHCE*ce.02.02	c.48G>C; c.150C>T; c.178C>A; c.201A>G; c.203A>G; c.307C>T; c.1025C>T	"1, 2,7"	p.Trp16Cys; silent; p.Leu60Ile; silent; p.Asn68Ser; p.Pro103Ser; p.Thr342Ile	rs586178 rs200955066 rs181860403 rs1053343 rs1053344 rs676785 rs1053374	"RHCE*ce48C, ex2 D, 1025T"	RHCE*ceTI (Dex2)	reported with RHD*DIVa	
+RHCE	partial e	RHCE*01.03 RHCE*ce.03	c.1025C>T	7	p.Thr342Ile	rs1053374	RHCE*ce1025T	RHCE*ce1025T	reported with DIIIa	
+RHCE	"RH:10,─20 (V+wVS–) RH:─19 (hrS–)partial e partial c"	RHCE*01.04.01 RHCE*ce.04.01	c.48G>C; c.712A>G; c.733C>G; c.787A>G; c.800T>A; c.916A>G	"1, 5,6"	p.Trp16Cys; p.Met238Val; p.Leu245Val; p.Arg263Gly; p.Met267Lys; p.Ile306Val	rs586178 rs144163296 rs1053361 rs1132763 rs1132764 rs1132765	"RHCE*ce48C, 712G, 733G,787G, 800A,916G"	RHCE*ceAR	often linked to RHD*DAR	0.0023
+RHCE	partial e	RHCE*01.04.02 RHCE*ce.04.02	c.48G>C; c.697C>G; c.712A>G; c.733C>G; c.787A>G; c.800T>A; c.916A>G	"1, 5,6"	p.Trp16Cys; p.Gln233Glu; p.Met238Val; p.Leu245Val; p.Arg263Gly; p.Met267Lys; p.Ile306Val	rs586178 rs142246017 rs144163296 rs1053361 rs1132763 rs1132764 rs1132765	"RHCE*ce48C, 697G, 712G,733G, 787G,800A, 916G"	RHCE*ceAR+6 97G		
+RHCE		RHCE*01.04.03 RHCE*ce.04.03	c.48G>C; c.455C>A; c.712A>G; c.733C>G; c.787A>G; c.800T>A; c.916A>G	"1, 3,5, 6"	p.Trp16Cys; p.Thr152Asn; p.Met238Val; p.Leu245Val; p.Arg263Gly; p.Met267Lys; p.Ile306Val	rs586178 rs35109888 rs144163296 rs1053361 rs1132763 rs1132764 rs1132765	"RHCE*ce48C 455A,712G,733G, 787G, 800A,916G"	RHCE*ceAR+4 55A		
+RHCE	RH:─19 (hrS–)partial e partial c	RHCE*01.05.01 RHCE*ce.05.01	c.48G>C; c.712A>G; c.787A>G; c.800T>A	"1, 5"	p.Trp16Cys; p.Met238Val; p.Arg263Gly; p.Met267Lys	rs586178 rs144163296 rs1132763 rs1132764	"RHCE*ce48C, 712G,787G,800A"	RHCE*ceEK	often linked to RHD*DAR	0.0035
+RHCE	RH:─59 (CEAG–) RH:─31 (hrB–)partial e	RHCE*01.06.01 RHCE*ce.06.01	c.254C>G	2	p.Ala85Gly	rs57992529	RHCE*ce254G	RHCE*ceAG		0.0461
+RHCE	Not testedV and VS not informative	RHCE*01.06.02 RHCE*ce.06.02	c.254C>G; c.733C>G	"2, 5"	p.Ala85Gly; p.Leu245Val	rs57992529 rs1053361	"RHCE*ce254G, 733G"	RHDE*ceAG.0 2	Cancun 2012 poster ARC/Lilian733C>G also in trans	0.0006
+RHCE	Not tested	RHCE*01.06.03 RHCE*ce.06.03	c.254C>G; c.733C>G; c.941T>C	"2, 5,7"	p.Ala85Gly; p.Leu245Val; p.Val314Ala	rs57992529 rs1053361 rs79321360	"RHCE*ce254G, 733G, 941C"	RHCE*ceAG.0 3		
+RHCE		RHCE*01.06.04 RHCE*ce.06.04	c.254C>G; c.697C>G	"2, 5"	p.Ala85Gly; p.Gln233Glu	rs57992529 rs142246017	"RHCE*ce254G, 697G"	RHCE*ceAG.0 4		
+RHCE	RH:2 (partial C+)e+	RHCE*01.06.05 RHCE*ce.06.05	c.254C>G; c.307C>T	2	p.Ala85Gly; p.Pro103Ser	rs57992529 rs676785	"RHCE*ce 254G, 307T"	RHCE*ceAG.0 5	AABB abstract 2013 NYBCC+ robust Linked to RHD psuedogeneAfrican American	
+RHCE	RH:─19 (hrS–)RH:─31 (hrB–)RH: ─61 (CEVF–)partial e partial c	RHCE*01.07.01 RHCE*ce.07.01	c.48G>C; c.667G>T	15	p.Trp16Cys; p.Val223Phe	rs586178 rs147357308	"RHCE*ce48C, 667T"	RHCE*ceMO	often linked to RHD*DAU0	0.0093
+RHCE	RH:─19 (hrS–)RH:─31 (hrB–)RH: ─61 (CEVF–)partial e partial c	RHCE*01.07.02 RHCE*ce.07.02	c.667G>T	5	p.Val223Phe	rs147357308	RHCE*ce667T	RHCE*ceMO.02	"without 16Cys, less often seen than ceMO.01 but also often with RHD*DAU0"	
+RHCE	RH:─19(hrS–)RH:49 (STEM+)e+/–	RHCE*01.08 RHCE*ce.08	c.48G>C; c.712A>G; c.818C>T; c.1132C>G	"1, 5,6, 8"	p.Trp16Cys; p.Met238Val; p.Ala273Val; p.Leu378Val	rs586178 rs144163296 rs147094099 rs138917454	"RHCE*ce48C,7 12G,818T, 1132G"	RHCE*ceBI	often linked to RHD*DOL	0.0012
+RHCE	RH:─19 (hrS–)Rh:49+w (STEM+w)e+/–	RHCE*01.09 RHCE*ce.09	c.48G>C; c.712A>G; c.818C>T	"1, 5,6"	p.Trp16Cys; p.Met238Val; p.Ala273Val	rs586178 rs144163296 rs147094099	"RHCE*ce48C, 712G, 818T"	RHCE*ceSM		
+RHCE	e+w weakreactivity withsome anti-D monoclonal	RHCE*01.10.01 RHCE*ce.10.01	c.48G>C; c.365C>T	"1, 3"	p.Trp16Cys; p.Ser122Leu	rs586178 rs201407774	"RHCE*ce48C, 365T"	RHCE*ceSL	some alleles have a silent 105C>Tchange	
+RHCE	e+w	RHCE*01.10.02 RHCE*ce.10.02	c.365C>T	3	p.Ser122Leu	rs201407774	RHCE*ce365T	RHCE*ceSL.02		
+RHCE	e+w	RHCE*01.11 RHCE*ce.11	c.461G>C	3	p.Arg154Thr	rs747471048	RHCE*ce461C	RHCE*ceRT		
+RHCE	e+w	RHCE*01.12 RHCE*ce.12	c.48G>C; c.538G>C	"1, 4"	p.Trp16Cys; p.Gly180Arg	rs586178NA	"RHCE*ce48C, 538C"	RHCE*ceRA		
+RHCE	"e+w, RH:58 (CELO+w)"	RHCE*01.13 RHCE*ce.13	c.685_687del AGA	5	p.Arg229del	NA	RHCE*ce(685_ 687del)	RHCE*ceBP		
+RHCE	"e+w, c+wRH:36 (Be(a+))"	RHCE*01.14 RHCE*ce.14	c.662C>G	5	p.Pro221Arg	rs141398055	RHCE*ce662G	RHCE*ceBE		
+RHCE	"c+w,e+wRH:55 (LOCR+) RH:-26"	RHCE*01.15 RHCE*ce.15	c.286G>A	2	p.Gly96Ser	rs144348222	RHCE*ce286A	RHCE*ceLOC R		
+RHCE	e+	RHCE*01.16 RHCE*ce.16	c.48G>C; c.1170C>T; c.1193T>A;	"1, 9"	p.Trp16Cys; silent; p.Val398Glu;	rs586178 rs630931 rs630612	RHCE*ce48C- D(9)-ce	RHCE*ce48C- D(9)-ce	With pseudogene	
+RHCE	"partial e partial c RH:10,20 (V+VS+)RH:31 weak to neg (hrB+vw/–)"	RHCE*01.20.01 RHCE*ce.20.01 RHCE*ceVS.01	c.733C>G	5	p.Leu245Val	rs1053361	RHCE*ce733G	RHCE*ce733G	Often linked to conventional RHD	0.1324
+RHCE	"partial e partial c RH:10,20 (V+VS+) RH:─31(hrB–)"	RHCE*01.20.02 RHCE*ce.20.02 RHCE*ceVS.02	c.48G>C; c.733C>G	"1, 5"	p.Trp16Cys; p.Leu245Val	rs586178 rs1053361	"RHCE*ce48C, 733G"	"RHCE*ce48C, 733G"	Often linked toRHD*DIIIa or toweak partial D 4.0	0.0718
+RHCE	"partial e partial c RH:─10,20 (V─VS+) RH:─31(hrB–)"	RHCE*01.20.03 RHCE*ce.20.03 RHCE*ceVS.03	c.48G>C; c.733C>G; c.1006G>T	"1, 5,7"	p.Trp16Cys; p.Leu245Val; p.Gly336Cys	rs586178 rs1053361 rs116261244	"RHCE*ce48C, 733G, 1006T"	RHCE*ceS	Often linked to RHD*DIIIa or to hybrid RHDIII- CE-D as part of r’S type 1 or RHD-CE-D aspart of type 2 haplotype	0.042
+RHCE	"partial e RH:10,20 (V+VS+)Probable RH:─31 (hrB–)"	RHCE*01.20.04.01 RHCE*ce.20.04.01 RHCE*ceVS.04.01	c.48G>C; c.733C>G; c.1025C>T	"1, 5,7"	p.Trp16Cys; p.Leu245Val; p.Thr342Ile	rs586178 rs1053361 rs1053374	"RHCE*ce48C, 733G, 1025T"	RHCE*ceTI type 2		0.0012
+RHCE		RHCE*01.20.04.02 RHCE*ce.20.04.02 RHCE*ceVS.04.02	c.48G>C; c.105C>T; c.733C>G; c.744T>C; c.1025C>T	"1, 5,7"	p.Trp16Cys; silent; p.Leu245Val; silent; p.Thr342Ile	rs586178 rs142971926 rs1053361 rs149352457 rs1053374	"RHCE*ce48C, 105T,733G,744T,1025T"	RHCE*ceTI type 2-like		
+RHCE	"partial e RH:─10,20 (V–VS+) RH:-31"	RHCE*01.20.05 RHCE*ce.20.05 RHCE*ceVS.05	c.733C>G; c.1006G>T	"5, 7"	p.Leu245Val; p.Gly336Cys	rs1053361 rs116261244	"RHCE*ce733G, 1006T"	"RHCE*ce733G, 1006T"		0.0012
+RHCE	"partial c partial e RH:43(Crawford+) RH:20 (VS+) RH:-19,-31RH:─58 (CELO–)moderate to strongly reactive with some monoclonal anti-D"	RHCE*01.20.06 RHCE*ce.20.06 RHCE*ceVS.06	c.48G>C; c.697C>G; c.733C>G	"1, 5"	p.Trp16Cys; p.Gln233Glu; p.Leu245Val	rs586178 rs142246017 rs1053361	"RHCE*ce48C, 697G, 733G"	RHCE*ceCF		0.0035
+RHCE	"partial e partial c RH:48,(JAL+) RH:─57 (CEST–) RH:20(V/VS+w)RH:19(hrS+w/-)RH:31(hrB+w/─)"	RHCE*01.20.07 RHCE*ce.20.07 RHCE*ceVS.07	c.340C>T; c.733C>G	"3, 5"	p.Arg114Trp; p.Leu245Val	rs148487630 rs1053361	"RHCE*ce340T, 733G"	RHCE*ceJAL		0.0018
+RHCE	"e+w RH:10,20 (V+VS+)Probable RH:─31(hrB−)"	RHCE*01.20.08 RHCE*ce.20.08 RHCE*ceVS.08	c.48G>C; c.733C>G; c.748G>A	"1, 5"	p.Trp16Cys; p.Leu245Val; p.Val250Met	rs586178 rs1053361 NA	"RHCE*ce48C, 733G, 748A"	"RHCE*ce48C, 733G, 748A"		
+RHCE	"e+wRH:-10,20(V–VS+) RH:31(hrB+w)"	RHCE*01.20.09 RHCE*ce.20.09 RHCE*ceVS.09	c.48G>C; c.733C>G; c.941T>C	"1, 5,7"	p.Trp16Cys; p.Leu245Val; p.Val314Ala	rs586178 rs1053361 rs79321360	"RHCE*ce48C, 733G, 941C"	"RHCE*ce48C, 733G, 941C"		
+RHCE	probable partial e and partial c	RHCE*01.20.10 RHCE*ce.20.10 RHCE*ceVS.10	c.48G>C; c.712A>G; c.733C>G	"1, 5"	p.Trp16Cys; p.Met238Val; p.Leu245Val	rs586178 rs144163296 rs1053361	"RHCE*ce48C, 712G, 733G"	"RHCE*ce48C, 712G, 733G"		
+RHCE	e+wRH:48 (JAL+)	RHCE*01.21.01 RHCE*ce.21.01	c.341G>A	3	p.Arg114Gln	rs747471048	RHCE*ce341A	RHCE*ce341A		
+RHCE	e+wRH:48 (JAL+)	RHCE*01.21.02 RHCE*ce.21.02	c.48G>C; c.187G>C; c.341G>A	"1, 2,3"	p.Trp16Cys; p.Gly63Arg; p.Arg114Gln	rs586178 NArs747471048	"RHCE*ce48C, 187C,341A,"	"RHCE*ce48C, 187C,341A,"		
+RHCE	e+w strongly D+ with somemonoclonalanti-D RH:33(DHAR+)RH:50 (FPPT+)	RHCE*01.22 RHCE*ce.22	c.667G>T; c.697C>G; c.712A>G; c.733C>G; c.744T>C; c.787A>G; c.800T>A	5	p.Val223Phe; p.Gln233Glu; p.Met238Val; p.Leu245Val; silent; p.Arg263Gly; p.Met267Lys	rs147357308 rs142246017 rs144163296 rs1053361 rs149352457 rs1132763 rs1132764	RHCE*ce-D(5)-ce	DHAR RHCE*ceHAR		0.0006
+RHCE	e+w	RHCE*01.23 RHCE*ce.23	c.649T>C	5	p.Trp217Arg	NA	RHCE*ce649C	RHCE*ce649C		
+RHCE	e+w	RHCE*01.24 RHCE*ce.24	c.512A>G	4	p.His171Arg	rs781037009	RHCE*ce512A	RHCE*ce512A		
+RHCE	e+w	RHCE*01.25 RHCE*ce.25	c.730G>A	5	p.Ala244Thr	rs367825256	RHCE*ce730A	RHCE*ce730A		
+RHCE	e+w	RHCE*01.26 RHCE*ce.26	c.872C>T	6	p.Pro291Leu	rs374399829	RHCE*ce872T	RHCE*ce872T		
+RHCE	e+w	RHCE*01.27 RHCE*ce.27	c.1154G>C	9	p.Gly385Ala	NA	RHCE*ce1154C	RHCE*ce1154C		
+RHCE	c+w	RHCE*01.28 RHCE*ce.28	c.1254A>C	10	p.Ter418Tyr	NA	RHCE*ce1254C	RHCE*ce1254C		
+RHCE	c+e–	RHCE*01.29 RHCE*ce.29	RHD exons 4-9	9-Apr			RHCE*ce-D(4-9)-ce	RHCE*ceBOLhaplotype(Dc- Bol)		
+RHCE	e+W	RHCE*01.30RHCE*ce30	c.526G>A	4	p.Ala176Thr	rs753965768	RHCE*ce526A	RHCE*ce526A		
+RHCE		RHCE*01.31RHCE*ce31	c.695T>C	5	p.Ile232Thr	NA	RHCE*ce695C	RHCE*ce695C		
+RHCE		RHCE*01.32RHCE*ce32	c.827C>A	6	p.Ala276Gln	NA	RHCE*ce827A	RHCE*ce827A		
+RHCE	partial e e+w/−RH:-31 (hrB–)	RHCE*01.33RHCE*ce33	c.506T>C	4	p.Leu169Pro	NA	RHCE*ce506C	RHCE*ce506C		
+RHCE	partial c+e–	RHCE*01.34RHCE*ce34	RHD exons 4-7	7-Apr		NA	RHCE*ce-D(4-7)-ce	"RHCE*ce-D(4-7)-ce,Haplotype Dc−Made antibody to high"		
+RHCE	c+ e+	RHCE*01.35RHCE*ce35	c.202A>G	2	p.Asn68Asp	rs772058645	RHCE*ce202G	RHCE*ce202G(ce in trans)		
+RHCE	c–	RHCE*01.36RHCE*ce36	c.307C>T	2	p.PRo103Ser	rs676785	RHCE*ce307T	RHCE*ce307T(C in trans)		
+RHCE	c+ e+	RHCE*01.37RHCE*ce37	c.697C>G; c.712A>G; c.733C>G; c.744T>C	5	p.Gln233Glu; p.Met238Val; p.Leu245Val; p.Ser248Ser	rs142246017 rs144163296 rs1053361 rs149352457	"RHCE*ce697G, 712G, 733G,744C"	"RHCE*ce697G, 712G, 733G,744C"	Reported as weakly reactive with anti-D in absence of RHD	
+RHCE	e+W	RHCE*01.38RHCE*ce38	c.1-10C>T	5’UT R	promoter region	NA	RHCE*ce1-10T	RHCE*ce1-10T		
+RHCE	C+w c-	RHCE*01.39RHCE*ce39	c.308C>T	2	p.Pro103Leu	rs747882675	RHE*ce308T	RHE*ce308T		
+RHCE	c–e–	RHCE*01N.01 RHCE*ceN.01	c.80_84delTC TTC	1	p.Tyr29Phefs* 5	NA	RHCE*ce(del80_84)	RHCE*ce(del80_84)		
+RHCE	c–e–	RHCE*01N.02 RHCE*ceN.02	c.963delG	7	p.Iso322Phefs* 37	NA	RHCE*ce963del G	RHCE*ce963del G		
+RHCE	c–e–	RHCE*01N.03 RHCE*ceN.03	c.634+1G>T	Intro n 4	Splice site	NA	RHCE*ce634+1 T	RHCE*ce634+1 T		
+RHCE	c–e–	RHCE*01N.04 RHCE*ceN.04	c.676delG	5	p.Ala226Leu fs*2	rs609320	RHCE*ce676del G	RHCE*ce676del G		
+RHCE	c–e–	RHCE*01N.05 RHCE*ceN.05	c.335+3A>T	Intro n 2	Splice site	NA	RHCE*ce335+3 T	RHCE*ce335+3 T		
+RHCE	CeRH:2 or CRH:5 or e RH:7 or rhi(Ce)	RHCE*02 or RHCE*Ce RHCE*C RHCE*e	c.48G>C	"1, 2,5"	p.Trp16Cys silent p.Leu60Ile silent p.Asn68Ser p.Pro103Ser p.Ala226			RHCE*Ce		0.119
+RHCE	C+w/– e+w RH:48(JAL+)	RHCE*02.01 RHCE*Ce.01	c.48G>C; c.340C>T	3	p.Arg114Trp	rs148487630	RHCE*Ce340T	RHCE*CeMA RHCE*CeJAL		
+RHCE	C+e+	RHCE*02.02 RHCE*Ce.02	c.48G>C; c.667G>T; c.697C>G; c.712A>G	5	p.Val223Phe; p.Gln233Glu; p.Met238Val	rs147357308 rs142246017 rs144163296	"RHCE*Ce667T, 697G, 712G"	RHCE*CeFV		
+RHCE	C+we+w RH:53(JAHK+)rG	RHCE*02.03 RHCE*Ce.03	c.48G>C; c.365C>T	3	p.Ser122Leu	rs201407774	RHCE*Ce365T	RHCE*CeJAH K		
+RHCE	partial C+	RHCE*02.04 RHCE*Ce.04	c.48G>C; c.667G>T; c.697C>G; c.712A>G; c.733C>G; c.744T>C; c.787A>G; c.800T>A	5	p.Val223Phe; p.Gln233Glu; p.Mer238Val; p.Leu245Val; silent; p.Arg263Gly; p.Met267Lys	rs147357308 rs142246017 rs144163296 rs1053361 rs149352457 rs1132763 rs1132764	RHCE*CE-D(5)- CE	RHCE*CeVA		
+RHCE	C+we+w	RHCE*02.04.01 RHCE*Ce.04.01	c.48G>C; c.667G>T; c.697C>G; c.712A>G; c.733C>G; c.744T>C; c.787A>G	5	p.Val223Phe; p.Gln233Glu; p.Mer238Val; p.Leu245Val; silent; p.Arg263Gly	rs147357308 rs142246017 rs144163296 rs1053361 rs149352457 rs1132763	"RHCE*Ce667T, 697G, 712G,733G, 744C,787G"	"RHCE*Ce667T, 697G, 712G,733G, 744C,787G"		
+RHCE	RH:60 (PARG+)	RHCE*02.05 RHCE*Ce.05	c.48G>C; c.501G>A	4	p.Met167Ile	NA	RHCE*Ce501A	RHCE*CePAR G		
+RHCE	partial C+ RH:8 (CW+) RH:–51 (MAR–)	RHCE*02.08.01 RHCE*Ce.08.01	c.48G>C; c.122A>G	1	p.Gln41Arg	rs138268848	RHCE*Ce122G	RHCE*CeCW		0
+RHCE	RH:8 (Cw+)RH:–56 (CENR–)	RHCE*02.08.02 RHCE*Ce.08.02	c.48G>C; c.122A>G;& RHD exon 6-10	16-10	p.Gln41Arg	rs138268848	RHCE* Ce-D(6- 10)	RHCE*CeNR		
+RHCE	partial C+ RH:9 (CX+)RH:–51 (MAR–)	RHCE*02.09 RHCE*Ce.09	c.48G>C; c.106G>A	1	p.Ala36Thr	rs145034271	RHCE*Ce106A	RHCE*CeCX		
+RHCE	C+w/−partial e+wRH:32 (RN)RH:54 (DAK+)RH:–46(Sec–)	RHCE*02.10.01 RHCE*Ce.10.01	c.48G>C; c.505C>A; c.509G>T; c.514T>A; c.544A>T; c.577A>G; c.594T>A; c.602G>C	4	p.Leu169Met; p.Arg170Met; p.Phe172Ile; p.Thr182Ser; p.Lys193Glu; p.Asn198Lys; p.Arg201Thr	rs1132761 rs1132762 rs1053349 rs1053350 NA rs1053354 rs141398055	RHCE*Ce-D(4)-ce	RHCE*CeRN		0.0029
+RHCE	C+w/− partial e+wRH:32 (RN) RH:54 (DAK+)RH:–46(Sec–)	RHCE*02.10.02 RHCE*Ce.10.02	c.48G>C; c.455C>A; c.505C>A; c.509G>T; c.514T>A; c.544A>T; c.577A>G; c.594T>A; c.602G>C	"3, 4"	p.Thr152Asn; p.Leu169Met; p.Arg170Met; p.Phe172Ile; p.Thr182Ser; p.Lys193Glu; p.Asn198Lys; p.Arg201Thr	rs35109888 rs1132761 rs1132762 rs1053349 rs1053350 NA rs1053354 rs141398055	RHCE*Ce-D(4)- ce + 455A	RHCE*CeRN.0 2exists?		
+RHCE	C+w	RHCE*02.11 RHCE*Ce.11	c.48G>C; c.286G>A	2	p.Gly96Ser	rs144348222	RHCE*Ce286A	RHCE*Ce286A		
+RHCE	C+w	RHCE*02.12 RHCE*Ce.12	c.48G>C; c.344T>G	3	p.Leu115Arg	NA	RHCE*Ce344G	RHCE*Ce344G		
+RHCE	e+w	RHCE*02.13 RHCE*Ce.13	c.48G>C; c.364T>C	3	p.Ser122Pro	NA	RHCE*Ce364C	RHCE*Ce364C		
+RHCE	C+w	RHCE*02.14 RHCE*Ce.14	c.48G>C; c.497A>T	4	p.His166Leu	NA	RHCE*Ce497T	RHCE*Ce497T		
+RHCE	e+w	RHCE*02.15 RHCE*Ce.15	c.48G>C; c.689G>C	5	p.Ser230Thr	NA	RHCE*Ce689C	RHCE*Ce689C		
+RHCE	C+w e+w	RHCE*02.16 RHCE*Ce.16	c.48G>C; c.728A>G	5	p.Tyr243Cys	rs555090649	RHCE*Ce728G	RHCE*Ce728G		
+RHCE	e+w	RHCE*02.17 RHCE*Ce.17	c.48G>C; c.800T>A	5	p.Met267Lys	rs1132764	RHCE*Ce800A	RHCE*Ce800A		
+RHCE	C+w e+w	RHCE*02.18 RHCE*Ce.18	c.48G>C; c.890T>C	6	p.Leu297Pro	rs763017817	RHCE*Ce890C	RHCE*Ce890C		
+RHCE	e+w	RHCE*02.19 RHCE*Ce.19	c.48G>C; c.464T>G; c.1118C>T	38	p.Met155Arg; p.Ala373Val	NA NA	"RHCE*Ce464G, 1118T"	"RHCE*Ce464G, 1118T"		
+RHCE	C+w e+w	RHCE*02.20 RHCE*Ce.20	c.48G>C; c.79_81delCT C	1	p.Leu27del	NA	RHCE*Ce(79_81del)	RHCE*Ce(79_81del)		
+RHCE	C+w	RHCE*02.21 RHCE*Ce.21	c.48G>C; c.527C>T	4	p.Ala176Val	NA	RHCE*Ce527T	RHCE*Ce527T		
+RHCE	Partial e+w C+w	RHCE*02.22 RHCE*Ce.22	c.48G>C; c.667G>T	5	p.Val223Phe	rs147357308	RHCE*Ce667T	RHCE*Ce667T		
+RHCE	C+w	RHCE*02.23 RHCE*Ce.23	c.48G>C; c.941T>C	7	p.Val314Ala	rs79321360	RHCE*Ce941C	RHCE*Ce941C		
+RHCE	C+w e+w	RHCE*02.24 RHCE*Ce.24	c.48G>C; c.1007G>A	7	p.Gly336Asp	rs760319839	RHCE*Ce1007 A	RHCE*Ce1007 A		
+RHCE	C+w	RHCE*02.25 RHCE*Ce.25	c.48G>C; c.1007G>T	7	p.Gly336Val	rs760319839	RHCE*Ce1007 T	RHCE*Ce1007 T		
+RHCE	C+w e+w	RHCE*02.26 RHCE*Ce.26	c.48G>C; c.460A>G	3	p.Arg154Gly	rs755299894	RHCE*Ce460G	RHCE*Ce460G		
+RHCE	C+w e+w	RHCE*02.27 RHCE*Ce.27	c.48G>C; c.375C>G	3	p.Ile125Met	rs143715642	RHCE*Ce375G	RHCE*Ce375G		
+RHCE	C+ e+ RH:9	RHCE*02.28 RHCE*Ce.28	c.48G>C; c.919G>A	6	p.Gly307Arg	rs200950594	RHCE*Ce919A	RHCE*Ce919A	Made antibody to high in Rh	
+RHCE	C+ e+ E+/–	RHCE*02.29 RHCE*Ce.29	c.48G>C; c.674C>G	5	p.Ser225Cys	rs200087488	RHCE*Ce674G	RHCE*Ce674G	E: 0-4+depending on reagent  in absence of c.676C	
+RHCE	C+ e+ V+VS+	RHCE*02.30 RHCE*Ce.30	c.48G>C; c.733C>G	5	p.Leu245Val	rs1053361	RHCE*Ce733G	RHCE*Ce733G		0.0006
+RHCE	Cw+ ew+	RHCE*02.31 RHCE*Ce.31	c.48G>C; c.487-5T>G	Intro n 3	Splice site	NA	RHCE*Ce487- 5G	RHCE*Ce487- 5G		
+RHCE	Cw+	RHCE*02.32 RHCE*Ce.32	c.48G>C; c.1228-2A>G	Intro n 9	Splice site	NA	RHCE*Ce1228- 2G	RHCE*Ce1228- 2G		
+RHCE	C–e–	RHCE*02N.01 RHCE*CeN.01	c.48G>C; c.966_969del TCAC	7	p.His323Thr fs*75	NA	RHCE*Ce(966_969del)	RHCE*Ce(966_969del)		
+RHCE	C–e–	RHCE*02N.02 RHCE*CeN.02	c.48G>C; c.659G>A	5	p.Trp220Ter	NA	RHCE*Ce659A	RHCE*Ce659A		
+RHCE	C–e–	RHCE*02N.03 RHCE*CeN.03	c.48G>C; c.486+1G>A	Intro n 3	Splice site	rs753832633	RHCE*Ce486+ 1A	RHCE*Ce486+ 1A		
+RHCE	C–e–	RHCE*02N.04 RHCE*CeN.04	c.48G>C; c.93_94insT	1	p.Thr32Tyrfs*3	NA	RHCE*Ce(93_94insT)	RHCE*Ce(93_94insT)		
+RHCE	C–e–	RHCE*02N.05 RHCE*CeN.05	c.48G>C; c.377C>G	3	p.Ser126Ter	NA	RHCE*Ce377G	RHCE*Ce377G		
+RHCE	cERH:4 or c RH:3 or E RH:27 (cE)	RHCE*03 or RHCE*cE RHCE*c RHCE*E	c.676G>C	"2, 5"	p.Pro103 p.Ala226Pro		RHCE*cE	RHCE*cE		0.0928
+RHCE	partial E RH:11 (EW +)E type I	RHCE*03.01 RHCE*cE.01	c.676G>C; c.500T>A	4	p.Met167Lys	rs140421430	RHCE*cE500A	RHCE*cEEW		
+RHCE	partial E c+w/− E+w/- E type II	RHCE*03.02 RHCE*cE.02	c.676G>C; D(1-3)-cE	3-Jan		NA	RHCE*D(1-3)-cE	RHCE*cEKK		
+RHCE	partial E E+w or E+/- E type III	RHCE*03.03 RHCE*cE.03	c.676G>C; c.697C>G; c.712A>G	5	p.Gln233Glu; p.Met238Val	rs142246017 rs144163296	"RHCE*cE697G, 712G"	RHCE*cEFM		
+RHCE	partial E E+/-	RHCE*03.03.02 RHCE*cE.03.02	c.676G>C; c.697C>G; c.712A>G; c.733C>G; c.744T>C	5	p.Gln233Glu; p.Met238Val; p.Leu245Val; silent	rs142246017 rs144163296 rs1053361 rs149352457	"RHCE*cE697G, 712G, 733G,744C"	"RHCE*cE697G, 712G, 733G,744C"		
+RHCE	partial E E+w or E+/- c+wE type IV	RHCE*03.04 RHCE*cE.04	c.676G>C; c.602G>C	4	p.Arg201Thr	rs141398055	RHCE*cE602C	RHCE*cEIV		0.0018
+RHCE	partial EE+w or E+/- c+wE type V	RHCE*03.05 RHCE*cE.05	c.676G>C; c.461G>C	3	p.Arg154Thr	rs747471048	RHCE*cE461C	RHCE*cEKH		
+RHCE	E+w c+w	RHCE*03.06 RHCE*cE.06	c.676G>C; c.28C>T	1	p.Arg10Trp	rs749601047	RHCE*cE28T	RHCE*cE28T		
+RHCE	E+w	RHCE*03.07 RHCE*cE.07	c.676G>C; c.344T>C	3	p.Leu115Pro	NA	RHCE*cE344C	RHCE*cE344C		
+RHCE	E+w	RHCE*03.08 RHCE*cE.08	c.676G>C; c.356G>A	3	p.Ser119Asn	rs777819701	RHCE*cE356A	RHCE*cE356A		
+RHCE	E+w c+w	RHCE*03.09 RHCE*cE.09	c.676G>C; c.374T>A	3	p.Ile125Asn	NA	RHCE*cE374A	RHCE*cE374A		
+RHCE	E+w	RHCE*03.10 RHCE*cE.10	c.676G>C; c.506T>A	4	p.Leu169Gln	NA	RHCE*cE506A	RHCE*cE506A		
+RHCE	E+w c+w	RHCE*03.11 RHCE*cE.11	c.676G>C; c.908T>A	6	p.Leu303Gln	NA	RHCE*cE908A	RHCE*cE908A		
+RHCE	E+w	RHCE*03.12 RHCE*cE.12	c.676G>C; c.464T>G; c.477T>G	3	p.Met155Arg; p.Asn159Lys	NA NA	"RHCE*cE464G, 477G"	"RHCE*cE464G, 477G"		
+RHCE	E+w c+w	RHCE*03.13 RHCE*cE.13	c.676G>C; c.728A>G	5	p.Tyr243Cys	rs555090649	RHCE*cE728G	RHCE*cE728G		
+RHCE	c+w E−/+VW	RHCE*03.14 RHCE*cE.14	c.676G>C; c.734T>C	5	p.Leu245Pro	NA	RHCE*cE734C	RHCE*cE734C		
+RHCE	E+w	RHCE*03.15.01 RHCE*cE.15.01	c.676G>C; c.380C>T; c.383G>A	3	p.Ala127Val; p.Gly128Asp	rs1053346 rs1053347	"RHCE*cE380T, 383A"	RHCE*cE BA		
+RHCE	E+w	RHCE*03.15.02 RHCE*cE.15.02	c.676G>C; c.361A>T; c.380C>T; c.383G>A	3	p.Met121Leu; p.Ala127Val; p.Gly128Asp	rs1053345 rs1053346 rs1053347	"RHCE*cE361T, 380T, 383A"	RHCE*cE JU		
+RHCE	c+w	RHCE*03.16 RHCE*cE.16	c.676G>C; c.94A>G	1	p.Thr32Ala	rs760999674	RHCE*cE94G	RHCE*cE TA	anti-c  clone 951 non- reactive	
+RHCE	partial E	RHCE*03.17 RHCE*cE.17	c.676G>C; c.520G>A	4	p.Val174Met	rs146306079	RHCE*cE520A	RHCE*cE520A		
+RHCE	c+ E+	RHCE*03.18 RHCE*cE.18	c.676G>C; c.48G>C	1	p.Trp16Cys	rs586178	RHE*cE48C	RHCE*cE48C		0.0029
+RHCE	c+w/- E+w/−	RHCE*03.19 RHCE*cE.19	c.676G>C; c.84C>A	1	p.Phe28Leu	NA	RHCE*cE84A	RHCE*cE84A	"c: 0 to 3+,E: 0 to 1+depending on reagent"	
+RHCE	c+w Ew+/–	RHCE*03.20 RHCE*cE.20	c.676G>C; c.149-1G>A	Intro n 1	Splice site	NA	RHCE*cE149- 1A	RHCE*cE149- 1A		
+RHCE	c–E–	RHCE*03N.01 RHCE*cEN.01	c.676G>C; c.350_358del CCATGAGT G	3	p.Arg120_ Ser122del	NA	RHCE*cE(350_358del)	RHCE*cEMI		
+RHCE	c–E–	RHCE*03N.02 RHCE*cEN.02	c.676G>C; c.907delC	6	p.Leu303Ter	rs747976226	RHCE*cE907de lC	RHCE*cE907de lC		
+RHCE	c–E–	RHCE*03N.03 RHCE*cEN.03	c.676G>C; c.554G>A	4	p.Trp185Ter	NA	RHCE*cE554A	RHCE*cE554A		
+RHCE	CERH:2 or C RH:3 or E RH:22 or CE	RHCE*04 RHCE*CE RHCE*C RHCE*E	c.48G>C; c.676G>C	"1, 2,5"	p.Trp16Cys silent p.Leu60Ile silent p.Asn68Ser p.Pro103Ser p.Ala226Pro		RHCE*CE	RHCE*CE		
+RHCE	C+w  E+/–	RHCE*04.01 RHCE*CE.01	c.722C>T; c.48G>C; c.676G>C	5	p.Thr241Ile	rs751751505	RHCE*CE722T	RHCE*CE722T		
+RHD	D−	RHD*01N.01	RHD reference	10-Jan	p.0			RHD reference		0.5449
+RHD	D−	RHD*08N.01RHD*Pseudo- geneRHD* Ψ	37- bp insertion; c.609G>A; c.654G>C; c.667T>G; c.674C>T;c.807T>G	"Intron 34,56"	p.0					0.0292
+RHD	D−	RHD*01N.02	CE exons 1-9	9-Jan	Hybrid		RHD*CE(1-9)-D	RHD*CE(1-9)-D		
+RHD	D−	RHD*01N.03	CE exons 2-9	9-Feb	Hybrid		RHD*D-CE(2-9)-D	RHD*D-CE(2-9)-D	Ce in trans	
+RHD	D−	RHD*01N.04	CE exons 3-9	9-Mar	Hybrid		RHD*D-CE(3-9)-D	RHD*D-CE(3-9)-D		
+RHD	D−	RHD*01N.05	CE exons 2-7	7-Feb	Hybrid		RHD*D-CE(2-7)-D	RHD*D-CE(2-7)-D		
+RHD	D−C+ very weak	RHD*01N.06	CE exons 4-7 with c.733C>G and c.1006G>T	7-Apr	Hybrid with p.Leu245Val; p.Gly336Cys		RHD*D-CEVS(4-7)-D	RHD*D-CEVS(4-7)-D	(Part of r’S Haplotype) type 2 hybrid	
+RHD	D− C+	RHD*03N.01	c.186G>T; c.410C>T; c.455A>C; CE exons 4-7 with c.733C>G and c.1006G>T	234-7	p.Leu62Phe;p. Ala137Val;p. Asn152Thr; hybrid with p.Leu245Val; p.Gly336Cys		RHD*DIIIa-CEVS(4- 7)-D	RHD*DIIIa-CEVS(4- 7)-D	(Part of r’S haplotype) type 1 hybrid	0.0309
+RHD	D−G+	RHD*01N.07	CE exons 4-7	7-Apr	Hybrid		RHD*D-CE(4-7)-D	RHD*D-CE(4-7)-D	in cis to cE (r’’G) or Ce	
+RHD	D−	RHD*01N.08	c.48G>A	1	p.Trp16Ter		RHD*48A	RHD*48A	premature stop codon	
+RHD	D−	RHD*01N.09	c.121C>T; c.643T>C; c.646T>C; c.988T>C	157	p.Gln41Ter		"RHD*121T,643C,646 C,988C"	"RHD*121T,643C,646 C,988C"		
+RHD	D−	RHD*01N.10	c.270G>A	2	p.Trp90Ter		RHD*270A	RHD*270A	premature stop codon	
+RHD	D−	RHD*01N.11	c.325delA	2	p.Thr109Hisfs*10		RHD*325delA	RHD*325delA	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.12	c.449delT	3	p.Leu150Ter		RHD*449delT	RHD*449delT	Premature stop codon	
+RHD	D−	RHD*01N.13	c.487_490delACAG	4	p.Asp164Thrfs*3		RHD*487_490delAC AGPreviousRHD*487delACAG	RHD*487_490delAC AGPreviousRHD*487delACAG	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.14	c.554G>A	4	p.Trp185Ter		RHD*554A	RHD*554A	premature stop codon	
+RHD	D−	RHD*01N.15	c.635G>T	5	p.Gly212Val		RHD*635T	RHD*635T	splice site change	
+RHD	D−	RHD*01N.16	c.711delC	5	p.Val238Cysfs*8		RHD*711delC	RHD*711delC	frameshift and premature stop codon	
+RHD	D−	RHD*01N.17	c.652delA; c.653T>G	5	p.Met218Glyfs*11		"RHD*652delA,653G"	"RHD*652delA,653G"	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.18	c.807T>G	6	p.Tyr269Ter		RHD*807G	RHD*807G	premature stop codon	
+RHD	D−	RHD*01N.19	c.933C>A	6	p.Tyr311Ter		RHD*933A	RHD*933A	premature stop codon	
+RHD	D−	RHD*01N.20	c.941G>T	7	p.Gly314Val		RHD*941T	RHD*941T	splice site change	
+RHD	D−	RHD*01N.21	c.990C>G	7	p.Tyr330Ter		RHD*990G	RHD*990G	premature stop-codon	
+RHD	D−	RHD*01N.22	c.1203T>A	9	p.Tyr401Ter		RHD*1203A	RHD*1203A	premature stop-codon	
+RHD	D−	RHD*01N.23	c.343delC	3	p.Leu115Trpfs*4		RHD*343delC	RHD*343delC	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.24	c.335+1G>A	Intron 2	Alternative splicing		RHD*335+1APreviousRHD*IVS2+1G>A	RHD*335+1APreviousRHD*IVS2+1G>A	splice site change	
+RHD	D−	RHD*01N.25	c.336-1G>A	Intron 2	Alternative splicing		RHD*336-1APreviousRHD*IVS2-1G>A	RHD*336-1APreviousRHD*IVS2-1G>A	splice site change	
+RHD	D−	RHD*01N.26	c.1153+1G>A	Intron 8	Alternative splicing		RHD*1153+1APreviousRHD*IVS8+1G>A	RHD*1153+1APreviousRHD*IVS8+1G>A	splice site mutation	
+RHD	D−	RHD*01N.27	c.908_909insTGGCT; c.939+2_939+5delTAA G	6Intron 6	p.Leu303Glyfs*3		"RHD*908_909insTG GCT, 939+2_939+5del TAAGPreviousRHD*906ins,IVS6"	"RHD*908_909insTG GCT, 939+2_939+5del TAAGPreviousRHD*906ins,IVS6"	Frameshift and premature stop codon & splice site change	
+RHD	D−	RHD*01N.28	c.970_972delCAC; c.976_991delTCCATC ATGGGCTACA	7	p.His324Serfs*29		"RHD*970_972delCA C,976_991delTCCA TCATGGGCTACAPrevious RHD*970del3, 976del16"	"RHD*970_972delCA C,976_991delTCCA TCATGGGCTACAPrevious RHD*970del3, 976del16"	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.29	c.660delG	5	p.Trp220Cysfs*9		RHD*660delG	RHD*660delG	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.30	c.745_757del13	5	p.Val249Serfs*35		RHD*745_757del Previous RHD*745del13	RHD*745_757del Previous RHD*745del13	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.31	c.93delC	1	fs at 31		RHD*93delC	RHD*93delC	"Frameshift(T at position c.93 in consensus sequence and no reference found, therefore obsolete)"	
+RHD	D−	RHD*01N.32	c.78delC	1	p.Leu27Serfs*12		RHD*78delC	RHD*78delC	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.33	c.712delG	5	p.Val238Cysfs*8		RHD*712delG	RHD*712delG	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.34	c.615_616delCA	4	p.Ser206Phefs*111		RHD*615_616delCA Previous RHD*615delCA	RHD*615_616delCA Previous RHD*615delCA	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.35	c.330_331delGT	3	p.Phe111Glnfs*48		RHD*330_331delGT Previous RHD*330delGT	RHD*330_331delGT Previous RHD*330delGT	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.36	c.1080_1089delCTTC CAGGTC	8	p.Phe361Serfs*12		RHD*1080_1089del CTTCCAGGTCpreviousRHD*1080del	RHD*1080_1089del CTTCCAGGTCpreviousRHD*1080del	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.37	c.297_319delCCAGTT CCCTTCTGGGAAGG TGG	2	p.Gln100Hisfs*52		RHD*297_319del CCAGTTCCCTTCT GGGAAGGTGGPrevious RHD*297del23bp	RHD*297_319del CCAGTTCCCTTCT GGGAAGGTGGPrevious RHD*297del23bp	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.38	c.939+2T>A	Intron 6	Alternative splicing		RHD*939+2APreviousRHD*IVS6+2T>A	RHD*939+2APreviousRHD*IVS6+2T>A	splice site change	
+RHD	D−	RHD*01N.39	c.767C>G	5	p.Ser256Ter		RHD*767G	RHD*767G	premature stop codon	
+RHD	D−	RHD*01N.40	c.1029C>A	7	p.Tyr343Ter		RHD*1029A	RHD*1029A	premature stop codon	
+RHD	D−	RHD*01N.41	c.361_371delTTGTCG GTGCT	3	p.Leu121Aspfs*35		RHD*361_371delTT GTCGGTGCTPrevious RHD*361del11bp	RHD*361_371delTT GTCGGTGCTPrevious RHD*361del11bp	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.42	"CE exons1, 7-10"	"1, 7-10"	Hybrid		RHD*CE(1)-D(6)- CE(7-10)	RHD*CE(1)-D(6)- CE(7-10)		
+RHD	D−	RHD*01N.43	CE exons 1-3	"1, 2, 3"	Hybrid		RHD*CE(1-3)- D	RHD*CE(1-3)- D		
+RHD	D−	RHD*01N.44	c.1228- 1_1248delgTTTCCTC ATTTGGCTGTTGGA	Intron 9	p.?		RHD*1228- 1_1248delTTTCCTC ATTTGGCTGTTGG Aprevious RHD*1228-2del21	RHD*1228- 1_1248delTTTCCTC ATTTGGCTGTTGG Aprevious RHD*1228-2del21	splice site change	
+RHD	D−	RHD*01N.45	c.216_217dupCA; c.1195G>A	2	p.Ser73Thrfs*27		"RHD*216_217dupCA, 1195APrevious RHD*216dupCA,119 5A"	"RHD*216_217dupCA, 1195APrevious RHD*216dupCA,119 5A"	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.46	c.545_548delCTGT	4	p.Ser182Trpfs*46		RHD*545_548delCT GTPreviousRHD*545delCTGT	RHD*545_548delCT GTPreviousRHD*545delCTGT	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.47	c.745_759delinsAG	5	p.Val249Serfs*35		"RHD*745_759delins AGPrevious RHD*745del13bp, 758AG"	"RHD*745_759delins AGPrevious RHD*745del13bp, 758AG"	Frameshift and premature stop codon (may be the same allele as RHD*01N.30)	
+RHD	D−	RHD*01N.48	c.822delG	6	p.Leu275Trpfs*13		RHD*822delG	RHD*822delG	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.49	c.915delC	6	p.Val306Serfs*53		RHD*915delC	RHD*915delC	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.50	c.93dupT	1	p.Thr32Tyrfs*4		RHD*93dupT Previous RHD*93insT	RHD*93dupT Previous RHD*93insT	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.51	c.950delA	7	p.Asn317Thrfs*42		RHD*950delA	RHD*950delA	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.52	c.922G>T	6	p.Gly308Ter		RHD*922T	RHD*922T	premature stop-codon	
+RHD	D−	RHD*01N.53	c.1154G>A	9	p.Gly385Asp		RHD*1154A	RHD*1154A	Splice site change	
+RHD	D−	RHD*01N.54	c.801+1G>A	Intron 5	Alternative splicing		RHD*801+1APreviousRHD*IVS5+1G>A	RHD*801+1APreviousRHD*IVS5+1G>A	splice site mutation	
+RHD	D−	RHD*01N.55	c.939+1G>A	Intron 6	Alternative splicing		RHD*939+1APreviousRHD*IVS6+1G>A	RHD*939+1APreviousRHD*IVS6+1G>A	splice site mutation	
+RHD	D−	RHD*01N.56	c.1073+2T>C	Intron 7	Alternative splicing		RHD*1073+2CPreviousRHD*IVS7+2T>C	RHD*1073+2CPreviousRHD*IVS7+2T>C	splice site mutation	
+RHD	D−Del	RHD*01N.57	c.1010T>G	7	p.Leu337Arg		RHD*1010G	RHD*1010G	Could be DEL per publication as no adsorption elution was performed	
+RHD	D−	RHD*01N.58	c.802-41_802- 38delCTCT; c.1157T>A	Intron 59	p.Leu386Ter		"RHD*802-41_802- 38deCTCTl, 1157APrevious RHD*IVS5- 41delCTCT,1157A"	"RHD*802-41_802- 38deCTCTl, 1157APrevious RHD*IVS5- 41delCTCT,1157A"	premature stop-codon	
+RHD	D−	RHD*01N.59	c.598C>T	4	p.Gln200Ter		RHD*598T	RHD*598T	premature stop codon	
+RHD	D−	RHD*01N.60	c.1213C>T	9	p.Gln405Ter		RHD*1213T	RHD*1213T	premature stop codon	
+RHD	D−	RHD*01N.61	c.952C>T	7	p.Arg318Ter		RHD*952T	RHD*952T	premature stop codon	
+RHD	D−	RHD*01N.62	c.761C>G	5	p.Ser254Ter		RHD*761G	RHD*761G	premature stop codon	
+RHD	D−	RHD*01N.63	c.933C>G	6	p.Tyr311Ter		RHD*933G	RHD*933G	premature stop codon	
+RHD	D−	RHD*01N.64	c.1084C>T	8	p.Gln362Ter		RHD*1084T	RHD*1084T		
+RHD	D−	RHD*01N.65	c.124_125delAA	1	p.Lys42Glyfs*117		RHD*124_125delAA Previous RHD*124delAA	RHD*124_125delAA Previous RHD*124delAA	frameshift	
+RHD	D−	RHD*01N.66	c.1174delA	9	p.Ile392Tyrfs*25		RHD*1174delA	RHD*1174delA	frameshift	
+RHD	D−	RHD*01N.67	RHD exon 1 deletion (intron breakpoints unknown)	1	p.0		RHD*(2-10)	RHD*(2-10)		
+RHD	D−	RHD*01N.68	c.335G>T	2	p.Ser112Ile		RHD*335T	RHD*335T	splice site change	
+RHD	D−	RHD*01N.69	c.634+1G>T; c.1136C>T	Intron 48	Alternative splicing		"RHD*634+1T, 1136TPrevious RHD*IVS4+1G>T, 1136T"	"RHD*634+1T, 1136TPrevious RHD*IVS4+1G>T, 1136T"	splice site change	
+RHD	D−	RHD*01N.70	c.1073+1G>T	Intron 7	Alternative splicing		RHD*1073+1TPreviousRHD*IVS7+1G>T	RHD*1073+1TPreviousRHD*IVS7+1G>T	splice site change	
+RHD	D−	RHD*01N.71	c.1074-1G>A	Intron 7	Alternative splicing		RHD*1074-1APreviousRHD*IVS7-1G>A	RHD*1074-1APreviousRHD*IVS7-1G>A	splice site change	
+RHD	D−	RHD*01N.72	c.361T>A; c.380T>C; c.383A>G; c.455A>C; c.602C>G; c.667T>G; c.819G>A	3456	p.Leu121Met; p.Val127Ala; p.Asp128Gly; p.Asn152Thr; p.Thr201Arg; p.Phe223Leu; silent		"RHD*361A, 380C, 383G, 455C, 602G,667G, 819A"	"RHD*361A, 380C, 383G, 455C, 602G,667G, 819A"		
+RHD	D−	RHD*01N.73	c.443C>G	3	p.Thr148Arg		RHD*443G	RHD*443G		
+RHD	D−	RHD*01N.74	c.424_426delATG	3	p.Met142del		RHD*424_426delAT GPreviousRHD*424del3	RHD*424_426delAT GPreviousRHD*424del3	In-frame deletion	
+RHD	D−	RHD*01N.75	c.581_582insG	4	p.Thr195Asnfs*4		RHD*581_582insG Previous RHD*581insG	RHD*581_582insG Previous RHD*581insG	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.76	c.1179G>A	9	p.Trp393Ter		RHD*1179A	RHD*1179A	premature stop codon	
+RHD	D−	RHD*01N.77	c.1228-1G>A	Intron 9	Alternative splicing		RHD*1228-1A	RHD*1228-1A	splice site change	
+RHD	D−	RHD*01N.78	c.659delG	5	p.Trp220Cysfs*9		RHD*659delG	RHD*659delG	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.79	c.896T>C	6	p.Leu299Pro		RHD*896C	RHD*896C		
+RHD	D−	RHD*01N.80	c.1007G>A	7	p.Gly336Asp		RHD*1007A	RHD*1007A		
+RHD	D−	RHD*01N.81	c.1074-2A>C	Intron 7	Alternative splicing		RHD*1074-2CPreviousRHD*IVS7-2A>C	RHD*1074-2CPreviousRHD*IVS7-2A>C	splice site change	
+RHD	D−	RHD*01N.82	c.697delG	5	p.Glu 233Lysfs*13		RHD*697delG	RHD*697delG	Frameshift and premature stop codon	
+RHD	D−	RHD*01N.83	c.702delG	5	p.Lys 235Argfs*11		RHD*702delG	RHD*702delG	Frameshift and premature stop codon	
+RHD	Type 1	RHD*01W.1RHD*weak D type 1	c.809T>G	6	p.Val270Gly		RHD*809G	RHD*809G		0
+RHD	Type 1.1	RHD*01W.1.1RHD*weak D type 1.1	c.52C>G; c.809T>G	"1, 6"	p.Leu18Val; p.Val270Gly		"RHD*52G, 809G"	"RHD*52G, 809G"		
+RHD	Type1.2	RHD*01W.1.2RHD*weak D type 1.2	c.712G>A; c.809T>G	56	p.Val238Met; p.Val270Gly		"RHD*712A, 809G"	"RHD*712A, 809G"		
+RHD	Type 2	RHD*01W.2RHD*weak D type 2	c.1154G>C	9	p.Gly385Ala		RHD*1154C	RHD*1154C	Splice site change also	
+RHD	Type 2.1	RHD*01W.2.1RHD*weak D type 2.1	c.301T>A; c.1154G>C	29	p.Phe101Ile; p.Gly385Ala		"RHD*301T,115 4C"	"RHD*301T,115 4C"		
+RHD	Type2.2	RHD*01W.2.2RHD*weak D type 2.2	c.916G>A; c.932A>G; c.1154G>C	69	p.Val306Ile; p.Tyr311Cys; p.Gly385Ala		"RHD*916A, 932G, 1154C"	"RHD*916A, 932G, 1154C"		
+RHD	Type 3	RHD*01W.3RHD*weak D type 3	c.8C>G	1	p.Ser3Cys		RHD*8G	RHD*8G		
+RHD	Type3.1	RHD*01W.3.1RHD*weak D type 3.1	c.8C>G; c.178A>C	12	p.Ser3Cys; p.Ile60Leu		"RHD*8G, 178C"	"RHD*8G, 178C"		
+RHD	Type 5	RHD*01W.5RHD*weak D type 5	c.446C>A	3	p.Ala149Asp		RHD*446A	RHD*446A		
+RHD	Type 6	RHD*01W.6RHD*weak D type 6	c.29G>A	1	p.Arg10Gln		RHD*29A	RHD*29A		
+RHD	Type 7	RHD*01W.7RHD*weak D type 7	c.1016G>A	7	p.Gly339Glu		RHD*1016A	RHD*1016A		
+RHD	Type 8	RHD*01W.8RHD*weak D type 8	c.919G>A	6	p.Gly307Arg		RHD*919A	RHD*919A		
+RHD	Type 9	RHD*01W.9RHD*weak D type 9	c.880G>C	6	p.Ala294Pro		RHD*880C	RHD*880C		
+RHD	Type 10	RHD*01W.10RHD*weak D type 10	c.1177T>C	9	p.Trp393Arg		RHD*1177C	RHD*1177C		
+RHD	Type 10.1	RHD*01W.10.1RHD*weak D type 10.1	c.1145T>C; c.1177T>C	89	p.Leu382Pro; p.Trp393Arg		"RHD*1145C, 1177C,"	"RHD*1145C, 1177C,"		
+RHD	Type 10.2	RHD*01W.10.2RHD*weak D type 10.2	c.1177T>C; c.1199A>C	9	p.Trp393Arg; p.Lys400Thr		"RHD*1177C,11 99C"	"RHD*1177C,11 99C"		
+RHD	Type 12	RHD*01W.12RHD*weak D type 12	c.830G>A	6	p.Gly277Glu		RHD*830A	RHD*830A		
+RHD	Type 13	RHD*01W.13RHD*weak D type 13	c.826G>C	6	p.Ala276Pro		RHD*826C	RHD*826C		
+RHD	Type 14	RHD*01W.14RHD*weak D type 14	c.544T>A; c.594A>T; c.602C>G	4	p.Ser182Thr; p.Lys198Asn; p.Thr201Arg		"RHD*544A, 594T, 602G"	"RHD*544A, 594T, 602G"		
+RHD	Type 16	RHD*01W.16RHD*weak D type 16	c.658T>C	5	p.Trp220Arg		RHD*658C	RHD*658C		
+RHD	Type 17	RHD*01W.17RHD*weak D type 17	c.340C>T	3	p.Arg114Trp		RHD*340T	RHD*340T		
+RHD	Type 18	RHD*01W.18RHD*weak D type 18	c.19C>T	1	p.Arg7Trp		RHD*19T	RHD*19T		
+RHD	Type 19	RHD*01W.19RHD*weak D type 19	c.611T>C	4	p.Ile204Thr		RHD*611C	RHD*611C		
+RHD	Type 20	RHD*01W.20RHD*weak D type 20	c.1250T>C	10	p.Phe417Ser		RHD*1250C	RHD*1250C		
+RHD	Type 22	RHD*01W.22RHD*weak D type 22	c.1224G>C	9	p.Trp408Cys		RHD*1224C	RHD*1224C		
+RHD	Type 23	RHD*01W.23RHD*weak D type 23	c.634G>T	4	p.Gly212Cys		RHD*634T	RHD*634T		
+RHD	Type 24	RHD*01W.24RHD*weak D type 24	c.1013T>C	7	p.Leu338Pro		RHD*1013C	RHD*1013C		
+RHD	Type 25	RHD*01W.25RHD*weak D type 25	c.341G>A	3	p.Arg114Gln		RHD*341A	RHD*341A		
+RHD	Type 26	RHD*01W.26RHD*weak D type 26	c.26T>A	1	p.Val9Asp		RHD*26A	RHD*26A		
+RHD	Type 27	RHD*01W.27RHD*weak D type 27	c.661C>T	5	p.Pro221Ser		RHD*661T	RHD*661T		
+RHD	Type 28	RHD*01W.28RHD*weak D type 28	c.1152A>C	8	p.Thr384Thr		RHD*1152C	RHD*1152C	Splice site change only	
+RHD	Type 29	RHD*01W.29RHD*weak D type 29	c.178A>C; c.201G>A; c.203G>A; c.594A>T; c.667T>G; c.744C>T; c.957G>A; c.1025T>C	"2, 4,5, 7"	p.Ile60Leu; silent; p.Ser68Asn; p.Lys198Asn; p.Phe223Val; silent;silent; p.Ile342Thr		"RHD*178C, 201A, 203A,594T, 667G,744T, 957A,1025C"	"RHD*178C, 201A, 203A,594T, 667G,744T, 957A,1025C"		
+RHD	Type 30	RHD*01W.30RHD*weak D type 30	c.1018_1019delinsAT	7	p.Glu340Met		RHD*1018_1019delinsAT	RHD*1018_1019delinsAT		
+RHD	Type 31	RHD*01W.31RHD*weak D type 31	c.17C>T	1	p.Pro6Leu		RHD*17T	RHD*17T		
+RHD	Type 32	RHD*01W.32RHD*weak D type 32	c.1121T>A	8	p.Ile374Asn		RHD*1121A	RHD*1121A		
+RHD	Type 33	RHD*01W.33RHD*weak D type 33	c.520G>A	4	p.Val174Met		RHD*520A	RHD*520A		
+RHD	Type 34	RHD*01W.34RHD*weak D type 34	c.809T>A	6	p.Val270Glu		RHD*809A	RHD*809A		
+RHD	Type 35	RHD*01W.35RHD*weak D type 35	c.260G>A	2	p.Gly87Asp		RHD*260A	RHD*260A		
+RHD	Type 36	RHD*01W.36RHD*weak D type 36	c.842T>G	6	p.Val281Gly		RHD*842G	RHD*842G		
+RHD	Type 37	RHD*01W.37RHD*weak D type 37	c.399G>T	3	p.Lys133Asn		RHD*399T	RHD*399T		
+RHD	Type 38	RHD*01W.38RHD*weak D type 38	c.833G>A	6	p.Gly278Asp		RHD*833A	RHD*833A		
+RHD	Type 39	RHD*01W.39RHD*weak D type 39	c.1015G>A	7	p.Gly339Arg		RHD*1015A	RHD*1015A		
+RHD	Type 40	RHD*01W.40RHD*weak D type 40	c.602C>G	4	p.Thr201Arg		RHD*602G	RHD*602G		0
+RHD	Type 41	RHD*01W.41RHD*weak D type 41	c.1193A>T	9	p.Glu398Val		RHD*1193T	RHD*1193T		
+RHD	Type 41.0.1	RHD*01W.41.0.1RHD*weak D type 41.0.1	c.1170T>C; c.1193A>T	9	p.Leu390Leu; p.Glu398Val		"RHD*1170C, 1193T"	"RHD*1170C, 1193T"		
+RHD	Type 42	RHD*01W.42RHD*weak D type 42	c.1226A>T	9	p.Lys409Met		RHD*1226T	RHD*1226T		
+RHD	Type 43	RHD*01W.43RHD*weak D type 43	c.605 C > T	4	p.Ala202Val		RHD*605T	RHD*605T		
+RHD	Type 44	RHD*01W.44RHD*weak D type 44	c.728A>G	5	p.Tyr243Cys		RHD*728G	RHD*728G		
+RHD	Type 45	RHD*01W.45RHD*weak D type 45	c.1195G>A	9	p.Ala399Thr		RHD*1195A	RHD*1195A		
+RHD	Type45.1	RHD*01W.45.1RHD*weak D type 45.1	c.818C>T; c.1195G>A	"6, 9"	p.Ala273Val; p.Ala399Thr		"RHD*818T, 1195A"	"RHD*818T, 1195A"		
+RHD	Type45.2	RHD*01W.45.2RHD*weak D type 45.2	c.208C>T; c.818C>T; c.1195G>A	269	p.Arg70Trp; p.Ala273Val; p.Ala399Thr		"RHD*208T, 818T,1195A"	"RHD*208T, 818T,1195A"		
+RHD	Type 46	RHD*01W.46RHD*weak D type 46	c.1221C>A	9	p.Phe407Leu		RHD*1221A	RHD*1221A		
+RHD	Type 47	RHD*01W.47RHD*weak D type 47	c.340C>G	3	p.Arg114Gly		RHD*340G	RHD*340G		
+RHD	Type 48	RHD*01W.48RHD*weak D type 48	c.182G>T	2	p.Gly61Val		RHD*182T	RHD*182T		
+RHD	Type 49	RHD*01W.49RHD*weak D type 49	c.770C>T	5	p.Ser257Phe		RHD*770T	RHD*770T		
+RHD	Type 50	RHD*01W.50RHD*weak D type 50	c.727T>A	5	p.Tyr243Asn		RHD*727A	RHD*727A		
+RHD	Type 51	RHD*01W.51RHD*weak D type 51	c.594A>T; c.602C>G	4	p.Lys198Asn; p.Thr201Arg		"RHD*594T, 602G"	"RHD*594T, 602G"		
+RHD	Type 52	RHD*01W.52RHD*weak D type 52	c.92T>C	1	p.Phe31Ser		RHD*92C	RHD*92C		
+RHD	Type 53	RHD*01W.53RHD*weak D type 53	c.740T>G	5	p.Val247Gly		RHD*740G	RHD*740G		
+RHD	Type 54	RHD*01W.54RHD*weak D type 54	c.365C>T	3	p.Ser122Leu		RHD*365T	RHD*365T		
+RHD	Type 55	RHD*01W.55RHD*weak D type 55	c.895C>G	6	p.Leu299Val		RHD*895G	RHD*895G		
+RHD	Type 56	RHD*01W.56RHD*weak D type 56	c.65C>A	1	p.Ala22Glu		RHD*65A	RHD*65A		
+RHD	Type 57	RHD*01W.57RHD*weak D type 57	c.640C>T	5	p.Leu214Phe		RHD*640T	RHD*640T		
+RHD	Type 58	RHD*01W.58RHD*weak D type 58	c.1006G>C	7	p.Gly336Arg		RHD*1006C	RHD*1006C		
+RHD	Type 59	RHD*01W.59RHD*weak D type 59	c.1148T>C	8	p.Leu383Pro		RHD*1148C	RHD*1148C		
+RHD	Type 60	RHD*01W.60RHD*weak D type 60	c.1219_1224delTTCTGG	9	p.Phe407_Trp4 08del		RHD*1219_1224 del	RHD*1219_1224 del		
+RHD	Type 61	RHD*01W.61RHD*weak D type 61	c.28C>T	1	p.Arg10Trp		RHD*28T	RHD*28T		
+RHD	Type 62	RHD*01W.62RHD*weak D type 62	c.661C>A	5	p.Pro221Thr		RHD*661A	RHD*661A		
+RHD	Type 63	RHD*01W.63RHD*weak D type 63	c.758T>A	5	p.Ile253Asn		RHD*758A	RHD*758A		
+RHD	Type 64	RHD*01W.64RHD*weak D type 64	c.881C>T	6	p.Ala294Val		RHD*881T	RHD*881T		
+RHD	Type 65	RHD*01W.65RHD*weak D type 65	c.68C>A	1	p.Ala23Asp		RHD*68A	RHD*68A		
+RHD	Type 66	RHD*01W.66RHD*weak D type 66	c.916G>A	6	p.Val306Ile		RHD*916A	RHD*916A		
+RHD	Type 67	RHD*01W.67RHD*weak D type 67	c.722C>T	5	p.Thr241Ile		RHD*722T	RHD*722T		
+RHD	Type 68	RHD*01W.68RHD*weak D type 68	c.165C>T; c.1213C>G	"2, 9"	silent; p.Gln405Glu		"RHD*165T, 1213G"	"RHD*165T, 1213G"		
+RHD	Type 69	RHD*01W.69RHD*weak D type 69	c.953G>A	7	p.Arg318Gln		RHD*953A	RHD*953A		
+RHD	Type 70	RHD*01W.70RHD*weak D type 70	c.1012C>G	7	p.Leu338Val		RHD*1012G	RHD*1012G		
+RHD	Type 71	RHD*01W.71RHD*weak D type 71	c.29G>C	1	p.Arg10Pro		RHD*29C	RHD*29C		
+RHD	Type 72	RHD*01W.72RHD*weak D type 72	c.1212C>A	9	p.Asp404Glu		RHD*1212A	RHD*1212A		
+RHD	Type 73	RHD* 01W.73RHD*weak D type 73	c.1241C>T	10	p.Ala414Val		RHD*1241T	RHD*1241T		
+RHD	Type 74	RHD* 01W.74RHD*weak D type 74	c.203G>C	2	p.Ser68Thr		RHD*203C	RHD*203C		
+RHD	Type 75	RHD* 01W.75RHD*weak D type 75	c.1194G>C	9	p.Glu398Asp		RHD*1194C	RHD*1194C		
+RHD	Type 76	RHD* 01W.76RHD*weak D type 76	c.1215A>C	9	p.Gln405His		RHD*1215C	RHD*1215C		
+RHD	Type 77	RHD* 01W.77RHD*weak D type 77	c.766T>C	5	p.Ser256Pro		RHD*766C	RHD*766C		
+RHD	Type 78	RHD* 01W.78RHD*weak D type 78	c.1228T>G	10	p.Phe410Val		RHD*1228G	RHD*1228G		
+RHD	Type 79	RHD* 01W.79RHD*weak D type 79	c.560T>C	4	p.Leu187Pro		RHD*560C	RHD*560C		
+RHD	Type 80	RHD* 01W.80RHD*weak D type 80	c.539G>A	4	p.Gly180Glu		RHD*539A	RHD*539A		
+RHD	Type 81	RHD* 01W.81RHD*weak D type 81	c.1199A>C	9	p.Lys400Thr		RHD*1199C	RHD*1199C		
+RHD	Type 82	RHD* 01W.82RHD*weak D type 82	c.1184C>T	9	p.Ala395Val		RHD*1184T	RHD*1184T		
+RHD	Type 83	RHD* 01W.83RHD*weak D type 83	c.1238T>G	10	p.Leu413Trp		RHD*1238G	RHD*1238G		
+RHD	Type 84	RHD* 01W.84RHD*weak D type 84	c.227G>A	2	p.Ser76Asn		RHD*227A	RHD*227A		
+RHD	Type 85	RHD* 01W.85RHD*weak D type 85	c.209G>A	2	p.Arg70Gln		RHD*209A	RHD*209A		
+RHD	Type 86	RHD* 01W.86RHD*weak D type 86	c.1034T>A	7	p.Val345Glu		RHD*1034A	RHD*1034A		
+RHD	Type 87	RHD* 01W.87RHD*weak D type 87	c.374T>A	3	p.Ile125Asn		RHD*374A	RHD*374A		
+RHD	Type 88	RHD* 01W.88RHD*weak D type 88	c.182G>C	2	p.Gly61Ala		RHD*182C	RHD*182C		
+RHD	Type 89	RHD* 01W.89RHD*weak D type 89	c.67G>C	1	p.Ala23Pro		RHD*67C	RHD*67C		
+RHD	Type 90	RHD* 01W.90RHD*weak D type 90	c.993C>G	7	p.Asn331Lys		RHD*993G	RHD*993G		
+RHD	Type 91	RHD* 01W.91RHD*weak D type 91	c.1187C>G	9	p.Pro396Arg		RHD*1187G	RHD*1187G		
+RHD	Type 92	RHD* 01W.92RHD*weak D type 92	c.1145T>C	8	p.Leu382Pro		RHD*1145C	RHD*1145C		
+RHD	Type 93	RHD* 01W.93RHD*weak D type 93	c.359C>A	3	p.Ala120Asp		RHD*359A	RHD*359A		
+RHD	Type 94	RHD* 01W.94RHD*weak D type 94	c.884T>C	6	p.Met295Thr		RHD*884C	RHD*884C		
+RHD	Type 95	RHD* 01W.95RHD*weak D type 95	c.730G>C	5	p.Ala244Pro		RHD*730C	RHD*730C		
+RHD	Type 96	RHD* 01W.96RHD*weak D type 96	c.731C>T	5	p.Ala244Val		RHD*731T	RHD*731T		
+RHD	Type 97	RHD* 01W.97RHD*weak D type 97	c.542T>C	4	p.Leu181Pro		RHD*542C	RHD*542C		
+RHD	Type 98	RHD* 01W.98RHD*weak D type 98	c.751A>C	5	p.Thr251Pro		RHD*751C	RHD*751C		
+RHD	Type 99	RHD* 01W.99RHD*weak D type 99	c.1107A>C	8	p.Glu369Asp		RHD*1107C	RHD*1107C		
+RHD	Type 100	RHD* 01W.100RHD*weak D type 100	c.787G>A	5	p.Glu263Arg		RHD*787A	RHD*787A		
+RHD	Type 101	RHD* 01W.101RHD*weak D type 101	c.62A>C	1	p.Glu21Ala		RHD*62C	RHD*62C		
+RHD	Type 102	RHD* 01W.102RHD*weak D type 102	c.73A>T	1	p.Ile25Phe		RHD*73T	RHD*73T		
+RHD	Type 103	RHD* 01W.103RHD*weak D type 103	c.91T>A	1	p.Phe31Ile		RHD*91A	RHD*91A		
+RHD	Type 104	RHD* 01W.104RHD*weak D type 104	c.157G>T	2	p.Asp53Tyr		RHD*157T	RHD*157T		
+RHD	Type 105	RHD* 01W.105RHD*weak D type 105	c.200C>G	2	p.Ser67Trp		RHD*200G	RHD*200G		
+RHD	Type 106	RHD* 01W.106RHD*weak D type 106	c.220T>G	2	p.Trp74Gly		RHD*220G	RHD*220G		
+RHD	Type 107	RHD* 01W.107RHD*weak D type 107	c.223A>T	2	p.Ser75Cys		RHD*223G	RHD*223G		
+RHD	Type 108	RHD* 01W.108RHD*weak D type 108	c.287G>A	2	p.Gly96Asp		RHD*287A	RHD*287A		
+RHD	Type 109	RHD* 01W.109RHD*weak D type 109	c. 376T>C	3	p.Ser126Pro		RHD*376C	RHD*376C		
+RHD	Type 110	RHD* 01W.110RHD*weak D type 110	c.413A>G	3	p.Gln138Arg		RHD*413G	RHD*413G		
+RHD	Type 111	RHD* 01W.111RHD*weak D type 111	c.634G>A	4	p.Gly212Ser		RHD*634A	RHD*634A		
+RHD	Type 112	RHD* 01W.112RHD*weak D type 112	c.635G>A	5	p.Gly212Asp		RHD*635A	RHD*635A		
+RHD	Type 113	RHD* 01W.113RHD*weak D type 113	c.874T>C	6	p.Trp292Arg		RHD*874C	RHD*874C		
+RHD	Type 114	RHD* 01W.114RHD*weak D type 114	c.968C>T	7	p.Pro323Leu		RHD*968T	RHD*968T		
+RHD	Type 115	RHD* 01W.115RHD*weak D type 115	c.983T>A	7	p.Met328Lys		RHD*983A	RHD*983A		
+RHD	Type 116	RHD* 01W.116RHD*weak D type 116	c.346G>C	3	p.Ala116Pro		RHD*346C	RHD*346C		
+RHD	Type 117	RHD* 01W.117RHD*weak D type 117	c.346G>A	3	p.Ala116Thr		RHD*346A	RHD*346A		
+RHD	Type 118	RHD* 01W.118RHD*weak D type 118	c.347C>T	3	p.Ala116Val		RHD*347T	RHD*347T		
+RHD	Type 119	RHD* 01W.119RHD*weak D type 119	c.818C>T	6	p.Ala273Val		RHD*818T	RHD*818T		
+RHD	Type 120	RHD* 01W.120RHD*weak D type 120	c.818C>A	6	p.Ala273Glu		RHD*818A	RHD*818A		
+RHD	Type 121	RHD* 01W.121RHD*weak D type 121	c.176C>A	2	p.Ala59Asp		RHD*176A	RHD*176A		
+RHD	Type 122	RHD* 01W.122RHD*weak D type 122	c.208C>T	2	p.Arg70Trp		RHD*208T	RHD*208T		
+RHD	Type 123	RHD* 01W.123RHD*weak D type 123	c.379 G>T	3	p.Val127Leu		RHD*379T	RHD*379T		
+RHD	Type 124	RHD* 01W.124RHD*weak D type 124	c.594A>T	4	p.Lys198Asn		RHD*594T	RHD*594T		
+RHD	Type 125	RHD* 01W.125RHD*weak D type 125	c.671A>G	5	p.Asn224Ser		RHD*671G	RHD*671G		
+RHD	Type 126	RHD* 01W.126RHD*weak D type 126	c.1199A>T	9	p.Lys400Ile		RHD*1199T	RHD*1199T		
+RHD	Type 127	RHD* 01W.127RHD*weak D type 127	c.1200A>T	9	p.Lys400Asn		RHD*1200T	RHD*1200T		
+RHD	Type 128	RHD* 01W.128RHD*weak D type 128	c.1207G>T	9	p.Asp403Tyr		RHD*1207T	RHD*1207T		
+RHD	Type 129	RHD* 01W.129RHD*weak D type 129	c.1208A>T	9	p.Asp403Val		RHD*1208T	RHD*1208T		
+RHD	Type 130	RHD* 01W.130RHD*weak D type 130	c.163A>C	2	p.Thr55Pro		RHD*163A	RHD*163A		
+RHD	Type 131	RHD* 01W.131RHD*weak D type 131	c.254C>G	2	p.Ala85Gly		RHD*254G	RHD*254G		
+RHD	Type 132	RHD* 01W.132RHD*weak D type 132	c.394G>A	3	p.Gly132Arg		RHD*394A	RHD*394A		
+RHD	Type 133	RHD* 01W.133RHD*weak D type 133	c.395G>A	3	p.Gly132Glu		RHD*395A	RHD*395A		
+RHD	Type 134	RHD* 01W.134RHD*weak D type 134	c.1168C>G	9	p.Leu390Val		RHD*1168G	RHD*1168G		
+RHD	Type 135	RHD* 01W.135RHD*weak D type 135	c.884T>A	6	p.Met295Lys		RHD*884A	RHD*884A		
+RHD	Type 136	RHD* 01W.136RHD*weak D type 136	c.41C>T	1	p.Pro14Leu		RHD*41T	RHD*41T		
+RHD	Type 137	RHD* 01W.137RHD*weak D type 137	c.780C>A	5	p.His260Gln		RHD*780A	RHD*780A		
+RHD	Type 138	RHD* 01W.138RHD*weak D type 138	c.871C>T	6	p.Pro291Ser		RHD*871T	RHD*871T		
+RHD	Type 139	RHD* 01W.139RHD*weak D type 139	c.1169T>C	9	p.Leu390Pro		RHD*1169C	RHD*1169C		
+RHD	Type 140	RHD* 01W.140RHD*weak D type 140	c.1229T>C	10	p.Phe410Ser		RHD*1229C	RHD*1229C		
+RHD	Type 141	RHD* 01W.141RHD*weak D type 141	c.668T>C	5	p.Phe223Ser		RHD*668C	RHD*668C		
+RHD	Type 142	RHD* 01W.142RHD*weak D type 142	c.67G>T	1	p.Ala23Ser		RHD*67T	RHD*67T		
+RHD	Type 143	RHD* 01W.143RHD*weak D type 143	c.173C>T	2	p.Ala58Val		RHD*173T	RHD*173T		
+RHD	Type 144	RHD* 01W.144RHD*weak D type 144	c.579G>C	4	p.Glu193Asp		RHD*579C	RHD*579C		
+RHD	Type 145	RHD* 01W.145RHD*weak D type 145	c.41 C>G	1	p. Pro14Arg		RHD*41G	RHD*41G		
+RHD	Del	RHD*01EL.01 RHD*DEL1	c.1227G>A	9	p.Lys409Lys		RHD*1227A	RHD*1227A	Splice site affected	
+RHD	Del	RHD*01EL.02 RHD*DEL2	c.3G>A	1	p.Met1Ile		RHD*3A	RHD*3A		
+RHD	Del	RHD*01EL.03 RHD*DEL3	c.53T>C	1	p.Leu18Pro		RHD*53C	RHD*53C		
+RHD	Del	RHD*01EL.04 RHD*DEL4	c.147delA	1	p.Val50Leufs*5		RHD*147delA	RHD*147delA		
+RHD	Del	RHD*01EL.05 RHD*DEL5	c.148+1G>A	Intron 1	Splice site mutation		RHD*148+1A	RHD*148+1A		
+RHD	Del or weak D	RHD*01EL.06 RHD*DEL6	c.251T>C	2	p.Leu84Pro		RHD*251C	RHD*251C		
+RHD	Del or weak D	RHD*01EL.07 RHD*DEL7	c.410C>A	3	p.Ala137Glu		RHD*410A	RHD*410A		
+RHD	Del	RHD*01EL.08 RHD*DEL8	c.486+1G>A	Intron 3	Splice site mutation		RHD*486+1A	RHD*486+1A		
+RHD	Del orD negative	RHD*01EL.09 RHD*DEL9	c.486+2T>A	Intron 3	Splice site mutation		RHD*486+2A	RHD*486+2A		
+RHD	Del	RHD*01EL.10 RHD*DEL10	c.1222T>C	9	p.Trp408Arg		RHD*1222C	RHD*1222C		
+RHD	Del	RHD*01EL.11 RHD*DEL11	c.1252_1253insT	10	p.*418Leuext*7 0		RHD*1252_1253insT	RHD*1252_1253insT		
+RHD	Del	RHD*01EL.12 RHD*DEL12	c.458T>C	3	p.Leu153Pro		RHD*458C	RHD*458C		
+RHD	Del orD negative	RHD*01EL.13 RHD*DEL13	c.785delA	5	p.Lys264Argfs* 24		RHD*785delA	RHD*785delA		
+RHD	Del	RHD*01EL.14 RHD*DEL14	c.634+5G>T	Intron 4	Splice site mutation		RHD*634+5T	RHD*634+5T	G>A associated with weak D	
+RHD	Del orD negative	RHD*01EL.15 RHD*DEL15	c.922G>T	6	p.Gly308Ter		RHD*922T	RHD*922T		
+RHD	Del	RHD*01EL.16 RHD*DEL16	c.634G>C	4	p.Gly212Arg		RHD*634C	RHD*634C	212Cys reported as weak D; 212Val as D neg	
+RHD	Del	RHD*01EL.17 RHD*DEL17	c.1203T>A	9	p.Tyr401*		RHD*1203A	RHD*1203A		
+RHD	Del	RHD*01EL.18 RHD*DEL18	c.93_94insT	1	p.Thr32Tyrfs*4		RHD*93_94ins T	RHD*93_94ins T		
+RHD	Del	RHD*01EL.19 RHD*DEL19	c.635-2A>G	Intron 4	Splice site mutation		RHD*635-2G	RHD*635-2G		
+RHD	Del	RHD*01EL.20 RHD*DEL20	c.1154-8T>A	Intron 8	Splice site mutation		RHD*1154-8A	RHD*1154-8A		
+RHD	Del	RHD*01EL.21 RHD*DEL21	c.148+5G>C	Intron 1	Splice site mutation		RHD*148+5C	RHD*148+5C	Hyland	
+RHD	Del	RHD*01EL.22 RHD*DEL22	c.336-2delA	Intron 2	Splice site mutation		RHD*336-2delA	RHD*336-2delA	Hyland	
+RHD	Del Partial D	RHD*01EL.23 RHD*DEL23	RHD-CE(5-7)- D	5 6 7	Hybrid allele		RHD*-CE(5-7)- D	RHD*-CE(5-7)- D	DBU	
+RHD	Del	RHD*01EL.24 RHD*DEL24	c.838G>A	6	p.Ala280Thr		RHD*838A	RHD*838A		
+RHD	Del	RHD*01EL.25 RHD*DEL25	c.1252T>A	10	p.Ter418Lysext*?		RHD*1252A	RHD*1252A		
+RHD	Del	RHD*01EL.26 RHD*DEL26	c.1248_1249insG	10	p.Phe417Valfs*?		RHD*1248_1249insG	RHD*1248_1249insG		
+RHD	Del	RHD*01EL.28 RHD*DEL28	c.993delC	7	p.Phe332Serfs* 27		RHD*993delC	RHD*993delC	186G>T	
+RHD	Del	RHD*01EL.29 RHD*DEL29	c.1210G>C	9	p.Asp404His		RHD*1210C	RHD*1210C		
+RHD	Del	RHD*01EL.30 RHD*DEL30	c.1074- 100_1153+?del	Intron 78Intron 8	Large Deletion		RHD* Ex8del	RHD* Ex8del		
+RHD	Del	RHD*01EL.31 RHD*DEL31	c.148+1G>T	1	Splice site mutation		RHD*148+1T	RHD*148+1T		
+RHD	Del	RHD*01EL.32 RHD*DEL32	c.149 -29G>C	Intron 1	Intron polymorphism		RHD*149-29C	RHD*149-29C		
+RHD	Del	RHD*01EL.33 RHD*DEL33	c.336-2A>G	2	Splice site mutation		RHD*336-2G	RHD*336-2G		
+RHD	Del	RHD*01EL.35 RHD*DEL35	c.802-38_35del	5	Intron polymorphism		RHD*802-38_35del	RHD*802-38_35del	frequently observed in normal D phenotypes- obsolete	
+RHD	Del	RHD*01EL.36 RHD*DEL36	c.1227G>A; c.1073+152C> A	9Intron 7	Splice site mutation		"RHD*(1227A, 1073+152A)"	"RHD*(1227A, 1073+152A)"		
+RHD	Del	RHD*01EL.37 RHD*DEL37	c.1154-31C>T	8	Intron polymorphism		RHD*1154-31T	RHD*1154-31T		
+RHD	Del	RHD*01EL.38 RHD*DEL38	c.1010T>G	7	p.Leu337Arg		RHD*1010G	RHD*1010G		
+RHD	Del	RHD*01EL.39 RHD*DEL39	c.113T>A	1	p.Leu38*		RHD*113A	RHD*113A		
+RHD	Del	RHD*01EL.40 RHD*DEL40	c.278T>G	2	p.Leu93Arg		RHD*278G	RHD*278G		
+RHD	Del	RHD*01EL.41 RHD*DEL41	c.872C>G	6	p.Pro291Arg		RHD*872G	RHD*872G		
+RHD	Del	RHD*01EL.42 RHD*DEL42	c.335G>C; c.149-29G>C	2Intron 1	p.Ser112Thr		RHD*(335G>C 149-29C)	RHD*(335G>C 149-29C)		
+RHD	Del	RHD*01EL.43 RHD*DEL43	c.46T>C	1	p.Trp16Arg		RHD*46C	RHD*46C		
+RHD	Del	RHD*01EL.44 RHD*DEL44	RHD-CE(4-9)- D	9-Apr	Hybrid allele		RHD*-CE(4-9)- D	RHD*-CE(4-9)- D		
+RHD	Del	RHD*01EL.45 RHD*DEL45	c.721A>C	5	p.Thr241Pro		RHD*721C	RHD*721C		
+RHD	Del	RHD*01EL.46 RHD*DEL46	c.884T>C	6	p.Met295Thr		RHD*884C	RHD*884C		
+RHD	Normal D antigen	RHD*01.01	c.48G>C	1	p.Trp16Cys		RHD*48C	RHD*48C	DUC-3	0.0006
+RHD	DII	RHD*02 RHD*DII	c.1061C>A	7	p.Ala354Asp		RHD*1061A	RHD*1061A		
+RHD	DIIIaRH:54 (DAK+)	RHD*03.01 RHD*DIIIa	c.186G>T; c.410C>T; c.455A>C; c.602C>G; c.667T>G; c.819G>A	23456	p.Leu62Phe; p.Ala137Val; p.Asn152Thr; p.Thr201Arg; p.Phe223Val; silent		"RHD*186T,410T,455C,602G,667G"	"RHD*186T,410T,455C,602G,667G"	"Also reported as DIIIa type 5 (obsolete)Original DIIIa report missed 186G>T, 410C>T,and 819G>A"	0.014
+RHD	DIIIb Caucasian RH:54 (DAK+) RH:─12 (G─)	RHD*03.02 RHD*DIIIb	c.150T>C; c.178A>C; c.201G>A; c.203G>A; c.307T>C	2	silent; p.Ile60Leu; silent; p.Ser68Asn; p.Ser103Pro		RHD*D-CE(2)-D	RHD*D-CE(2)-D		
+RHD	DIIIc	RHD*03.03 RHD*DIIIc	c.361T>A; c.380T>C; c.383A>G; c.455A>C	3	p.Leu121Met; p.Val127Ala; p.Asp128Gly; p.Asn152Thr		RHD*D-CE(3)-D	RHD*D-CE(3)-D		
+RHD	DIII type 4	RHD*03.04 RHD*DIII.04	c.186G>T; c.410C>T; c.455A>C	"2, 3"	p.Leu62Phe; p.Ala137Val; p.Asn152Thr		"RHD*186T,410T,455C"	"RHD*186T,410T,455C"		
+RHD	Not tested	RHD*03.04.02 RHD*DIII.04.02	c.186G>T; c.307T>C; c.410C>T; c.455A>C	23	p.Leu62Phe; p.Ser103Pro; p.Ala137Val; p.Asn152Thr		"RHD*186T,307C, 410T,455C"	"RHD*186T,307C, 410T,455C"	In trans to DAR1	
+RHD	DIII type 6	RHD*03.06 RHD*DIII.06	c.410C>T; c.455A>C; c.602C>G; c.667T>G; c.819G>A	3456	p.Ala137Val; p.Asn152Thr; p.Thr201Arg; p.Phe223Val; silent		"RHD*410T,455C,602 G,667G"	"RHD*410T,455C,602 G,667G"		
+RHD	DIII type 7(likely the historically defined DIIIb)	RHD*03.07 RHD*DIII.07	c.150T>C; c.178A>C; c.201G>A; c.203G>A; c.307T>C; c.410C>T; c.455A>C; c.602C>G; c.667T>G	2345	silent; p.Ile60Leu; silent; p.Ser68Asn; p.Ser103Pro; p.Ala137Val; p.Asn152Thr; p.Thr201Arg; p.Phe223Val		"RHD*D-CE(2)-410T, 455C, 602G, 667G-D"	"RHD*D-CE(2)-410T, 455C, 602G, 667G-D"		
+RHD	DIII type 8	RHD*03.08 RHD*DIII.08	c.410C>T; c.455A>C	3	p.Ala137Val; p.Asn152Thr		"RHD*410T,455C"	"RHD*410T,455C"		
+RHD	DIII type 9	RHD*03.09 RHD*DIII.09	c.186G>T; c.410C>T; c.455A>C; c.667T>G	2345	p.Leu62Phe; p.Ala137Val; p.Asn152Thr; p.Phe223Val		"RHD*186T, 410T, 455C, 667G"	"RHD*186T, 410T, 455C, 667G"		
+RHD	DIVaRH30+ (Goa+)	RHD*04.01 RHD*DIVa	c.186G>T; c.410C>T; c.455A>C; c.1048G>C	237	p.Leu62Phe; p.Ala137Val; p.Asn152Thr; p.Asp350His		"RHD*186T,410T, 455C,1048C"	"RHD*186T,410T, 455C,1048C"	Often withRHCE*ceTI	0.0181
+RHD	DIVa-like or DIVa type 3	RHD*04.01.02	c.186G>T; c.410C>T; c.455A>C; c.667T>G; c.1048G>C	237	p.Leu62Phe; p.Ala137Val; p.Asn152Thr; p.Phe223Val; p.Asp350His		"RHD*186T, 410T, 455C, 667G, 1048C"	"RHD*186T, 410T, 455C, 667G, 1048C"	Was found withRHCE*ceTI	0.0006
+RHD	DIV type 3	RHD*04.03 RHD* DIV.3	c.916G>A; c.932A>G; c.941G>T; c.968C>A; c.974G>T; c.979A>G; c.985G>C; c.986G>A; c.989A>C; c.992A>T; c.1025T>C; c.1048G>C; c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A; c.1063 G>T;c.1170 T>C; c.1193 A>T	6789	p.Val306Ile; p.Tyr311Cys; p.Gly314Val; p.Pro323His; p.Ser325Ile; p.Ile327Val; p.Gly329His; p.Gly329His; p.Tyr330Ser; p.Asn331Ile; p.Ile343Thr; p.Asp350His; silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn; silent;silent; p.Glu398Val		RHD*D-CE(6-9)-D	RHD*D-CE(6-9)-D		
+RHD	DIV type 4	RHD*04.04 RHD*DIV.4	"c.1048G>C, c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A"	7	p.Asp350His; silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn		"RHD*1048C,1057T,10 59G,1060A,1061A"	"RHD*1048C,1057T,10 59G,1060A,1061A"		
+RHD	DIV type 5	RHD*04.05 RHD*DIV.5	c.941G>T; c.968C>A; c.974G>T; c.979A>G; c.985G>C; c.986G>A; c.989A>C; c.992A>T; c.1025T>C; c.1048G>C; c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A; c.1063G>T; c.1170T>C; c.1193A>T	789	p.Gly314Val; p.Pro323His; p.Ser325Ile; p.Ile327Val; p.Gly329His; p.Gly329His; p.Tyr330Ser; p.Asn331Ile;p. Ile342Thr; p.Asp350His; silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn; silent;silent; p.Glu398Val		RHD*D-CE(7-9)-D	RHD*D-CE(7-9)-D		
+RHD	DIVb	RHD*04.06 RHD*DIVb	c.1048G>C; c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A; c.1170T>C; c.1193A>T	789	p.Asp350His; silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn; silent; p.Glu398Val		"RHD*D-1048C, 1057T,1059G,1060A,1061A -CE(8-9)-D"	"RHD*D-1048C, 1057T,1059G,1060A,1061A -CE(8-9)-D"		
+RHD	DV type 1	RHD*05.01 RHD*DV.1	c.667T>G; c.697G>C	5	p.Phe223Val; p.Glu233Gln		"RHD*667G,697C"	"RHD*667G,697C"	Kou FK	
+RHD	DV type 2	RHD*05.02 RHD*DV.2	c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T	5	p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met		RHD*D-CE(5)-D	RHD*D-CE(5)-D	Hus	
+RHD	DV type 3	RHD*05.03 RHD*DV.3	c.667T>G; c.676G>C; c.697G>C; c.712G>A	5	p.Phe223Val; p.Ala226Pro; p.Glu233Gln; p.Val238Met		"RHD*667G,676C, 697C,712A"	"RHD*667G,676C, 697C,712A"	Also known asDBS0	
+RHD	DV Type 4 RH:23 (Dw+)	RHD*05.04 RHD*DV.4	c.697G>C	5	p.Glu233Gln		RHD*697C	RHD*697C	SM	
+RHD	DV type 5 RH:-23 (Dw-)	RHD*05.05 RHD*DV.5	c.697G>A	5	p.Glu233Lys		RHD*697A	RHD*697A	"DHK, DYO"	
+RHD	DV type 6	RHD*05.06 RHD*DV.6	c.667T>G; c.697G>C; c.712G>A	5	p.Phe223Val; p.Glu233Gln; p.Val238Met		"RHD*667G,697C,712 A"	"RHD*667G,697C,712 A"	Jpn	
+RHD	DV type 7	RHD*05.07 RHD*DV.7	c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A	5	p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val245Leu; p.Gly263Arg; silent;p.Gly263Arg		"RHD*667G,697C,712 A,733C,787A"	"RHD*667G,697C,712 A,733C,787A"	DAL	
+RHD	DV type 8	RHD*05.08 RHD*DV.8	c.667T>G; c.697G>C; c.712G>A;c.733G>C; c.744C>T	5	p.Phe223Val; p.Glu233Gln; p.Val238Met;p.Val245Leu; silent				TT	
+RHD	DV type 9	RHD*05.09 RHD*DV.9	c.697G>C; c.712G>A	5	p.Glu233Gln; p.Val238Met		"RHD*697C,712A"	"RHD*697C,712A"	TO	
+RHD	DV type 10	RHD*05.10 RHD*DV.10	c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G	56	p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met; p.Val306Ile; p.Tyr311Cys		RHD*D-CE-(5-6)-D	RHD*D-CE-(5-6)-D		
+RHD	DVI type 1 RH:─52 (BARC─)	RHD*06.01 RHD*DVI.1	c.505A>C; c.509T>G; c.514A>T; c.544T>A; c.577G>A; c.594A>T; c.602C>G; c.667T>G; c.676G>C; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T	45	p.Met169Leu; p.Met170Arg; p.Ile172Phe; p.Ser182Thr; p.Glu193Lys; p.Lys198Asn; p.Thr201Arg; p.Phe223Val; p.Ala226Pro; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met		RHD*D-CE(4-5)-D	RHD*D-CE(4-5)-D	linked toRHCE*cE	
+RHD	DVI type 2 RH:52 (BARC+)	RHD*06.02 RHD*DVI.2	c.505A>C; c.509T>G; c.514A>T; c.544T>A; c.577G>A; c.594A>T; c.602C>G; c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G	456	p.Met169Leu; p.Met170Arg; p.Ile172Phe; p.Ser182Thr; p.Glu193Lys; p.Lys198Asn; p.Thr201Arg; p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met; p.Val306Ile; p.Tyr311Cys		RHD*D-CE(4-6)-D	RHD*D-CE(4-6)-D	linked toRHCE*Ce	
+RHD	DVI type 3 RH:52 BARC+	RHD*06.03.01 RHD*DVI.3	c.361T>A; c.380T>C; c.383A>G; c.455A>C; c.505A>C; c.509T>G; c.514A>T; c.544T>A; c.577G>A; c.594A>T; c.602C>G; c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G	3456	p.Leu121Met; p.Val127Ala; p.Asp128Gly; p.Asn152Thr; p.Met169Leu; p.Met170Arg; p.Ile172Phe; p.Ser182Thr; p.Glu193Lys; p.Lys198Asn; p.Thr201Arg; p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val254Leu; silent; p.Gly263Arg; p.Lys267Met; p.Val306Ile; p.Tyr311Cys		RHD*D-CE(3-6)-D	RHD*D-CE(3-6)-D	linked toRHCE*Ce	
+RHD	DVI type 3.2 BARC not tested	RHD*06.03.02 RHD*DVI.03.02	c.361T>A; c.380T>C; c.383A>G; c.455A>C; c.505A>C; c.509T>G; c.514A>T; c.544T>A; c.577G>A; c.594A>T; c.602C>G; c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G; c.1195G>A	"3, 4, 5,6, 9"	As aboveandp.Ala399Thr		RHD*D-CE(3-6)-D 1195A	RHD*D-CE(3-6)-D 1195A		
+RHD	DVI type 4 RH:52 (BARC+)	RHD*06.04 RHD*DVI.4	c.361T>A; c.380T>C; c.383A>G; c.455A>C; c.505A>C; c.509T>G; c.514A>T; c.544T>A; c.577G>A; c.594A>T; c.602C>G; c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T	345	p.Leu121Met; p.Val127Ala; p.Asp128Gly; p.Asn152Thr; p.Met169Leu; p.Met170Arg; p.Ile172Phe; p.Ser182Thr; p.Glu193Lys; p.Lys198Asn; p.Thr201Arg; p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent ; p.Gly263Arg; p.Lys267Met		RHD*D-CE(3-5)-D	RHD*D-CE(3-5)-D	linked toRHCE*Ce	
+RHD	DVIIRH:40 (Tar+)	RHD*07.01 RHD*DVII.1	c.329T>C	2	p.Leu110Pro		RHD*329C	RHD*329C		
+RHD	DVII type 2	RHD*07.02 RHD*DVII.2	c.307T>C; c.329T>C	2	p.Ser103Pro; p.Leu110Pro		"RHD*307C,329C"	"RHD*307C,329C"		
+RHD	DFV	RHD*08.01 RHD*DFV	c.667T>G	5	p.Phe223Val		RHD*667G	RHD*667G		
+RHD	DAR(T203A)	RHD*09.01 RHD*DAR	c.602C>G; c.607A>G; c.667T>G; c.744C>T; c.957G>A; c.1025T>C	4	p.Thr201Arg; p.Thr203Ala; p.Phe223Val; silent;silent; p.Ile342Thr		"RHD*602G,607G,667 G,744T,957A,1025C"	"RHD*602G,607G,667 G,744T,957A,1025C"		0.0035
+RHD	DAR1(weak D 4.2)	RHD*09.01.00 RHD*DAR1.00	c.602C>G; c.667T>G; c.1025T>C	457	p.Thr201Arg; p.Phe223Val; p.Ile342Thr		"RHD*602G,667G, 1025C"	"RHD*602G,667G, 1025C"		
+RHD	DAR1.1(weak D 4.2.1)	RHD*09.01.01 RHD*DAR1.01	c.602C>G; c.667T>G; c.957G>A; c.1025T>C	457	p.Thr201Arg; p.Phe223Val; silent; p.Ile342Thr		"RHD*602G,667G, 1025C"	"RHD*602G,667G, 1025C"		
+RHD	DAR1.2(weak D 4.2.2)	RHD*09.01.02 RHD*DAR1.02	c.602C>G; c.667T>G; c.744C>T; c.957G>A; c.1025T>C	457	p.Thr201Arg; p.Phe223Val; silent;silent; p.Ile342Thr		"RHD*602G,667G, 1025C"	"RHD*602G,667G, 1025C"		
+RHD	DAR1.3(weak D 4.2.3)	RHD*09.01.03 RHD*DAR1.03	c.602C>G; c.667T>G; c.744C>T; c.1025T>C	457	p.Thr201Arg; p.Phe223Val; silent; p.Ile342Thr		"RHD*602G,667G, 1025C"	"RHD*602G,667G, 1025C"		
+RHD	DAR2 (DARE)	RHD*09.02.00 RHD*DAR2.00	c.602C>G; c.667T>G; c.697G>C; c.957G>A; c.1025 T>C	457	p.Thr201Arg; p.Phe223Val; p.Glu233Gln; silent; p.Ile342Thr		"RHD*602G,667G,697 C,1025C"	"RHD*602G,667G,697 C,1025C"	Reported as DAR-E	
+RHD	DAR2.1	RHD*09.02.01 RHD*DAR2.01	c.602C>G; c.667T>G; c.697G>C; c.744C>T; c.957G>A; c.1025 T>C	457	p.Thr201Arg; p.Phe223Val; p.Glu233Gln; silent;silent; p.Ile342Thr		"RHD*602G, 557G, 697C, 744T, 957A"	"RHD*602G, 557G, 697C, 744T, 957A"		
+RHD	DAR3(weak partial D 4.0.1)	RHD*09.03 RHD*DAR3	c.602C>G; c.667T>G	"4, 5"	p.Thr201Arg; p.Phe223Val		"RHD*602G,667G"	"RHD*602G,667G"		
+RHD	DAR3.1(weak partial D 4.0)	RHD*09.03.01 RHD*DAR3.01	c.602C>G; c.667T>G; c.819G>A	"4, 5, 6"	p.Thr201Arg; p.Phe223Val; silent		"RHD*602G,667G"	"RHD*602G,667G"		0.0298
+RHD	DAR4(weak D 4.1)	RHD*09.04 RHD*DAR4	c.48G>C; c.602C>G; c.667T>G; c.819G>A	1456	p.Trp16Cys; p.Thr201Arg; p.Phe223Val; silent		"RHD*48C,602G,667G"	"RHD*48C,602G,667G"		
+RHD	DAR5(weak D 4.3 or Del)	RHD*09.05 RHD*DAR5	c.602C>G; c.667T>G; c.819G>A; c.872C>G	456	p.Thr201Arg; p.Phe223Val; silent; p.Pro291Arg		"RHD*602G,667G, 872G"	"RHD*602G,667G, 872G"		
+RHD	DAR6Or DAR(CE2:V50V- S68N)	RHD*09.06 RHD*DAR6Or RHD*09.06RHD*DAR(CE2:V50V-S68N)	c.150T>C; c.178A>C; c.201G>A; c.203G>A; c.602C>G; c.667T>G; c.1025T>C	"2, 4, 5, 7"	silent; p.Ile60Leu; silent; p.Ser68Asn; p.Thr201Arg; p.Phe223Val; p.Ile342Thr		"RHD*150C, 178C, 201A, 203A, 602G,667G, 1025C"	"RHD*150C, 178C, 201A, 203A, 602G,667G, 1025C"		
+RHD	DAU0	RHD*10.00 RHD*DAU0	c.1136C>T	8	p.Thr379Met		RHD*1136T	RHD*1136T		0.1651
+RHD	DAU0.01	RHD*10.00.01 RHD*DAU0.01	c.1136C>T; c.579G>A	84	p.Thr379Met silent		"RHD*1136T,579A"	"RHD*1136T,579A"		
+RHD	DAU0.02	RHD*10.00.02 RHD*DAU0.02	c.1136C>T; c.150T>C	82	p.Thr370Met Silent(commo n)		"RHD*1136T,150C"	"RHD*1136T,150C"		
+RHD	DAU1	RHD*10.01 RHD*DAU1	c.689G>T; c.1136C>T	58	p.Ser230Ile; p.Thr379Met		"RHD*689T,1136T"	"RHD*689T,1136T"		
+RHD	DAU2	RHD*10.02 RHD*DAU2	c.209G>A; c.998G>A; c.1136C>T	278	p.Arg70Gln; p.Ser333Asn; p.Thr379Met		"RHD*209A,998A, 1136T"	"RHD*209A,998A, 1136T"		
+RHD	DAU3	RHD*10.03 RHD*DAU3	c.835G>A; c.1136C>T	"6, 8"	p.Val279Met; p.Thr379Met		"RHD*835A,1136T"	"RHD*835A,1136T"		0.0158
+RHD	DAU4	RHD*10.04 RHD*DAU4	c.697G>A; c.1136C>T	"5, 8"	p.Glu233Lys; p.Thr379Met		"RHD*697A,1136T"	"RHD*697A,1136T"		0.0012
+RHD	DAU5	RHD*10.05 RHD*DAU5	c.667T>G; c.697G>C; c.1136C>T	"5, 8"	p.Phe223Val; p.Glu233Gln; p.Thr379Met		"RHD*667G,697C,113 6T"	"RHD*667G,697C,113 6T"		0.0128
+RHD	DAU5.1	RHD*10.05.01 RHD*DAU5.01	c.667T>G; c.697G>C; c.1122C>T; c.1136C>T	"5, 8"	p.Phe223Val; p.Glu233Gln; silent; p.Thr379Met		"RHD*667G, 697C, 1122T, 1136T"	"RHD*667G, 697C, 1122T, 1136T"		
+RHD	DAU6	RHD*10.06 RHD*DAU6	c.998G>A; c.1136C>T	"7, 8"	p.Ser333Asn; p.Thr379Met		"RHD*998A,1136T"	"RHD*998A,1136T"		0
+RHD	DAU7	RHD*10.07 RHD*DAU7	c.835G>A; c.998G>A; c.1136C>T;	678	p.Val279Met; p.Ser333Asn; p.Thr379Met		"RHD*835A,998A,1136 T"	"RHD*835A,998A,1136 T"		
+RHD	DAU8	RHD*10.08 RHD*DAU8	c.340C>T; c.579G>A; c.1136C>T	"3, 4, 8"	p.Arg114Trp; silent; p.Thr379Met		"RHD*340T, 579A, 1136T"	"RHD*340T, 579A, 1136T"		
+RHD	DAU9	RHD*10.09 RHD*DAU9	c.535T>C; c.1136C>T	"4, 8"	p.Phe179Leu; p.Thr379Met		"RHD*535C, 1136T"	"RHD*535C, 1136T"		
+RHD	DAU10	RHD*10.10 RHD*DAU10	c.579G>A; c.739G>C; c.1136C>T	"4, 5, 8"	silent; p.Val247Leu; p.Thr379Met		"RHD*579A, 739C, 1136T"	"RHD*579A, 739C, 1136T"		
+RHD	DAU11	RHD*10.11 RHD*DAU11	c.254C>T; c.835G>A; c.1136C>T	"2, 6, 8"	p.Ala85Val; p.Val279Met; p.Thr379Met		"RHD*254T, 835A, 1136T"	"RHD*254T, 835A, 1136T"		
+RHD	DAU12	RHD*10.12 RHD*DAU12	c.542T>C; c.1136C>T	"4, 8"	p.Leu181Pro; p.Thr379Met		"RHD*542C, 1136T"	"RHD*542C, 1136T"		
+RHD	DAU13	RHD*10.13 RHD*DAU13	c.48G>C; c.1136C>T	"1, 8"	p.Trp16Cys; p.Thr379Met		"RHD*48C, 1136T"	"RHD*48C, 1136T"		
+RHD	DAU14	RHD*10.14 RHD*DAU14	c.201G>A; c.203G>A; c.1136C>T	"2, 8"	silent; p.Ser68Asn; p.Thr379Met		"RHD*201A, 203A, 1136T"	"RHD*201A, 203A, 1136T"		
+RHD	"RHD(M1V,T379M)Or DAU15"	RHD*10.15 RHD*DAU15Or RHD10.15	c.1A>G; c.1136C>T	"1, 8"	p.Met1Val; p.Thr379Met		"RHD*1G, 1136T"	"RHD*1G, 1136T"		
+RHD	weak partial 11 or Del	RHD*11RHD*weak partial 11	c.885G>T	6	p.Met295Ile		RHD*885T	RHD*885T	allo-anti-D reportedDel phenotype when with RHCE*Ce	
+RHD	DOL1 RH:54(DAK+)	RHD*12.01 RHD*DOL1	c.509T>C; c.667T>G	45	p.Met170Th; p.Phe223Val		"RHD*509C,667G"	"RHD*509C,667G"		0.0018
+RHD	DOL2 RH:54(DAK+)	RHD*12.02 RHD*DOL2	c.509T>C; c.667T>G; c.1132C>G	458	p.Met170Thr; p.Phe223Val; p.Leu378Val		"RHD*509C,667G,113 2G"	"RHD*509C,667G,113 2G"		
+RHD	DOL3	RHD*12.03 RHD*DOL3	c.410C>T; c.509T>C; c.667T>G	345	p.Ala137Val; p.Met170Thr; p.Phe223Val		"RHD*410T,509C,667 G"	"RHD*410T,509C,667 G"		
+RHD	DOL4	RHD*12.04 RHD*DOL4	c.410C>T; c.455A>C; c.509T>C; c.667T>G	345	p.Ala137Val; p.Asn152Thr; p.Met170Thr; p.Phe223Val		"RHD*410T, 455C, 509C, 667G"	"RHD*410T, 455C, 509C, 667G"		
+RHD	DBS1	RHD*13.01 RHD*DBS1	c.667T>G; c.676G>C; c.697G>C; c.712G>A; c.733G>C; c.744 C>T; c.787G>A; c.800 A>T	5	p.Phe223Val; p.Ala226Pro; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met		RHD*D-cE(5)-D	RHD*D-cE(5)-D		
+RHD	DBS2	RHD*13.02 RHD*DBS2	c.667T>G; c.676G>C; c.697G>C	5	p.Phe223Val; p.Ala226Pro; p.Glu233Gln		"RHD*667G,676C, 697C"	"RHD*667G,676C, 697C"		
+RHD	DBT1	RHD*14.01 RHD*DBT1	c.667T>G; c.697G>C; c.712 G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G; c.941G>T; c.968C>A; c.974G>T; c.979A>G; c.985 G>C; c.986 G>A; c.989 A>C; c.992 A>T; c.1025T>C; c.1048G>C; c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A	56.7	p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val254Leu; silent; p.Gly263Arg; p.Lys267Met; p.Val306Ile; p.Tyr311Cys; p.Gly314Val; p.Pro323His; p.Ser325Ile;p. Ile327Val; p.Gly329His; p.Gly329His;p. Tyr330Ser; p.Asn331Ile; p.Ile342Thr; p.Asp350His; silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn		RHD*D-CE(5-7)-D	RHD*D-CE(5-7)-D		
+RHD	DBT2	RHD*14.02 RHD*DBT2	c.667T>G; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G; c.941G>T; c.968C>A; c.974G>T; c.979A>G; c.985G>C; c.986G>A; c.989A>C; c.992A>T; c.1025T>C; c.1048G>C; c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A; c.1170T>C; c.1193 A>T	"5,6,7,8,9"	p.Phe223Val; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met; p.Val306Ile; p.Tyr311Cys; p.Gly314Val; p.Pro323His; p.Ser325Ile; p.Ile327Val; p.Gly329His; p.Gly329His; p.Tyr330Ser; p.Asn331Ile; p.Ile342Thr; p.Asp350His; silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn; silent; p.Glu398Val		RHD*D-CE(5-9)-D	RHD*D-CE(5-9)-D		
+RHD	Weak partial Type 15	RHD*15RHD*weak partial 15	c.845G>A	6	p.Gly282Asp		RHD*845A	RHD*845A	allo anti-D reported	
+RHD	DCS1	RHD*16.01 RHD*DCS1	c.667T>G; c.676G>C	5	p.Phe223Val; p.Ala226Pro		"RHD*667T,676C"	"RHD*667T,676C"		
+RHD	DCS2	RHD*16.02 RHD*DCS2	c.676G>C	5	p.Ala226Pro		RHD*676C	RHD*676C		
+RHD	DCS-3	RHD*16.02 RHD*DCS3	c.667T>G; c.676G>C; c.697G>C	5	p.Phe223Val; p.Ala226Pro; p.Glu233Gln		"RHD*667G,676C,697 C"	"RHD*667G,676C,697 C"	linked toRHCE*cE	
+RHD	DFR1	RHD*17.01 RHD*DFR1	c.505A>C; c.509T>G; c.514A>T	4	p.Met169Leu; p.Met170Arg; p.Ile172Phe		"RHD*505C,509G,514 T"	"RHD*505C,509G,514 T"		0.0006
+RHD	DFR2	RHD*17.02 RHD*DFR2	c.505A>C; c.509T>G; c.514A>T; c.544T>A; c.577G>A; c.594A>T; c.602C>G	4	p.Met169Leu; p.Met170Arg; p.Ile172Phe; p.Ser182Thr; p.Glu193Lys; p.Lys198Asn; p.Thr201Arg		RHD*D-CE(4)-D	RHD*D-CE(4)-D		
+RHD	DFR3	RHD*17.03 RHD*DFR3	c.505A>C; c.509T>G; c.514A>T; c.539G>C	4	p.Met169Leu; p.Met170Arg; p.Ile172Phe; p.Gly180Ala		"RHD*505C,509G,514 T,539C"	"RHD*505C,509G,514 T,539C"		
+RHD	DFR4	RHD*17.04 RHD*DFR4	c.505A>C; c.509T>G	4	p.Met169Leu; p.Met170Arg		"RHD*505C,509G"	"RHD*505C,509G"		
+RHD	DFR5	RHD*17.05 RHD*DFR5	c.361 T>A;c.380 T>C;c.383 A>G;c.455 A>C;c.505 A>C;c.509 T>G;c.514 A>T;c.544 T>A;c.577 G>A;c.594 A>T; c.602 C>G	34	p.Leu121Met; p.Val127Ala; p.Asp128Gly; p.Asn152Thr; p.Met169Leu; p.Met170Arg; p.Ile172Phe; p.Ser182Thr; p.Glu193Lys; p.Lys198Asn; p.Thr201Arg		RHD*D-CE(3-4)-D	RHD*D-CE(3-4)-D		
+RHD	DFW	RHD*18 RHD*DFW	c.497A>C	4	p.His166Pro		RHD*497C	RHD*497C		
+RHD	DHMi	RHD*19 RHD*DHMi	c.848C>T	6	p.Thr283Ile		RHD*848T	RHD*848T		
+RHD	DHO	RHD*20 RHD*DHO	c.704A>C	5	p.Lys235Thr		RHD*704C	RHD*704C		
+RHD	Weak partial Type 21	RHD*21RHD*weak partial D 21	c.938C>T	6	p.Pro313Leu		RHD*938T	RHD*938T	allo-anti-D reported	
+RHD	DHR	RHD*22 RHD*DHR	c.686G>A	5	p.Arg229Lys		RHD*686A	RHD*686A		
+RHD	DMH	RHD*23 RHD*DMH	c.161T>C	2	p.Leu54Pro		RHD*161C	RHD*161C		
+RHD	DNAK	RHD*24 RHD*DNAK	c.1070G>A	7	p.Gly357Asp		RHD*1070A	RHD*1070A		
+RHD	DNB	RHD*25 RHD*DNB	c.1063G>A	7	p.Gly355Ser		RHD*1063A	RHD*1063A		
+RHD	DNU	RHD*26 RHD*DNU	c.1057G>A	7	p.Gly353Arg		RHD*1057A	RHD*1057A		
+RHD	DDE	RHD*27 RHD*DDE	c.120T>A	1	p.Asp40Glu		RHD*120A	RHD*120A		
+RHD	DFL	RHD*28 RHD*DFL	c.494A>G	4	p.Tyr165Cys		RHD*494G	RHD*494G		
+RHD	DYU (DQC)	RHD*29 RHD*DYU	c.700A>T	5	p.Arg234Trp		RHD*700T	RHD*700T		
+RHD	DTO	RHD*30 RHD*DTO	c.667T>G; c.674C>T	5	p.Phe223Val; p.Ser225Phe		"RHD*667G,674T"	"RHD*667G,674T"		
+RHD	DVL1	RHD*31 RHD*DVL1	c.684_686 del GAG	5	p.Arg229del		RHD*684_686delGAG	RHD*684_686delGAG		
+RHD	DVL2	RHD*32 RHD*DVL2	c.705_707 del GAA	5	p.Lys235del		RHD*705_707delGAA	RHD*705_707delGAA		
+RHD	DWI (DWLLE)	RHD*33 RHD*DWI	c.1073T>C	7	p.Met358Thr		RHD*1073C	RHD*1073C		
+RHD	DIM (DIleM)	RHD*34 RHD*DIM	c.854G>A	6	p.Cys285Tyr		RHD*854A	RHD*854A		
+RHD	DMA	RHD*35 RHD*DMA	c.621G>C	4	p.Leu207Phe		RHD*621C	RHD*621C		
+RHD	DLO	RHD*36 RHD*DLO	c.851C>T	6	p.Ser284Leu		RHD*851T	RHD*851T		
+RHD	DUC2	RHD*37 RHD*DUC2	c.733G>C	5	p.Val245Leu		RHD*733C	RHD*733C		
+RHD	DNT	RHD*38 RHD*DNT	c.455A>C	3	p.Asn152Thr		RHD*455C	RHD*455C		
+RHD	RHD(S103P) RH:─12 (G─)	RHD*39	c.307T>C	2	p.Ser103Pro		RHD*307C	RHD*307C		
+RHD	D-SPM	RHD*40 RHD*D-SPM	c.186G>T; c.410C>T; c.455A>C; c.509T>C; c.667T>G	2345	p.Leu62Phe; p.Ala137Val; p.Asn152Thr; p.Met170Thr; p.Phe223Val		"RHD*186T,410T,455C,509C,667G"	"RHD*186T,410T,455C,509C,667G"		
+RHD	DBU	RHD*41 RHD*DBU	c.667T>G; c.676G>C; c.697G>C; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G; c.941G>T; c.968C>A; c.974G>T; c.979A>G; c.985G>C; c.986G>A; c.989A>C; c.992A>T; c.1025T>C; c.1048G>C; c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A	567	p.Phe223Val; p.Ala226Pro; p.Glu233Gln; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met; p.Val306Ile; p.Tyr311Cys; p.Gly314Val; p.Pro323His; p.Ser325Ile; p.Ile327Val; p.Gly329His; p.Gly329His; p.Tyr330Ser; p.Asn331Ile; p.Ile342Thr; p.Asp350His; silent; p.Gly353Trp; p.gly353Trp; p.Ala354Asn; p.Ala354Asn					
+RHD	DCC	RHD*42 RHD*DCC	c.677 C>A	5	p.Ala226Asp		RHD*677A	RHD*677A		
+RHD	DDN	RHD*43 RHD*DDN	c.490G>A	4	p.Asp164Asn		RHD*490A	RHD*490A		
+RHD	DHQ	RHD*44 RHD*DHQ	c.513C>A	4	p.His171Gln		RHD*513A	RHD*513A		
+RHD	DKK	RHD*45 RHD*DKK	c.150T>C; c.178A>C; c.201G>A; c.203G>A; c.307T>C; c.361T>A; c.380T>C; c.383A>G; c.455A>C	23	silent; p.Ile60Leu; silent; p.Ser68Asn; p.Ser103Pro; p.Leu121Met; p.Val127Ala; p.Asp128Gly; p.Asn152Thr		RHD*D-CE(2-3)-D	RHD*D-CE(2-3)-D		
+RHD	DLX	RHD*46 RHD*DLX	c.667T>G; c.712G>A; c.733G>C; c.744C>T; c.787G>A; c.800A>T; c.916G>A; c.932A>G	56	p.Phe223Val; p.Val238Met; p.Val245Leu; silent; p.Gly263Arg; p.Lys267Met; p.Val306Ile; p.Tyr311Cys		RHD*D(F223V)- CE(5:712-6)-D	RHD*D(F223V)- CE(5:712-6)-D		
+RHD	DMI	RHD*47 RHD* DMI	c.510G>A	4	p.Met170Ile		RHD*510A	RHD*510A		
+RHD	DMI-1.1	RHD*47.01 RHD*DMI-1.1	c.510G>T	4	p.Met170Ile		RHD*510T	RHD*510T		
+RHD	DNS	RHD*48 RHD*DNS	c.485A>G	3	p.Asn162Ser		RHD*485G	RHD*485G		
+RHD	DWN	RHD*49 RHD*DWN	c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A	7	silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn		"RHD*1053T, 1057T, 1059G, 1060A, 1061A"	"RHD*1053T, 1057T, 1059G, 1060A, 1061A"		0.0006
+RHD	RHD(A354T)	RHD*50	c.1060G>A	7	p.Ala354Thr		RHD*1060A	RHD*1060A		
+RHD	RHD(del44L)	RHD*51	c.130_132 del CTC	1	p.Leu44del		RHD*130_132delCTC	RHD*130_132delCTC		
+RHD	RHD(F223S)	RHD*52	c.668T>C	5	p.Phe223Ser		RHD*668C	RHD*668C		
+RHD	RHD(IVS2-2delA)	RHD*53	c.336-2delA	Intron 2	Splice site change		RHD*336-2delA	RHD*336-2delA		
+RHD	RHD(IVS4-2A>C)	RHD*54	c.635-2A>C	Intron 4	Splice site change		RHD*635-2A>C	RHD*635-2A>C		
+RHD	RHD(L81P)	RHD*55	c.242T>C	2	p.Leu81Pro		RHD*242C	RHD*242C		
+RHD	DBA	RHD*56 RHD*DBA	c.680T>C	5	p.Leu227Pro		RHD*680C	RHD*680C		
+RHD	weak partial type 57	RHD*57RHD*weak partial 57	c.640C>T	5	p.Leu214Phe		RHD*640T	RHD*640T		
+RHD	RHD*D-CE(7)-D	RHD*58	c.941G>T; c.968C>A; c.974G>T; c.979A>G; c.985G>C; c.986G>A; c.989A>C; c.992A>T; c.1025T>C; c.1048G>C; c.1053C>T; c.1057G>T; c.1059A>G; c.1060G>A; c.1061C>A	7	p.Gly314Val; p.Pro323His; p.Ser325Ile; p.Ile327Val; p.Gly329His; p.Gly329His; p.Tyr330Ser; p.Asn331Ile; p.Ile342Thr; p.Asp350His; silent; p.Gly353Trp; p.Gly353Trp; p.Ala354Asn; p.Ala354Asn		RHD*D-CE(7)-D	RHD*D-CE(7)-D		
+RHD	RHD(F175L)	RHD*59	c.525C>T	4	p.Phe175Leu		RHD*525T	RHD*525T		
+RHD	weak Partial  D	RHD*60	c.178A>C; c.689G>T	25	p.Ile60Leu; p.Ser230Ile		"RHD*178C,689T"	"RHD*178C,689T"		
+RHD	weak Partial  D	RHD*61	c.492C>A	4	p.Asp164Glu		RHD*492A	RHD*492A		
+RHD	DNT(V270G)	RHD*62	c.455A>C; c.809T>G	36	p.Asn152Thr; p.Val270Gly		"RHD*455C,809G"	"RHD*455C,809G"		
+RHD		RHD*178C	c.178A>C	2	p.Ile60Leu		RHD*178C	RHD*178C	KX352163	
+RHD		RHD*1048C	c.1048G>C	7	p.Asp350His		RHD*1048C	RHD*1048C	KC311353	
+RHD		RHD*186T	c.186G>T	2	p.Leu62Phe		RHD*186T	RHD*186T	JN635688	
+RHD		RHD*602G,733C,744T,1136T	c.602C>G; c.733G>C; c.744C>T; c.1136C>T	458	p.Thr201Arg; p.Val245Leu; silent; p.Thr379Met		"RHD*602G, 733C, 744T, 1136T"	"RHD*602G, 733C, 744T, 1136T"	Novel	
