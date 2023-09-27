@@ -1,7 +1,7 @@
 """
 accessory tools
 """
-import pysam, gzip, os, re
+import pysam, gzip, os, re, sys
 import pandas as pd
 import numpy as np
 import matplotlib as mpl
@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import matplotlib.pylab as pl
 import itertools
 import seaborn as sns
-import cbs
+import seg, machcls
 from statsmodels.nonparametric.smoothers_lowess import lowess
 from collections import OrderedDict
 from general import *
@@ -18,6 +18,7 @@ from sklearn import mixture
 from scipy import linalg, stats
 from numpy import array
 from decimal import *
+
 
 package_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -111,16 +112,25 @@ def PopFreq(final,gene,frequency_table="pop_freq.txt"):
        status='NA'
        pop_freq_list=[]
        for a in Alleles:
-           if a in freq['Allele name'].tolist():
-               pop_freq_list.append(freq.loc[ (freq['Allele name']==a), 'PopFreq'].values[0])
-           else: pop_freq_list.append(0)
+           allele_freq=0
+           db_allele_names=freq['Allele name'].tolist()
+           db_allele_names2=[ re.sub(' ','_', x) for x in db_allele_names ]
+           if a in db_allele_names:
+               allele_freq=freq.loc[ (freq['Allele name']==a), 'PopFreq'].values[0]
+           elif a in db_allele_names2:
+               a=re.sub('_',' ',a)
+               allele_freq=freq.loc[ (freq['Allele name']==a), 'PopFreq'].values[0]
+           print('[accessory][PopFreq] Index:{2}; allele:{0}; Freq:{1}'.format(a, allele_freq, IDX))
+           pop_freq_list.append(allele_freq)
        if IDX not in pop_freq:
            pop_freq[IDX]=pop_freq_list[0] * pop_freq_list[1]
        if pop_freq_list[0] * pop_freq_list[1] > max_pop_freq:
            max_pop_freq=pop_freq_list[0] * pop_freq_list[1]
 
+
    index2drop=[]
    for i in pop_freq:
+       print('[accessory][PopFreq][IDX] {0}; PopFreq: {1}; Max_PopFreq: {2}'.format(i, pop_freq[i], max_pop_freq))
        if pop_freq[i] < max_pop_freq: index2drop.append(i)
    if len(index2drop) > 0: final=final[~final.Index.isin(index2drop)]   
  
@@ -163,8 +173,11 @@ def filter_annotation(full, filtered, annotation="filtered", LH_adj=-0.00001):
     kept_idx=filtered.Index.unique()
     curr_idx=full.Index.unique()
     #print(annotation)
-    #print(kept_idx)
-    #print(curr_idx)
+    #print('filter_annotation')
+    #print(full)
+    #print(filtered)
+    #print('kept:', kept_idx)
+    #print('curr:', curr_idx)
     warning=False
     for idx, row in full.iterrows():
         if row['Index'] not in kept_idx and row['Comment']=="":
@@ -173,11 +186,14 @@ def filter_annotation(full, filtered, annotation="filtered", LH_adj=-0.00001):
             warning=True
         if row['Index'] in kept_idx:
             if row['Allele']=='A1':
+                #print(row)
                 A1_n=row['Bloodtype']
                 A1_fn=filtered.loc[(filtered.Index==row['Index']) & (filtered.Allele=='A1'), 'Bloodtype'].values[0]
                 if A1_n != A1_fn:
                     full.loc[(full.Index==row['Index']) & (full.Allele=='A1'), 'Bloodtype']=A1_fn
             if row['Allele']=='A2':
+                #print(row)
+                #print(filtered.loc[(filtered.Index==row['Index']) & (filtered.Allele=='A2'), ])
                 A2_n=row['Bloodtype']
                 A2_fn=filtered.loc[(filtered.Index==row['Index']) & (filtered.Allele=='A2'), 'Bloodtype'].values[0]
                 if A2_n != A2_fn:
@@ -266,7 +282,7 @@ def RHD_RHCE_linked_type2(bg1, bg2fn, final_var, link_fn="linked_types.txt"):
 
              #print("Other linkage checking")
              if bg1_a1 in lf['Allele name'].tolist() and not all(pd.isna(lf.loc[ (lf['Allele name']==bg1_a1), 'Linked'])):
-                # print("check bg1_a1") 
+                 #print("check bg1_a1") 
                  bg1_a1_linked=lf.loc[lf['Allele name']==bg1_a1, 'Linked'].dropna().tolist()
                  if any(bg2_a1==x for x in bg1_a1_linked) or any(bg2_a2==x for x in bg1_a1_linked):
                      if id1 not in linked_index:
@@ -290,19 +306,23 @@ def RHD_RHCE_linked_type2(bg1, bg2fn, final_var, link_fn="linked_types.txt"):
     #print("Before")
     #print(bg1)
 
+    
+
     ### get index with highest score
     if len(linked_index) > 0:
         bg1=bg1.loc[bg1['Index'].isin(linked_index),]
-        #print("After")
-        #print(bg1)
+        
+    #print("After")
+    #print(bg1)
 
     return bg1
     
 
 
 
-def RHCE_relink(args, final, final_var, cov, Ce_supportN=7, Ce_supportP=0.1, gbuild='hg38'):
-    support_n, total_n, support_ratio=RHCe_insertion(args.bam, args.coverage, build=gbuild)
+def RHCE_relink(args, final, final_var, cov, Ce_supportN=3, Ce_supportP=0.1, gbuild='hg38', binz=50):
+    mode='WES' if args.wes else 'WGS'
+    support_n, total_n, support_ratio=RHCe_insertion(args, args.bam, args.coverage, cov, build=gbuild, mode=mode)
     print ('[109bp] INS support readn: {0}; total_readn: {1}; support_ratio: {2}'.format(support_n, total_n, support_ratio))
     #print ('[exon2] cov', cov.loc[cov['exon']==2, 'RHD_status'].values[0], cov.loc[cov['exon']==2, 'RHCE_status'].values[0])
     ### CE/Ce
@@ -365,6 +385,7 @@ def RHCE_relink(args, final, final_var, cov, Ce_supportN=7, Ce_supportP=0.1, gbu
                 if IDX not in index2drop: index2drop.append(IDX)
         if len(index2drop) > 0 and len(index2drop) != len(final.Index.unique()):
             final=final[~final.Index.isin(index2drop)]
+        #print(final)
 
     if args.linking_bloodtype:
             #final=RHD_RHCE_linked(final, args.linking_bloodtype) ### for SVM method
@@ -375,11 +396,24 @@ def RHCE_relink(args, final, final_var, cov, Ce_supportN=7, Ce_supportP=0.1, gbu
             else:
                 print('[Linkage] using ISBT database')
                 final=RHD_RHCE_linked_type2(final, args.linking_bloodtype, final_var)
+
     ### RHCE*cEKK/RHCE*cE
     ### Check the presnece of D1-3 
     final=RHCE_D1_3CE(final, cov) 
 
-    final=final.loc[final['Likelihood']==final['Likelihood'].max()]
+
+    #print(final)
+
+    max_ll=final['Likelihood'].max()
+
+    ### not sure the impact of this on the WGS
+    #max_ll_ix=final.loc[final['Likelihood']==final['Likelihood'].max(),'Index'].values[0]
+    max_ll_ix=final.loc[final['Likelihood']==final['Likelihood'].max(),'Index'].unique().tolist()
+
+    final=final.loc[final['Index'].isin(max_ll_ix)]
+
+    print(final)
+
     return final
 
 
@@ -392,9 +426,13 @@ def RHCE_D1_3CE(final, cov):
         print('No bloodtype need to check for D1_3 exon in RHCE')
         return final
 
+    print('[RHCE] checking the coverage of exon1-3')
+
     D1_3=False
     if all( 'loss' in x for x in cov.loc[cov['exon'].isin([1,2,3]), 'RHCE_status'].tolist() ) and \
        all( 'gain' in x for x in cov.loc[cov['exon'].isin([1,2,3]), 'RHD_status'].tolist() ): D1_3=True
+
+    print("[RHCE] D1_3 status: {0}".format(D1_3))    
 
     index2drop=[]
     for idx in final.Index.unique():
@@ -402,35 +440,44 @@ def RHCE_D1_3CE(final, cov):
         A2=final.loc[(final['Index']==idx) & (final['Allele']=='A2'),'Bloodtype'].values[0]
         A1=re.sub('.*@','',A1); A2=re.sub('.*@','',A2)
         if A1=='RHCE*03.02_RHCE*cE.02' or A2=='RHCE*03.02_RHCE*cE.02':
-            if not D1_3 and idx not in index2drop: index2drop.append(idx)
+            if (not D1_3) and (idx not in index2drop): 
+                #print("remove {0}".format(idx))
+                index2drop.append(idx)
         else:
             if D1_3 and idx not in index2drop: index2drop.append(idx)
+
+
+
     final=final[~final.Index.isin(index2drop)]
-    
+
+
 
     return final
 
 
  
-def RHD_RHCE_exon_CNV(rhd, rhce, wgs_cov, prefix, ploid=2, verbose=0):
+def RHD_RHCE_exon_CNV(rhd, rhce, all_cov, prefix, ploid=2, verbose=0, cov_mode='avg_QC_readn'):
+    '''
+        cov_mode: avg_QC_readn or med_QC_readn
+    '''
     from math import log
     out={}
     for idx, row in rhd.iterrows():
         acc=idx[0]; gene=idx[1]; exon=idx[2]
-        cov=row['avg_QC_readn']
+        cov=row[cov_mode]
         if exon not in out: out[exon]={}
         if gene not in out[exon]: 
             out[exon][gene]={}
             out[exon][gene]['cov']=cov
-            out[exon][gene]['log2R']=round(log(cov/wgs_cov,2),7) if cov/wgs_cov > 0 else 0
+            out[exon][gene]['log2R']=round(log(cov/all_cov,2),7) if cov/all_cov > 0 else 0
     for idx, row in rhce.iterrows():
         acc=idx[0]; gene=idx[1]; exon=idx[2]
-        cov=row['avg_QC_readn']
+        cov=row[cov_mode]
         if exon not in out: out[exon]={}
         if gene not in out[exon]: 
             out[exon][gene]={}
             out[exon][gene]['cov']=cov
-            out[exon][gene]['log2R']=round(log(cov/wgs_cov,2),7) if cov/wgs_cov > 0 else 0
+            out[exon][gene]['log2R']=round(log(cov/all_cov,2),7) if cov/all_cov > 0 else 0
     RHDpat={}
     RHCEpat={}
     fn=prefix+'.exonCNV.txt'
@@ -438,12 +485,12 @@ def RHD_RHCE_exon_CNV(rhd, rhce, wgs_cov, prefix, ploid=2, verbose=0):
     #print out
     out2=[]
     for exon in out:
-        RHDstatus=CNV_def(out[exon]['RHD']['log2R'], out[exon]['RHD']['cov'], wgs_cov)    
-        RHCEstatus=CNV_def(out[exon]['RHCE']['log2R'], out[exon]['RHCE']['cov'], wgs_cov)
+        RHDstatus=CNV_def(out[exon]['RHD']['log2R'], out[exon]['RHD']['cov'], all_cov)    
+        RHCEstatus=CNV_def(out[exon]['RHCE']['log2R'], out[exon]['RHCE']['cov'], all_cov)
         if RHDstatus == 'normal' or RHCEstatus == 'normal':
             RHDpat[exon]=0
             RHCEpat[exon]=0
-            out2.append({'wgs_cov':wgs_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD']['log2R'], 'RHD_status':RHDstatus,
+            out2.append({'all_cov':all_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD']['log2R'], 'RHD_status':RHDstatus,
                                                      'RHCE_cov':out[exon]['RHCE']['cov'], 'RHCE_log2cov':out[exon]['RHCE']['log2R'],'RHCE_status':RHCEstatus})
             continue
         elif (RHDstatus == 'one-copy gain' and RHCEstatus == 'one-copy loss'):
@@ -458,7 +505,7 @@ def RHD_RHCE_exon_CNV(rhd, rhce, wgs_cov, prefix, ploid=2, verbose=0):
         elif (RHDstatus == 'two-copy gain' and RHCEstatus == 'two-copy loss'):
             RHDpat[exon]=2
             RHCEpat[exon]=-2
-        out2.append({'wgs_cov':wgs_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD']['log2R'], 'RHD_status':RHDstatus,
+        out2.append({'all_cov':all_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD']['log2R'], 'RHD_status':RHDstatus,
                                                      'RHCE_cov':out[exon]['RHCE']['cov'], 'RHCE_log2cov':out[exon]['RHCE']['log2R'],'RHCE_status':RHCEstatus})
     out2=pd.DataFrame(out2)
     if verbose>10: print(out2)
@@ -485,19 +532,13 @@ def RHD_RHCE_exon_CNV(rhd, rhce, wgs_cov, prefix, ploid=2, verbose=0):
         elif RHDpat[exon]==2:
             Dpat_blk.append('hD')
             CEpat_blk.append('hD')
-        else:
-            Dpat_blk.append('?D')
-            CEpat_blk.append('?CE')
-    Dpat=hybrid_call(Dpat_blk)
-    CEpat=hybrid_call(CEpat_blk)
-    Dpat="" if 'CE' not in Dpat else Dpat
-    CEpat="" if 'D' not in CEpat else CEpat
 
-    return Dpat, CEpat, out2
-
-def RHD_RHCE_segment_CNV(rhd_coord, rhce_coord, rhd, rhce, bam, wgs_cov, fasta, prefix, ploid=2, flanking=300, verbose=0, mode='bin_med.wgsratio.log2', chr='chr1'):
+def RHD_RHCE_segment_CNV(rhd_coord, rhce_coord, rhd, rhce, bam, all_cov, fasta, prefix, ploid=2, flanking=300, verbose=0, \
+                         seg_mode='bin_med.wgsratio.log2', norm_mode='cbs_segmean', cov_mode='avg_QC_readn', cbs_seg_winZ=10, \
+                         chr='chr1', bin=100, step=50, exonOnly=False, RHDhybrid=False):
     '''
        expand the coverage check region outside of exon
+       cov_mode: avg_QC_readn or med_QC_readn
     '''
     from math import log
     print("[RHD_RHCE_segment_CNV]")
@@ -507,35 +548,31 @@ def RHD_RHCE_segment_CNV(rhd_coord, rhce_coord, rhd, rhce, bam, wgs_cov, fasta, 
     RHCE_start=rhce_coord.start.min()
     RHCE_end=rhce_coord.end.max()
 
-
-    ### flanking region by extending 18700 to start and end positions (ff, revisions)
-    ff=0
-    RHDbin, RHDgene=perbaseCov(bam, wgs_cov, fasta, prefix=prefix+'.RHD', chr=chr, start=RHD_start-ff, end=RHD_end+ff, coord=rhd_coord, flanking=flanking, save_output=True)
-    RHCEbin, RHCEgene=perbaseCov(bam, wgs_cov, fasta, prefix=prefix+'.RHCE', chr=chr, start=RHCE_start-ff, end=RHCE_end+ff, coord=rhce_coord, flanking=flanking, save_output=True)
-   
-    #RHDbin, RHDgene=perbaseCov(bam, wgs_cov, fasta, prefix=prefix+'.RHD', chr=chr, start=RHD_start, end=RHD_end, coord=rhd_coord, flanking=19000,save_output=True)
-    #RHCEbin, RHCEgene=perbaseCov(bam, wgs_cov, fasta, prefix=prefix+'.RHCE', chr=chr, start=RHCE_start, end=RHCE_end, coord=rhce_coord, flanking=19000,save_output=True) 
+    
+    RHDbin, RHDgene=perbaseCov(bam, all_cov, fasta, prefix=prefix+'.RHD', chr=chr, start=RHD_start, end=RHD_end, coord=rhd_coord, flanking=flanking, save_output=True, bin=bin, step=step, exonOnly=exonOnly)
+    RHCEbin, RHCEgene=perbaseCov(bam, all_cov, fasta, prefix=prefix+'.RHCE', chr=chr, start=RHCE_start, end=RHCE_end, coord=rhce_coord, flanking=flanking, save_output=True, bin=bin, step=step, exonOnly=exonOnly)
 
 
-    RHDbin = gmm_segmentation(RHDbin, mode=mode) 
-    RHDbin2= cbs_segmentation(RHDbin, w=10, p=0.001, mode=mode)
-   
-    RHCEbin = gmm_segmentation(RHCEbin, mode=mode)
-    RHCEbin2= cbs_segmentation(RHCEbin, w=10, p=0.001, mode=mode)
- 
-    #perbinCov(bam, wgs_cov, fasta, bin=100, step=50, prefix=prefix+'RHD', chr=chr, start=RHD_start, end=RHD_end, coord=rhd_coord, flanking=flanking)
-    #perbinCov(bam, wgs_cov, fasta, bin=100, step=50, prefix=prefix+'RHCE', chr=chr, start=RHCE_start, end=RHCE_end, coord=rhce_coord, flanking=flanking)
+    RHDbin = gmm_segmentation(RHDbin, mode=seg_mode, exonOnly=exonOnly) 
+    RHDbin2= cbs_segmentation(RHDbin, w=cbs_seg_winZ, p=0.001, mode=seg_mode, exonOnly=exonOnly)
+  
+    RHCEbin = gmm_segmentation(RHCEbin, mode=seg_mode, exonOnly=exonOnly)
+    RHCEbin2= cbs_segmentation(RHCEbin, w=cbs_seg_winZ, p=0.001, mode=seg_mode, exonOnly=exonOnly)
 
     ### plot
-    mode='cbs_segmean'
-    RHDexon, RHDperexon=perexon_Cov(RHDbin2, mode=mode)
-    RHCEexon, RHCEperexon=perexon_Cov(RHCEbin2, mode=mode)
-   
-    RHD_RHCE_segment_CNV_plot(RHDbin2, wgs_cov, prefix=prefix+'RHD.bincov')
-    RHD_RHCE_segment_CNV_plot(RHCEbin2, wgs_cov, prefix=prefix+'RHCE.bincov')
-   
-    RHD_s, RHD_e=RHD_RHCE_segment_CNV_plot(RHDbin2, wgs_cov, prefix=prefix+'RHD.bincov', exon_only=False)
-    RHCE_s, RHCE_e=RHD_RHCE_segment_CNV_plot(RHCEbin2, wgs_cov, prefix=prefix+'RHCE.bincov', exon_only=False)
+    RHDexon, RHDperexon=perexon_Cov(RHDbin2, mode=norm_mode)
+    RHCEexon, RHCEperexon=perexon_Cov(RHCEbin2, mode=norm_mode)
+  
+    ### add exon plot for WGS
+    if not exonOnly:
+        RHD_s, RHD_e=RHD_RHCE_segment_CNV_plot(RHDbin2, all_cov, prefix=prefix+'RHD.bincov', exon_only=True)
+        RHCE_s, RHCE_e=RHD_RHCE_segment_CNV_plot(RHCEbin2, all_cov, prefix=prefix+'RHCE.bincov', exon_only=True) 
+ 
+    ### add WGS/exon plot 
+    RHD_s, RHD_e=RHD_RHCE_segment_CNV_plot(RHDbin2, all_cov, prefix=prefix+'RHD.bincov', exon_only=exonOnly)
+    RHCE_s, RHCE_e=RHD_RHCE_segment_CNV_plot(RHCEbin2, all_cov, prefix=prefix+'RHCE.bincov', exon_only=exonOnly)
+
+    
 
     ### define deletion status
     RHDpat={}
@@ -545,54 +582,58 @@ def RHD_RHCE_segment_CNV(rhd_coord, rhce_coord, rhd, rhce, bam, wgs_cov, fasta, 
     out={}
     for idx, row in rhd.iterrows():
         acc=idx[0]; gene=idx[1]; exon=idx[2]
-        cov=row['avg_QC_readn']
+        cov=row[cov_mode]
         if exon not in out: out[exon]={}
         if gene not in out[exon]:
             out[exon][gene]={}
             out[exon][gene]['cov']=cov
-            out[exon][gene]['log2R']=round(log(cov/wgs_cov,2),7) if cov/wgs_cov > 0 else 0
-            out[exon][gene][mode]=RHDexon[exon] if exon in RHDexon else 0 
+            out[exon][gene]['log2R']=round(log(cov/all_cov,2),7) if cov/all_cov > 0 else 0
+            out[exon][gene][norm_mode]=RHDexon[exon] if exon in RHDexon else 0 
+            #print("TEST2", cov, all_cov, cov/all_cov, out[exon][gene]['log2R'], out[exon][gene][norm_mode])
     for idx, row in rhce.iterrows():
         acc=idx[0]; gene=idx[1]; exon=idx[2]
-        cov=row['avg_QC_readn']
+        cov=row[cov_mode]
         if exon not in out: out[exon]={}
         if gene not in out[exon]:
             out[exon][gene]={}
             out[exon][gene]['cov']=cov
-            out[exon][gene]['log2R']=round(log(cov/wgs_cov,2),7) if cov/wgs_cov > 0 else 0
-            out[exon][gene][mode]=RHCEexon[exon] if exon in RHCEexon else 0
+            out[exon][gene]['log2R']=round(log(cov/all_cov,2),7) if cov/all_cov > 0 else 0
+            out[exon][gene][norm_mode]=RHCEexon[exon] if exon in RHCEexon else 0
 
 
     out2=[]
     
     for exon in out:
-	#RHDstatus=CNV_def(out[exon]['RHD'][mode], out[exon]['RHD']['cov'], wgs_cov)
-        #RHCEstatus=CNV_def(out[exon]['RHCE'][mode], out[exon]['RHCE']['cov'], wgs_cov)    
-        RHDstatus=CNV_def_with_test(exon, RHDperexon, out[exon]['RHD'][mode], out[exon]['RHD']['cov'], wgs_cov)
-        RHCEstatus=CNV_def_with_test(exon, RHCEperexon, out[exon]['RHCE'][mode], out[exon]['RHCE']['cov'], wgs_cov)
+	#RHDstatus=CNV_def(out[exon]['RHD'][mode], out[exon]['RHD']['cov'], all_cov)
+        #RHCEstatus=CNV_def(out[exon]['RHCE'][mode], out[exon]['RHCE']['cov'], all_cov)    
+        RHDstatus=CNV_def_with_test(exon, RHDperexon, out[exon]['RHD'][norm_mode], out[exon]['RHD']['cov'], all_cov)
+        RHCEstatus=CNV_def_with_test(exon, RHCEperexon, out[exon]['RHCE'][norm_mode], out[exon]['RHCE']['cov'], all_cov)
 
         if RHDstatus == 'normal' and RHCEstatus == 'normal':
             RHDpat[exon]=0
             RHCEpat[exon]=0
-            out2.append({'wgs_cov':wgs_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD'][mode], 'RHD_status':RHDstatus,
-                                                     'RHCE_cov':out[exon]['RHCE']['cov'], 'RHCE_log2cov':out[exon]['RHCE'][mode],'RHCE_status':RHCEstatus})
+            out2.append({'all_cov':all_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD'][norm_mode], 'RHD_status':RHDstatus,
+                                                     'RHCE_cov':out[exon]['RHCE']['cov'], 'RHCE_log2cov':out[exon]['RHCE'][norm_mode],'RHCE_status':RHCEstatus})
             continue
         
         RHDpat[exon]=CNV_def_switch(RHDstatus)
         RHCEpat[exon]=CNV_def_switch(RHCEstatus)
         
-        out2.append({'wgs_cov':wgs_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD'][mode], 'RHD_status':RHDstatus,
-                                                     'RHCE_cov':out[exon]['RHCE']['cov'], 'RHCE_log2cov':out[exon]['RHCE'][mode],'RHCE_status':RHCEstatus})
+        out2.append({'all_cov':all_cov, 'exon':exon, 'RHD_cov': out[exon]['RHD']['cov'], 'RHD_log2cov':out[exon]['RHD'][norm_mode], 'RHD_status':RHDstatus,
+                                                     'RHCE_cov':out[exon]['RHCE']['cov'], 'RHCE_log2cov':out[exon]['RHCE'][norm_mode],'RHCE_status':RHCEstatus})
     out2=pd.DataFrame(out2)
-    #if verbose>10: print out2
+    if verbose>15: print(out2)
     out2.to_csv(fn,sep='\t', index=False)
     Dpat_blk=[]
     CEpat_blk=[]
+
+    ###
+
     for exon in RHDpat:
         if exon==8:
-           ### ignore exon 8 as they are exactly the same between D and CE except for 1136C>T
-           Dpat_blk.append('D')
-           CEpat_blk.append('CE')
+            ### ignore exon 8 as they are exactly the same between D and CE except for 1136C>T
+            Dpat_blk.append('D')
+            CEpat_blk.append('CE')
         elif RHDpat[exon]==0:
             Dpat_blk.append('D')
             CEpat_blk.append('CE')
@@ -611,15 +652,20 @@ def RHD_RHCE_segment_CNV(rhd_coord, rhce_coord, rhd, rhce, bam, wgs_cov, fasta, 
         else:
             Dpat_blk.append('?D')
             CEpat_blk.append('?CE')
+
+
     Dpat=hybrid_call(Dpat_blk)
     CEpat=hybrid_call(CEpat_blk)
     Dpat="" if 'CE' not in Dpat else Dpat
     CEpat="" if 'D' not in CEpat else CEpat
 
+    if RHDhybrid:
+        Dpat='D(1-3)CE(4-7)D(8-10)'
+
     return Dpat, CEpat, out2, RHD_s, RHD_e, RHCE_s, RHCE_e
 
 
-def RHD_RHCE_segment_CNV_plot(bin, wgs_cov, prefix='test', mode='bin_med.wgsratio.log2', exon_only=True):
+def RHD_RHCE_segment_CNV_plot(bin, all_cov, prefix='test', mode='bin_med.wgsratio.log2', changepoint_mode='cbs_segmean', exon_only=True):
     '''
         Take bin for plotting
     '''
@@ -650,7 +696,7 @@ def RHD_RHCE_segment_CNV_plot(bin, wgs_cov, prefix='test', mode='bin_med.wgsrati
         pd[bin[p_s]['bin_exon']]['norm_y_gmm'].append(bin[p_s]['gmm_segcenter'])
         pd[bin[p_s]['bin_exon']]['norm_y_cbs'].append(bin[p_s]['cbs_segmean'])
 
-    s_ix, e_ix, break_s, break_e=change_point(bin, wgs_cov, mode='cbs_segmean')
+    s_ix, e_ix, break_s, break_e=change_point(bin, all_cov, mode=changepoint_mode)
 
     ### plot normalized coverage
     if exon_only:
@@ -678,7 +724,7 @@ def RHD_RHCE_segment_CNV_plot(bin, wgs_cov, prefix='test', mode='bin_med.wgsrati
     return break_s, break_e
 
 
-def perbinCov(bam, wgs_cov, fasta, bin=None, step=None, prefix=None, chr=None, start=None, end=None, coord=None, minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, flanking=1000):
+def perbinCov(bam, all_cov, fasta, bin=None, step=None, prefix=None, chr=None, start=None, end=None, coord=None, minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, flanking=1000):
         #calculate per-bin coverage
     np.seterr(divide='ignore', invalid='ignore')
     samfile = pysam.AlignmentFile(bam, mode="rb")
@@ -725,16 +771,12 @@ def perbinCov(bam, wgs_cov, fasta, bin=None, step=None, prefix=None, chr=None, s
                else:
                   out[s]['bin_exon']=-1
        
-    #N, out=Cov_correctForGC(out, prefix, mode='perbin')
-       
-    #N0 = np.asarray(test_exonbin)
-    #L= cbs.segment(N0,p=0.01)
-    #S= cbs.validate(N0, L, p=0.01)
-    #ax=cbs.draw_segmented_data(N0,  S, title='Circular Binary Segmentation of Data')
-    #ax.get_figure().savefig(prefix+'.png')
     return out, test_allbin, test_exonbin
 
-def perbaseCov(bam, wgs_cov, fasta, prefix=None, chr=None, start=None, end=None, coord=None, bin=100, step=50, minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, flanking=1000, includeZero=True, exonOnly=True, save_output=False):
+def perbaseCov(bam, all_cov, fasta, prefix=None, chr=None, start=None, end=None, coord=None, \
+               bin=100, step=50, \
+               minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, flanking=1000, 
+               bin_value_mode='totalReadN', includeZero=True, exonOnly=True, save_output=False):
     '''
     #   calculate perbase coverage 
     '''
@@ -745,7 +787,6 @@ def perbaseCov(bam, wgs_cov, fasta, prefix=None, chr=None, start=None, end=None,
     tarchr=chr.lstrip('chr') if trimchr else chr
     pos_n=0
     total_good_n=0
-    RHD_perbase_cov={}
     out={}
     for column in samfile.pileup(chr, start-flanking, end+flanking):
        pos0based=column.pos
@@ -755,6 +796,7 @@ def perbaseCov(bam, wgs_cov, fasta, prefix=None, chr=None, start=None, end=None,
        clipped_n=0
        discordant_n=0
        pos_n+=1
+
        for pileupread in column.pileups:
           read     = pileupread.alignment
           qpos     = pileupread.query_position
@@ -771,21 +813,22 @@ def perbaseCov(bam, wgs_cov, fasta, prefix=None, chr=None, start=None, end=None,
           else:
               if read.query_qualities[qpos] < minimum_base_quality:
                   continue
-          good_n+=+1
+          good_n+=1
           total_good_n+=1
           if 'S' in read.cigarstring:
               clipped_n+=1
           if not read.is_proper_pair:
               discordant_n+=1
+       #print("[test: {0}-{1}] pos {2}; totalRead: {3} ; QC_n: {4}".format(start, end, pos1based, column.n, good_n))
        if pos1based not in out:
            out[pos1based]={}
            out[pos1based]['totalReadN']=column.n
            out[pos1based]['QCtotalReadN']=good_n
            out[pos1based]['QCclippedReadN']=clipped_n
            out[pos1based]['QCdiscordantReadN']=discordant_n
-           out[pos1based]['QCtotalRatio']=column.n/wgs_cov
-           out[pos1based]['QCclippedRatio']=good_n/wgs_cov
-           out[pos1based]['QCdiscordantRatio']=(clipped_n+discordant_n)/wgs_cov
+           out[pos1based]['QCtotalRatio']=column.n/all_cov
+           out[pos1based]['QCclippedRatio']=good_n/all_cov
+           out[pos1based]['QCdiscordantRatio']=(clipped_n+discordant_n)/all_cov
            out[pos1based]['exon']=-1
            out[pos1based]['real_exon']=-1
 
@@ -825,10 +868,10 @@ def perbaseCov(bam, wgs_cov, fasta, prefix=None, chr=None, start=None, end=None,
             
     if save_output:
        fh=open(prefix+'.binZ'+str(bin)+'.coverage.txt', 'w')
-       headers=['prefix', 'position', 'totalReadN','QCtotalReadN','QCclippedReadN','QCdiscordantReadN','QCtotalRatio','QCclippedRatio','QCdiscordantRatio','exon_n_flanking', 'exon', 'wgs_cov']
+       headers=['prefix', 'position', 'totalReadN','QCtotalReadN','QCclippedReadN','QCdiscordantReadN','QCtotalRatio','QCclippedRatio','QCdiscordantRatio','exon_n_flanking', 'exon', 'all_cov']
        fh.write('\t'.join(headers)+'\n')
        for i in range(start-flanking, end+flanking):
-           outstr=map(str, [prefix, i, out[i]['totalReadN'], out[i]['QCtotalReadN'], out[i]['QCclippedReadN'], out[i]['QCdiscordantReadN'], out[i]['QCtotalRatio'], out[i]['QCclippedRatio'], out[i]['QCdiscordantRatio'], out[i]['exon'], out[i]['real_exon'], wgs_cov])
+           outstr=map(str, [prefix, i, out[i]['totalReadN'], out[i]['QCtotalReadN'], out[i]['QCclippedReadN'], out[i]['QCdiscordantReadN'], out[i]['QCtotalRatio'], out[i]['QCclippedRatio'], out[i]['QCdiscordantRatio'], out[i]['exon'], out[i]['real_exon'], all_cov])
            fh.write('\t'.join(outstr)+'\n')
        fh.close()
 
@@ -837,21 +880,19 @@ def perbaseCov(bam, wgs_cov, fasta, prefix=None, chr=None, start=None, end=None,
     out2=OrderedDict()
     fa=pysam.FastaFile(fasta)
     all_bins=[]
+    exon_bins=[]
 
     for b in range(start-flanking, end+flanking, step):
         bin_start=b
-        if (b+bin) < (end+flanking):
-            bin_end=b+bin
-        else: 
-            bin_end=end+flanking
+        bin_end=b+bin if (b+bin) < (end+flanking) else end+flanking
         bins=[]
         exon=[]
              
         for p in range(bin_start, bin_end):
-            if p not in out:
-                continue
-            bins.append(out[p]['totalReadN'])
-            all_bins.append(out[p]['totalReadN'])
+            if p not in out: continue
+            bins.append(out[p][bin_value_mode])
+            all_bins.append(out[p][bin_value_mode])
+            if out[p]['exon'] != -1: exon_bins.append(out[p][bin_value_mode])
             if out[p]['exon'] not in exon: exon.append(out[p]['exon'])
 
         bins=np.array(bins)
@@ -859,32 +900,73 @@ def perbaseCov(bam, wgs_cov, fasta, prefix=None, chr=None, start=None, end=None,
         bin_median=np.median(bins)
         bin_GC=GCpercent(fa.fetch(chr, bin_start, bin_end))
         if len(exon) == 1:
-            #print bin_start, bin_end, bin_avg, bin_median, exon
+            if -1 in exon and exonOnly:
+                continue
             if bin_start not in out2:
                 out2[bin_start]={}
                 out2[bin_start]['bin_end']=bin_end
                 out2[bin_start]['bin_avg']=bin_avg
-                out2[bin_start]['bin_avg.wgsratio']=bin_avg/wgs_cov
-                out2[bin_start]['bin_avg.wgsratio.log2']=np.log2(bin_avg/wgs_cov) if bin_avg != 0 else np.log2(0.01/wgs_cov)
+                out2[bin_start]['bin_avg.wgsratio']=bin_avg/all_cov
+                out2[bin_start]['bin_avg.wgsratio.log2']=np.log2(bin_avg/all_cov) if bin_avg != 0 else np.log2(0.01/all_cov)
                 out2[bin_start]['bin_med']=bin_median
-                out2[bin_start]['bin_med.wgsratio']=bin_median/wgs_cov
-                out2[bin_start]['bin_med.wgsratio.log2']=np.log2(bin_median/wgs_cov) if bin_median != 0 else np.log2(0.01/wgs_cov)
+                out2[bin_start]['bin_med.wgsratio']=bin_median/all_cov
+                out2[bin_start]['bin_med.wgsratio.log2']=np.log2(bin_median/all_cov) if bin_median != 0 else np.log2(0.01/all_cov)
                 out2[bin_start]['bin_exon']=exon[0]
                 out2[bin_start]['bin_GC']=bin_GC
-            if -1 in exon and exonOnly: 
-                continue
             #if 8 in exon: continue
 
     ### correct for GC bias, not needed
     #out2=Cov_correctForGC(out2, prefix)
+  
+    ### all bins including introns, so WES data will have low avg and med values
     all_bins=np.array(all_bins)
     all_bins_avg=all_bins.mean()
     all_bins_med=np.median(all_bins)
+  
+    exon_bins=np.array(exon_bins)
+    exon_bins_avg=exon_bins.mean()
+    exon_bins_med=np.median(exon_bins)
+
+
     for s in out2:
+        ### the values calculated here is divided by whole coverage, not appropriate for WES
         out2[s]['bin_avg.regionratio']=out2[s]['bin_avg']/all_bins_avg
-        out2[s]['bin_med.regionratio']=out2[s]['bin_med']/all_bins_avg
-        out2[s]['bin_avg.regionratio.log2']=np.log2(out2[s]['bin_avg']/all_bins_avg) if out2[s]['bin_avg'] != 0 else np.log2(0.01/all_bins_avg) 
-        out2[s]['bin_med.regionratio.log2']=np.log2(out2[s]['bin_med']/all_bins_avg) if out2[s]['bin_med'] != 0 else np.log2(0.01/all_bins_avg) 
+        out2[s]['bin_med.regionratio']=out2[s]['bin_med']/all_bins_med if all_bins_med !=0 else 0
+        if out2[s]['bin_avg'] != 0 and all_bins_avg == 0:
+             out2[s]['bin_avg.regionratio.log2']=np.log2(out2[s]['bin_avg']/0.01)
+        elif out2[s]['bin_avg'] == 0 and all_bins_avg != 0:
+             out2[s]['bin_avg.regionratio.log2']=np.log2(0.01/all_bins_avg) 
+        else:
+             out2[s]['bin_avg.regionratio.log2']=np.log2(out2[s]['bin_avg']/all_bins_avg)     
+  
+        if out2[s]['bin_med'] != 0 and all_bins_med== 0:
+             out2[s]['bin_med.regionratio.log2']=np.log2(out2[s]['bin_med']/0.01)
+        elif out2[s]['bin_med'] == 0 and all_bins_med!= 0:
+             out2[s]['bin_med.regionratio.log2']=np.log2(0.01/all_bins_med)
+        else:
+             out2[s]['bin_med.regionratio.log2']=np.log2(out2[s]['bin_med']/all_bins_med)
+     
+        ### the values calculated here is based on gene region only instead of whole coverage 
+        out2[s]['exon_bin_avg.regionratio']=out2[s]['bin_avg']/exon_bins_avg
+        out2[s]['exon_bin_med.regionratio']=out2[s]['bin_med']/exon_bins_med if exon_bins_med !=0 else 0
+        
+        if out2[s]['bin_avg'] !=0  and exon_bins_avg ==0:
+             out2[s]['exon_bin_avg.regionratio.log2']=np.log2(out2[s]['bin_avg']/0.01)
+        elif out2[s]['bin_avg'] ==0  and exon_bins_avg !=0:
+             out2[s]['exon_bin_avg.regionratio.log2']=np.log2(0.01/exon_bins_avg)
+        else:
+             out2[s]['exon_bin_avg.regionratio.log2']=np.log2(out2[s]['bin_avg']/exon_bins_avg)
+
+        if out2[s]['bin_med'] !=0 and exon_bins_med == 0:
+             out2[s]['exon_bin_med.regionratio.log2']=np.log2(out2[s]['bin_med']/0.01)
+        elif out2[s]['bin_med'] ==0 and exon_bins_med != 0:
+             out2[s]['exon_bin_med.regionratio.log2']=np.log2(0.01/exon_bins_med)              
+        else:
+             out2[s]['exon_bin_med.regionratio.log2']=np.log2(out2[s]['bin_med']/exon_bins_med)
+
+        #print("[perbaseCov TEST] {0}-{1}: exon[{2}], binmed[{3}], binmed.wgsratio.log2[{4}], bin_med.regionratio.log2[{5}], exon_bin_med.regionratio.log2[{6}], all_bins_med[{7}], exon_bins_med[{8}]".format(\
+        # s, out2[s]['bin_end'], out2[s]['bin_exon'], out2[s]['bin_med'], out2[s]['bin_med.wgsratio.log2'], out2[s]['bin_med.regionratio.log2'], out2[s]['exon_bin_med.regionratio.log2'], all_bins_med, exon_bins_med))
+
     return out2, all_bins_med
 
 
@@ -903,19 +985,26 @@ def change_point(input, mean_cov, mode='gmm_segcenter'):
     L=refine_change_point(x,0,len(x)-1)
     if len(L)==0: return None, None, None, None
     max_t=0
+    i=None; j=None; bk_s=None; bk_e=None
     for vals in L:
         if vals[0] > max_t:
             i=vals[1]
             j=vals[2]
 
-    
+    ### if i+1 == len(x) or i==0, it's the boundary, skip
     ### mean value between i, j and outside of i,j
-    Y=np.median(x[i+1:j])
-    Ycov=np.median(cov[i+1:j])
-    Z=np.median(np.delete(x, np.arange(i+1,j)))
-    Zcov=np.median(np.delete(cov, np.arange(i+1,j)))
-    Ystatus=CNV_def(Y, Ycov, mean_cov) 
-    Zstatus=CNV_def(Z, Zcov, mean_cov)
+    if j > len(x): j=len(x)
+    if i+1 < len(x) and i != 0:
+        #print(i, len(x), j)
+        Y=np.median(x[i+1:j])
+        Ycov=np.median(cov[i+1:j])
+        Z=np.median(np.delete(x, np.arange(i+1,j)))
+        Zcov=np.median(np.delete(cov, np.arange(i+1,j)))
+        Ystatus=CNV_def(Y, Ycov, mean_cov) 
+        Zstatus=CNV_def(Z, Zcov, mean_cov)
+    else:
+        Ystatus='normal'
+        Zstatus='normal'
  
     ###
     for s, val in enumerate(input):
@@ -927,9 +1016,9 @@ def change_point(input, mean_cov, mode='gmm_segcenter'):
     return i, j, bk_s, bk_e
 
 def refine_change_point(x,start,end,L=[], w=10, init_t=0, prev_start=None, prev_end=None):
-    t0,i,j=cbs.max_tstat(x[start:end])
+    t0,i,j=seg.max_tstat(x[start:end])
     if end > len(x)-1: end=len(x)-1
-    t=cbs.tstat2(x, start, end)
+    t=seg.tstat2(x, start, end)
     if i < w:
         i = 0
     if len(x)-j< w:
@@ -946,7 +1035,7 @@ def refine_change_point(x,start,end,L=[], w=10, init_t=0, prev_start=None, prev_
      
 
 
-def gmm_segmentation(x, mode='bin_med.wgsratio.log2'):
+def gmm_segmentation(x, mode='bin_med.wgsratio.log2', exonOnly=False):
     '''
         #use GMM for splitting CNV segment
         #mode: bin_avg.wgsratio, bin_med.wgsratio, bin_avg.regionratio, bin_med.regionratio 
@@ -972,6 +1061,7 @@ def gmm_segmentation(x, mode='bin_med.wgsratio.log2'):
     n_components_range = range(2, 5)
 
     train=test
+    if exonOnly: train=test_exon
     for k in n_components_range:
         for cv_type in cv_types:
             g=mixture.GaussianMixture(n_components=k, covariance_type=cv_type)
@@ -1008,7 +1098,7 @@ def gmm_segmentation(x, mode='bin_med.wgsratio.log2'):
              out2[p_s]['gmm_segmean']=np.mean(segn_d[out2[p_s]['gmm_predicted']])
     return out2
 
-def cbs_segmentation(x, mode='bin_med.wgsratio.log2', w=3, p=0.05):
+def cbs_segmentation(x, mode='bin_med.wgsratio.log2', w=3, p=0.05, exonOnly=False):
     '''
         #use circular binary segmentation to split CNV segment
         #mode: bin_avg.wgsratio, bin_med.wgsratio, bin_avg.regionratio, bin_med.regionratio 
@@ -1025,9 +1115,10 @@ def cbs_segmentation(x, mode='bin_med.wgsratio.log2', w=3, p=0.05):
     test = np.array(test).reshape(-1,1)
     test_exon=np.array(test_exon).reshape(-1,1)
 
-    N0 = np.asarray(test)
-    L= cbs.segment(N0,p=p, w=w)
-    S= cbs.validate(N0, L, p=p)
+    N0 = np.asarray(test_exon) if exonOnly else np.asarray(test)
+ 
+    L= seg.segment(N0,p=p, w=w)
+    S= seg.validate(N0, L, p=p)
     segn=0
     segn_d={}
     for ix, breakpoint in enumerate(S[:-1]):
@@ -1044,7 +1135,7 @@ def cbs_segmentation(x, mode='bin_med.wgsratio.log2', w=3, p=0.05):
     for pos in x:
         x[pos]['cbs_segmean']=np.mean(segn_d[x[pos]['cbs_predicted']])
 
-    #ax=cbs.draw_segmented_data(N0,  S, title='Circular Binary Segmentation of Data')
+    #ax=seg.draw_segmented_data(N0,  S, title='Circular Binary Segmentation of Data')
     return x
 
 
@@ -1214,9 +1305,10 @@ def RHhybrid_rename(final):
         A2=final.loc[(final['Index']==idx) & (final['Allele']=='A2'), 'Bloodtype'].values[0]
 
         ### first correct hybrid for deletion ... should not call hybrid at all
-        if 'deletion' in A1.lower() or 'deletion' in A2.lower():
+        if 'deletion' in A1.lower():
             final.loc[(final['Index']==idx) & (final['Allele']=='A1'), 'CoverageProfile']=""
             final.loc[(final['Index']==idx) & (final['Allele']=='A1'), 'Alias']=""
+        if 'deletion' in A2.lower():
             final.loc[(final['Index']==idx) & (final['Allele']=='A2'), 'CoverageProfile']=""
             final.loc[(final['Index']==idx) & (final['Allele']=='A2'), 'Alias']=""
     
@@ -1255,6 +1347,7 @@ def RHhybrid_rename(final):
         ### check homo alleles first
         ### no example to continue
         ### then check hete alleles
+
         if 'deletion' not in A1.lower() and 'deletion' not in A2.lower(): 
             if len(ALLvar1)==0 and C2 in hybrid_hetero_alleles:
                 final.loc[(final['Index']==idx) & (final['Allele']=='A2'), 'Bloodtype']=hybrid_hetero_alleles[C2]
@@ -1266,7 +1359,7 @@ def RHhybrid_rename(final):
     return final
 
 
-def CNV_def(log2r, cov, wgs_cov):
+def CNV_def(log2r, cov, all_cov):
     
     '''
         calculate the CNV of each exon
@@ -1276,7 +1369,7 @@ def CNV_def(log2r, cov, wgs_cov):
     '''
 
     status='normal'
-    if cov/wgs_cov < 0.15:
+    if cov/all_cov < 0.15:
         status='two-copy loss'
     elif log2r < -2.0 and cov <= 3:
         status='two-copy loss'  
@@ -1294,7 +1387,7 @@ def CNV_def(log2r, cov, wgs_cov):
         status='abnormal'
     return status
 
-def CNV_def_with_test(exon, perexon, log2r, cov, wgs_cov, alpha=0.05):
+def CNV_def_with_test(exon, perexon, log2r, cov, all_cov, alpha=0.05):
     '''
         calculate the CNV of each exon
         One copy gain = log2(3/2) = 0.57 (3 copies vs. 2 copies in reference)
@@ -1309,9 +1402,14 @@ def CNV_def_with_test(exon, perexon, log2r, cov, wgs_cov, alpha=0.05):
         else:
             non_target.extend(perexon[e])
 
-    tstat, pval=stats.ttest_ind(np.asarray(target), np.asarray(non_target))
+
+    ### this is comparing exon aginst all the others, would be biased
+    #tstat, pval=stats.ttest_ind(np.asarray(target), np.asarray(non_target))
+    ### one sample t-test to test whether value is deviated from log2r of 2 copy (i.e. 0)
+    tstat, pval=stats.ttest_1samp(np.asarray(target), 0)
+    
     status='normal'
-    if cov/wgs_cov < 0.15 and pval < alpha:
+    if cov/all_cov < 0.15 and pval < alpha:
         status='two-copy loss'
     elif log2r < -2.0 and cov <= 3 and pval < alpha:
         status='two-copy loss'
@@ -1327,6 +1425,7 @@ def CNV_def_with_test(exon, perexon, log2r, cov, wgs_cov, alpha=0.05):
         status='two-copy gain'
     elif log2r < -2 or log2r > 1.5:
         status='abnormal'
+    #print('[TEST][CNV_def_with_test] log2r: {}; cov:{}; cov ratio:{}; pval:{}'.format(log2r, cov, round(cov/all_cov,2),pval))
     return status
 
      
@@ -1345,7 +1444,8 @@ def CNV_def_switch(val):
  
 def RHD1136check(df, db, mode):
     '''
-        remove the allele combiation with both allele containing the '1136C>T' var when the status is identifed as het 1136 C>T
+        remove the allele combination with both allele containing the '1136C>T' var when the status is identifed as het 1136 C>T
+        or keep allele combination if both allele containing the '1136C>T' var when the status is identifed as hom 1136 C>T 
     '''
     #tdb=db.transpose()
     print(df)
@@ -1378,6 +1478,46 @@ def RHD1136check(df, db, mode):
     else:
         print('[RHD1136 check]', 'all allele pairs did not meet filtering criteria, skipping...')
     return df
+
+
+def RHCE48check(df, db, mode):
+    '''
+        remove the allele combiation with both allele containing the '48G>C' var when the status is identifed as het 48 G>C
+    '''
+    #tdb=db.transpose()
+    print(df)
+    print(mode)
+    print(db.loc['RHCE@RHCE*01_or_RHCE*ce_RHCE*c_RHCE*e','48_G_C'])
+    df.sort_values(by=['Likelihood', 'Index', 'Allele'], ascending=[0,1,1], inplace=True)
+    indices=df.Index.unique()
+    if len(indices) == 1:
+         print("[RHCE48] Only a pair of alleles present, not check RHCE 48")
+         return df
+
+    drop_indicies=[]
+
+
+    for i in indices:
+
+        b1=df.loc[(df['Index']==i) & (df['Allele']=='A1'),'Bloodtype']
+        b2=df.loc[(df['Index']==i) & (df['Allele']=='A2'),'Bloodtype']
+        b1s=db.loc[b1.values[0],'48_G_C']
+        b2s=db.loc[b2.values[0],'48_G_C']
+        print(mode, b1.values[0], b1s, b2.values[0], b2s)
+        if mode == 'het RHCE 48_G_C':
+            if b1s > 0 and b2s > 0:
+                print('[Heterozygous RHCE48] drop alleles pairs with non-heterozygous 48', b1s, b2s, '; index:', i)
+                drop_indicies.append(i)
+        elif mode == 'hom RHCE 48_G_G':
+            if (b1s > 0 and b2s==0) or (b1s == 0 and b2s > 0):
+                print('[Homozygous RHCE48] drop alleles pairs with non-homozygous 48')
+                drop_indicies.append(i)
+    if len(drop_indicies) < len(df.Index.unique().tolist()):
+        df=df[~df.Index.isin(drop_indicies)]
+    else:
+        print('[RHCE48 check]', 'all allele pairs did not meet filtering criteria, skipping...')
+    return df
+
 
 
 
@@ -1418,7 +1558,7 @@ def RHD_rhesus_box(bam, cov=30, verbose=0):
     samfile.close()
     return type
 
-def RHCe_insertion(bam, cov, build='hg38', clippedN=5, verbose=0):
+def RHCe_insertion(args, bam, cov, cov_df, build='hg38', clippedN=5, verbose=0, mode='WGS', binz=20):
     '''
        Check whether the 109bp insertion occured in the 2nd intron
        primer:chr1:25406158-25406177
@@ -1426,6 +1566,39 @@ def RHCe_insertion(bam, cov, build='hg38', clippedN=5, verbose=0):
        full seg: chr1:25405538-25406158
        narrow range to ensure calling of heterozygous or homozygous CE
     '''
+    from math import log
+    if mode=='WES':
+        RHD_E2_cov=cov_df.loc[cov_df.exon==2,'RHD_cov'].values[0]
+        RHCE_E2_cov=cov_df.loc[cov_df.exon==2,'RHCE_cov'].values[0]
+        sc_n=-1
+        total_n=-1
+        ratio=1-float(RHCE_E2_cov/(0.5*(RHD_E2_cov+RHCE_E2_cov)))
+        print("[EXON2 coverage] RHD: {0}; RHCE: {1}; ratio: {2}".format(RHD_E2_cov, RHCE_E2_cov, ratio))
+        ### need to add another layer of Cov check for WES if hetero detection failed
+        #BGClf.accessory.exon_cov_comparison(exonCov, exonCov_C)
+        RHD_ML_fn  =args.prefix+'.S1.'+'RHD'+'.binZ'+str(binz)+'.coverage.txt'
+        RHCE_ML_fn =args.prefix+'.S1.'+'RHCE'+'.binZ'+str(binz)+'.coverage.txt'
+        RHCE_VAR_fn=args.prefix+'.RHCE.full.variant.txt'
+        if os.path.exists(RHD_ML_fn) and os.path.exists(RHCE_ML_fn):
+                print("[RHCe_insertion][ML][RHCE][Cc] ... predicting RHCE C allele status...")
+                UCLC, res, prob, prob_class=machcls.WES_RHCE_UCLC_CLF(args.prefix, RHD_ML_fn, RHCE_ML_fn, VAR_fn=RHCE_VAR_fn)
+                print("[RHCe_insertion][ML][RHCE][Cc] {0}; Prob {1}".format(res, max(prob)))
+                if UCLC == 'UCLC':
+                    ratio=0.5
+                elif UCLC == 'UCUC':
+                    ratio=1
+                elif UCLC == 'LCLC':
+                    ratio=0
+        else:
+            if not os.path.exists(RHD_ML_fn):
+                print("[RHCe_insertion][ML][Cov] file not exist:", RHD_ML_fn)
+            if not os.path.exists(RHCE_ML_fn):
+                print("[RHCe_insertion][ML][Cov] file not exist:", RHCE_ML_fn)
+            print("[RHCe_insertion][ML][Cov] not run")
+
+        return sc_n, total_n, ratio
+
+
     samfile = pysam.AlignmentFile(bam, mode="rb") #, ignore_truncation=False)
     total_n=0
     sc_r=[]
@@ -1442,16 +1615,52 @@ def RHCe_insertion(bam, cov, build='hg38', clippedN=5, verbose=0):
         s=25405596; e=25405618
     elif build.upper()=='HG19':
         s=25732087; e=25732109
+  
+    clipped_reads=dict()
+
     for read in samfile.fetch(chr, s-1, e):
         total_n+=1
         if read.cigarstring and 'S' in read.cigarstring:
-            for f in read.cigartuples:
-                ### f[0] ==4: softcliiped
-                if f[0]==4 and f[1] >= clippedN:
-                    if verbose >9: print("[109bp INS]", read.reference_start, read.query_name, read.cigarstring)
-                    if read.query_name not in sc_r: sc_r.append(read.query_name)
-                    sc_n+=1
-                    continue
+            aligned_pos=pysam.AlignedSegment.get_aligned_pairs(read)
+            aligned_blocks=pysam.AlignedSegment.get_blocks(read)
+            clipped_point=None
+            prev_ref_pos=None
+            for pos_pair in aligned_pos:
+                pos_in_read=pos_pair[0]
+                pos_in_ref=pos_pair[1]
+                if pos_in_read != 0:
+                    if prev_ref_pos is not None and pos_in_ref is None:
+                        clipped_point=prev_ref_pos
+                    elif prev_ref_pos is None and pos_in_ref is not None:
+                        clipped_point=pos_in_ref
+                    else:
+                        clipped_point=None
+                #print(read.query_name, pos_in_read, pos_in_ref, '[Clipped]:', clipped_point)
+                if clipped_point is not None and clipped_point not in clipped_reads:
+                    clipped_reads[clipped_point]=list()
+                if (clipped_point is not None) and (read.query_name not in clipped_reads):
+                    clipped_reads[clipped_point].append(read.query_name)
+                prev_ref_pos=pos_in_ref
+    max_support_site=None
+    max_support_N=0
+    ### expecte site in hg38
+    #25405616 5
+    #25405596 4
+
+    for pos in clipped_reads:
+        print("[accessory][RHCe_insertion]",pos, len(clipped_reads[pos]))
+        if len(clipped_reads[pos]) > max_support_N:
+            max_support_N=len(clipped_reads[pos])
+            max_support_site=pos
+
+        if len(clipped_reads[pos]) >= 3:
+            sc_n+=len(clipped_reads[pos])
+        elif build=='hg38' and pos in [25405616, 25405596]:
+            sc_n+=len(clipped_reads[pos])
+        elif build=='hg19' and pos in [25732107, 25732087]:
+            sc_n+=len(clipped_reads[pos]) 
+    #print("MAX:", max_support_site, "; support:", max_support_N)
+
     if verbose>9: print("[109bp INS] TotalN: %d\tclippedN: %d\tratio: %s" % ( total_n, sc_n, str(sc_n/cov) ))
     if total_n > 0:
         return sc_n, total_n, sc_n/float(total_n)
@@ -1460,47 +1669,69 @@ def RHCe_insertion(bam, cov, build='hg38', clippedN=5, verbose=0):
 
 
 
-def gene_exon_del(exon_cov, bam, fasta, coord, exon_cut=0.6, coverage=30, gene='RHD', seqtype='WGS'):
+def gene_exon_del(exon_cov, bam, fasta, coord, exon_cut=0.6, coverage=30, gene='RHD', seqtype='WGS', step=150, bin=300, flanking=300, exonOnly=True, cov_mode='avg_QC_readn', save_output=False, prefix="TEST"):
     """
         Calculate gene and exon coverage
         [Note] Cannot use exon average as indicator as it will falsely make hybrid to deletion
+        bin_value_mode: 'totalReadN' or 'QCtotalReadN'
+        cov_mode: 'avg_QC_readn' or 'med_QC_readn'
     """
     from math import log
+
 
     ### get a list of coverage values from perbaseCov
     chr=coord.chr[0]
     start=coord.start.min()
     end=coord.end.max()
-    binCov, allbinmed=perbaseCov(bam,coverage, fasta, step=150, bin=300, prefix=None, chr=chr, start=start, end=end, coord=coord, minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, flanking=150, includeZero=True)
+   
+    ### examples
+    #RHDbin, RHDgene=perbaseCov(bam, wgs_cov, fasta, prefix=prefix+'.RHD', chr=chr, start=RHD_start, end=RHD_end, coord=rhd_coord, flanking=flanking, save_output=True, bin=bin, step=step, exonOnly=exonOnly)
+    #RHCEbin, RHCEgene=perbaseCov(bam, wgs_cov, fasta, prefix=prefix+'.RHCE', chr=chr, start=RHCE_start, end=RHCE_end, coord=rhce_coord, flanking=flanking, save_output=True, bin=bin, step=step, exonOnly=exonOnly)
+ 
+    binCov, allbinmed=perbaseCov(bam,coverage, fasta, step=step, bin=bin, prefix=prefix, chr=chr, save_output=save_output, \
+                                 start=start, end=end, coord=coord, \
+                                 minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, bin_value_mode='QCtotalReadN', \
+                                 flanking=flanking, includeZero=True, exonOnly=exonOnly)
+
+
     allbinCov=[]
     exonbinCov=[]          
     for x in binCov:
-        allbinCov.append(binCov[x]['bin_avg'])
-        if binCov[x]['bin_exon'] != -1: exonbinCov.append(binCov[x]['bin_avg'])
+        bin_val= binCov[x]['bin_avg'] if seqtype=='WGS' else binCov[x]['bin_med']
+        allbinCov.append(bin_val)
+        if binCov[x]['bin_exon'] != -1: 
+            if seqtype in ['WES'] and binCov[x]['bin_exon'] in [1,8]:
+                #print("test skip", binCov[x]['bin_exon'], bin_val)
+                continue
+            exonbinCov.append(bin_val)
     
-
+ 
     exon=exon_cov.iloc[exon_cov.index.get_level_values('gene')==gene]
-    exon_sd =exon.avg_QC_readn.std()
-    gene_avg=exon.avg_QC_readn.mean()
-    #gene_avg=gene_cov.iloc[gene_cov.index.get_level_values('gene')==gene, gene_cov.columns.get_loc('avg_QC_readn')].values[0]
+    exon_sd =exon[cov_mode].std()
+    gene_avg=exon[cov_mode].mean()
+    #gene_avg=gene_cov.iloc[gene_cov.index.get_level_values('gene')==gene, gene_cov.columns.get_loc(cov_mode)].values[0]
     typing=None
     log2r=round(log(gene_avg/coverage,2),7)
    
-    homodel_cut=-3
-    hetedel_cut=-0.6
     exon_nf=exon_cut
-    if seqtype=='WES':
-        #cov_list=exon.avg_QC_readn.tolist()
+    if seqtype=='WES' and gene=='RHD':
+        homodel_cut=-3
+        hetedel_cut=-0.15
+        cov_list=exonbinCov
+    elif seqtype=='WES' and gene=='RHCE':
+        homodel_cut=-3
+        hetedel_cut=-0.3
         cov_list=exonbinCov
     elif seqtype=='WGS':
+        homodel_cut=-3
+        hetedel_cut=-0.6
         cov_list=allbinCov
     exon_n=len(cov_list)
     binCov_sd=np.std(cov_list)
     binCov_avg=np.mean(cov_list)
     true_n=exon_n
-    #print('gene_avg:', gene_avg, 'exon_sd:', exon_sd)
-    #print('bin_n:', exon_n,'bin_avg:', binCov_avg, 'bin_sd:', binCov_sd)
-    ###if log2r < homodel_cut:
+    print('gene_avg:', gene_avg, 'exon_sd:', exon_sd)
+    print('bin_n:', exon_n,'bin_avg:', binCov_avg, 'bin_sd:', binCov_sd)
     for val in cov_list:
             #print('homodel', val)
             if val==0:
@@ -1511,8 +1742,8 @@ def gene_exon_del(exon_cov, bam, fasta, coord, exon_cut=0.6, coverage=30, gene='
                     true_n-=1
     print('Homo-Deleted binN: {0}; ratio={1}'.format(true_n, true_n/exon_n))
     if ( true_n > exon_n * exon_nf ): 
-             print('[Detected] Homozygous deletion')
-             return 'RHD negative (Homozygous deletion)', 'both_allele_deleted'
+        print('[Detected] Homozygous deletion')
+        return 'RHD negative (Homozygous deletion)', 'both_allele_deleted'
     ###elif homodel_cut  <= log2r < hetedel_cut:
     true_n=exon_n
     for val in cov_list:
@@ -1521,16 +1752,17 @@ def gene_exon_del(exon_cov, bam, fasta, coord, exon_cut=0.6, coverage=30, gene='
                 continue
             else:
                 e_log2r=round(log(val/coverage,2),7)
-                if homodel_cut > e_log2r or e_log2r >= hetedel_cut: 
+                #if homodel_cut > e_log2r or e_log2r >= hetedel_cut: 
+                if e_log2r >= hetedel_cut:
                     true_n-=1
                 #print(val, e_log2r, true_n)
     print("Hete-Deleted binN: {0}; ratio={1}".format(true_n, true_n/exon_n))
-    if ( true_n > exon_n * exon_nf ):
+    if ( true_n >= exon_n * exon_nf ):
             #print(gene, coverage, gene_avg/float(coverage), log2r, true_n, exon_n)
             print('[Detected] Heterozygous deletion')
             typing="RHD negative (Heterozygous deletion) or low coverage"
     
-    abnormal_exon=zip(exon[(exon['avg_QC_readn'] < gene_avg-exon_sd) | (exon['avg_QC_readn'] > gene_avg+exon_sd) ].index, exon[(exon['avg_QC_readn'] < gene_avg-exon_sd) | (exon['avg_QC_readn'] > gene_avg+exon_sd)]['avg_QC_readn'])
+    abnormal_exon=zip(exon[(exon[cov_mode] < gene_avg-exon_sd) | (exon[cov_mode] > gene_avg+exon_sd) ].index, exon[(exon[cov_mode] < gene_avg-exon_sd) | (exon[cov_mode] > gene_avg+exon_sd)][cov_mode])
     abnormal_exon=[[acc,gene,exon,cov] for (acc, gene, exon), cov in abnormal_exon]
     ab_exon=None
     for e in abnormal_exon:
@@ -1539,6 +1771,8 @@ def gene_exon_del(exon_cov, bam, fasta, coord, exon_cut=0.6, coverage=30, gene='
         else:
             ab_exon=':'.join(map(str,e))
     return typing, ab_exon
+
+
 
 def coverage(df=None, file=None):
     '''
@@ -1573,15 +1807,17 @@ def coverage(df=None, file=None):
     
 
 
-def genome_cov(bam,chr=None, mode='wgs', gbuild='hg38'):
+def genome_cov(bam,chr=None, mode='wgs', count_mode='QC_reads', \
+               minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, \
+               gbuild='hg38', wes_expand=0, drop_low_coverage=False, low_cov_cut=10):
     ''' 
         estimate genome coverage based on chr1 
     '''
     print("[Estimate coverage] based on chr1")
     annotation={'hg38':{#'file': "hg38.refFlat.nonoverlapping.txt.gz",
                         'file': 'hg38.exon.gz',
-                        'RHCE':{'start':25362249, 'end':25420914 },
-                        'RHD':{'start':25272393, 'end':25330445 }
+                        'RHCE':{'start':25362249, 'end':25420825 },
+                        'RHD':{'start':25272509, 'end':25330445 },
                        },
                 'hg19':{#'file': "hg19.refFlat.nonoverlapping.txt.gz",
                         'file': 'hg19.exon.gz',
@@ -1603,12 +1839,11 @@ def genome_cov(bam,chr=None, mode='wgs', gbuild='hg38'):
         s=int(flds[2]) if int(flds[1]) > int(flds[2]) else  int(flds[1])
         e=int(flds[1]) if int(flds[1]) > int(flds[2]) else  int(flds[2])
         if mode=='wes':
-            if ( s < annotation[gbuild.lower()]['RHCE']['start'] and e < annotation[gbuild.lower()]['RHCE']['end'] ) or ( s > annotation[gbuild.lower()]['RHCE']['start'] and e > annotation[gbuild.lower()]['RHCE']['end'] ):
+            if not (( s >= annotation[gbuild.lower()]['RHD']['start']-wes_expand and e <= annotation[gbuild.lower()]['RHD']['end']+wes_expand ) or ( s >= annotation[gbuild.lower()]['RHCE']['start']-wes_expand and e <= annotation[gbuild.lower()]['RHCE']['end']+wes_expand )):
                 continue
 
         if (s,e) not in exons[flds[0]]:
             exons[flds[0]].append((int(s),int(e)))
-
 
     bamfile = pysam.AlignmentFile(bam, "rb")
 
@@ -1637,12 +1872,46 @@ def genome_cov(bam,chr=None, mode='wgs', gbuild='hg38'):
             ex_n+=1
             #if ex_n % 1000 == 0: print ex_n, " reads processed"
             for pile in bamfile.pileup(contig, ex[0], ex[1], truncate=True):
+                #if pile.reference_pos not in posArray:
+                #    #print pile.reference_pos, pile.nsegments
+                #    posArray.add(pile.reference_pos)
+                #    covArray.append(pile.nsegments)
+                ##else:
+                ##    print pile.reference_pos, 'dup'
+
+            ### 
+                pos0based=pile.pos
+                pos1based=pile.pos+1
+                good_count={'A':0, 'T':0, 'C':0, 'G':0, 'N':0}
+                good_n=0
+
+                for pileupread in pile.pileups:
+                    read     = pileupread.alignment
+                    qpos     = pileupread.query_position
+                    qname    = pileupread.alignment.query_name
+                    # skip reads with indels
+                    if pileupread.is_del: continue
+                    # skip reads with mapq below threshold
+                    if pileupread.alignment.mapping_quality < minimum_mapq: 
+                       continue
+                    elif read.mapping_quality == 255:
+                       continue
+                    elif mean(read.query_qualities) < minimum_read_quality:
+                       continue
+                    else:
+                       if read.query_qualities[qpos] < minimum_base_quality:
+                          continue
+                    good_n+=1
+
                 if pile.reference_pos not in posArray:
-                    #print pile.reference_pos, pile.nsegments
                     posArray.add(pile.reference_pos)
-                    covArray.append(pile.nsegments)
-                #else:
-                #    print pile.reference_pos, 'dup'
+                    if count_mode=='QC_reads':
+                       if drop_low_coverage and good_n < low_cov_cut: continue
+                       covArray.append(good_n)
+                    else:
+                       if drop_low_coverage and pile.nsegments < low_cov_cut: continue
+                       covArray.append(pile.nsegments) 
+
         try:
             contigs[contig]["Coverage"]=round(sum(covArray) / len(covArray),2)
             contigs[contig]["CoverageSum"]=sum(covArray)
@@ -1653,10 +1922,24 @@ def genome_cov(bam,chr=None, mode='wgs', gbuild='hg38'):
             contigs[contig]["Coverage"] = 0
             contigs[contig]["CoverageSum"]=0
             contigs[contig]["CoverageLen"]=0
-    
+    ### remove outliers from coverage distribtuion: keep only values between 25 and 75% quantiles 
+    Q75=np.quantile(covArray, 0.75) 
+    Q25=np.quantile(covArray, 0.25)
+    IQR = np.subtract(*np.percentile(covArray, [75, 25]))
+    UPPER=Q75 + 1.5*IQR
+    LOWER=Q25 - 1.5*IQR
+    #print("[TEST] Q75: {0}; Q25: {1}; IQR: {2}; lower bound: {3}; upper bound: {4}".format(Q75, Q25, IQR, LOWER, UPPER))
+    covArray_filtered=list()
+    for x in covArray:
+       if drop_low_coverage and x < low_cov_cut: continue
+       if LOWER > x or x > UPPER : continue
+       covArray_filtered.append(x)
+    print("[UnFiltered] {0}: median: {1}".format(len(covArray),median(covArray)))
+    print("[Filtered] {0}: median: {1}".format(len(covArray_filtered),median(covArray_filtered)))
+ 
     #print contigs    
     mean_coverage=round((totalSum/totalLen),2)
-    median_coverage=median(covArray)
+    median_coverage=median(covArray_filtered)
     return mean_coverage, median_coverage
 
 def median(lst):
@@ -1714,7 +1997,7 @@ def var_report(BG, db, sdb, gene):
     report={}
     for bg in BGls:
         if bg not in tdb.columns:
-            ### skip bloodgroup that are not repsent in the database, e.g. deletion ones
+            ### skip bloodgroup that are not present in the database, e.g. deletion ones
             continue
         var=tdb.loc[tdb[bg]>0, bg]
         match_var=[]
@@ -1734,7 +2017,7 @@ def var_report(BG, db, sdb, gene):
                 refa=''
                 alta=''
                 for idx, row in sdb.iterrows():
-                    #print row['cpos'], row['REF'], row['ALT'], row['exon'], cpos, ref, alt
+                    #print(row['cpos'], row['REF'], row['ALT'], row['exon'], cpos, ref, alt)
                     if int(row['cpos'])==int(cpos) and row['REF']==ref and row['ALT']==alt:
                         if ref in ['A', 'T', 'C', 'G']:
                             refc=row[ref]
@@ -1750,6 +2033,7 @@ def var_report(BG, db, sdb, gene):
                         if idx in sdb2.index:
                             sdb2.drop([idx], inplace=True)
                         break
+                #print(BGls, match)
                 if match:
                     ovar=ovar+'('+str(refc)+'/'+str(altc)+')'
                     aaovar=aaovar+'('+str(refa)+'/'+str(alta)+')'
@@ -1767,6 +2051,7 @@ def var_report(BG, db, sdb, gene):
                         aaovar=aaovar+'(./.)'
                     nonmatch_var.append(ovar)
                     nonmatch_aa.append(aaovar)
+        #print(bg, match_var, nonmatch_var)
         report[bg]={}
         report[bg]['match']=';'.join(match_var)
         report[bg]['non-match']=';'.join(nonmatch_var)
@@ -1781,6 +2066,7 @@ def var_report(BG, db, sdb, gene):
     del_end=-1
     del_ref=''
     for idx, row in sdb2.iterrows():
+        #print(row)
         refc=0
         altc=0
         ovar=str(row['cpos'])+row['REF']+'/'+row['ALT']
@@ -1970,9 +2256,11 @@ def companyGenecheck(sdbC, gene, bg_nogene, pos, ref, alt, match_types, unmatch_
     '''
        check var from company gene tables
     '''
+
     all_types=[]
     all_types.extend(match_types)
     all_types.extend(unmatch_types)
+
     if bg_nogene in all_types:
         if gene=='RHCE':
             ovar='CEc.'+ str(pos) + ref +'/'+ alt
@@ -2000,11 +2288,13 @@ def companyGenecheck(sdbC, gene, bg_nogene, pos, ref, alt, match_types, unmatch_
                 nonmatch_aa.append(aaovar)
     return match_var, match_aa, nonmatch_var, nonmatch_aa
             
-def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
+def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, rawDB, altn_cut=3):
     '''
         report the consistent var and inconsistent var for the predicted allele combination
     '''
     BGls=BG['Bloodtype'].tolist()
+    #print("[accessory][var_compare] bloodtypes:", BGls)
+
 
     tdb=db
     sdb2=sdb.copy()
@@ -2018,6 +2308,7 @@ def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
     insertion_pattern=re.compile("([c,C].[0-9]*_?[0-9]+\s?(ins|INS|dup|DUP)\s?[A,T,C,G]*)")
 
     for bg in BGls:
+        #print(bg)
         bg_nogene=re.sub(".*@","",bg)
         bg_nogene_ws=re.sub("_"," ",bg_nogene)
         if bg_nogene_ws not in tdb['Allele name'].tolist():
@@ -2029,8 +2320,10 @@ def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
         nonmatch_var=[]
         match_aa=[]
         nonmatch_aa=[]
+        match_n=0
         for nt in nts:
             mut=nt.strip()
+            #print('[accessory][var_compare]', bg, mut)
             if mut.startswith(('-', '~', '*', '+')): continue ### unknown variant format... skip
             if not mut.startswith('c.'): continue ### non-coding vars ... skip
             if nt_pattern.match(mut.upper()):
@@ -2057,11 +2350,17 @@ def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
                         match=True
                         refa=row['REFaa']
                         alta=row['ALTaa']
-                        if idx in sdb2.index:
-                            sdb2.drop([idx], inplace=True)
+                        match_n+=1
+                        #if idx in sdb2.index:
+                        #    sdb2.drop([idx], inplace=True)
                         break
+                #if match_n==len(nts):
+                #    if idx in sdb2.index:
+                #        sdb2.drop([idx], inplace=True)
+
                 aaovar=aaovar+'('+str(refa)+'/'+str(alta)+')'
                 if match:
+                    #print('[', bg_nogene, '] ', 'Variant matched:', mut)
                     ovar=ovar+'('+str(refc)+'/'+str(altc)+')'
                     match_var.append(ovar)
                     match_aa.append(aaovar)
@@ -2069,6 +2368,7 @@ def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
                         all_var.append(ovar)
                         all_aa.append(aaovar)
                 else:
+                    #print('[', bg_nogene, '] ', 'Variant not matched:', mut)
                     if ref in ['A', 'T', 'C', 'G']:
                         refc=adb.loc[adb['cpos']==int(cpos),ref].values[0]
                     elif ref == '-':
@@ -2157,9 +2457,12 @@ def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
                        print('[Warning] cannot check intronic var coverage due to multiple chr specified')
                        continue   
         ### extra check
-        match_var, match_aa, nomatch_var, nomatch_aa=companyGenecheck(sdbC, 'RHCE', bg_nogene, 733, 'C', 'G', ['RHD*01N.06','RHD*03N.01'], ['RHD*03.04_RHD*DIII.04','RHD*03.01_RHD*DIIIa'], \
+        ### why these types?
+        ### match ('RHD*01N.06','RHD*03N.01')
+        ### not_match ('RHD*03.04_RHD*DIII.04','RHD*03.01_RHD*DIIIa')
+        match_var, match_aa, nonmatch_var, nonmatch_aa=companyGenecheck(sdbC, 'RHCE', bg_nogene, 733, 'C', 'G', ['RHD*01N.06','RHD*03N.01'], ['RHD*03.04_RHD*DIII.04'], \
                                                                       match_var, match_aa, nonmatch_var, nonmatch_aa, all_var, all_aa)
-        match_var, match_aa, nomatch_var, nomatch_aa=companyGenecheck(sdbC, 'RHCE', bg_nogene, 1006, 'G', 'T', ['RHD*01N.06','RHD*03N.01'], ['RHD*03.04_RHD*DIII.04','RHD*03.01_RHD*DIIIa'], \
+        match_var, match_aa, nonmatch_var, nonmatch_aa=companyGenecheck(sdbC, 'RHCE', bg_nogene, 1006, 'G', 'T', ['RHD*01N.06','RHD*03N.01'], ['RHD*03.04_RHD*DIII.04'], \
                                                                       match_var, match_aa, nonmatch_var, nonmatch_aa, all_var, all_aa)
 
         report[bg]={}
@@ -2167,18 +2470,29 @@ def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
         report[bg]['non-match']=';'.join(nonmatch_var)
         report[bg]['match_aa']=';'.join(match_aa)
         report[bg]['non-match_aa']=';'.join(nonmatch_aa)
-   
+  
 
-    sample_specific=[]
-    sample_specific_aa=[]
-    exon8_dels=False
-    prevalt=""
-    prevcpos=-1
-    del_start=-1
-    del_end=-1
-    del_ref=''
+    BG_ix=BG['Index'].unique().tolist()
+
+    #print("[accessory][var_compare] sdb2")
     #print(sdb2)
-    for idx, row in sdb2.iterrows():
+    #print(BG_ix)
+    #print(report)
+    for i in BG_ix:
+      BG1=BG.loc[(BG.Index==i) & (BG.Allele=='A1'), 'Bloodtype'].values[0]
+      BG2=BG.loc[(BG.Index==i) & (BG.Allele=='A2'), 'Bloodtype'].values[0]
+      #print(i, BG1, BG2)
+
+      sample_specific=[]
+      sample_specific_aa=[]
+      exon8_dels=False
+      prevalt=""
+      prevcpos=-1
+      del_start=-1
+      del_end=-1
+      del_ref=''
+
+      for idx, row in sdb2.iterrows():
         refc=0
         altc=0
         ovar=str(row['cpos'])+row['REF']+'/'+row['ALT']
@@ -2235,39 +2549,195 @@ def var_compare(BG, db, sdb, sdbC, adb, gene, bam, fasta, altn_cut=3):
             continue
 
         if row['ALT'] != '-':
-            sample_specific.append(ovar)
-            sample_specific_aa.append(aaovar)
+            if BG1 in report and BG2 in report:
+                if ovar not in report[BG1]['match'] and ovar not in report[BG1]['non-match'] and ovar not in report[BG2]['match'] and ovar not in report[BG2]['non-match']:
+                    if ovar not in sample_specific:
+                        sample_specific.append(ovar)
+                        sample_specific_aa.append(aaovar)
+            elif BG1 in report and ovar not in report[BG1]['match'] and ovar not in report[BG1]['non-match']:
+                if ovar not in sample_specific:
+                    sample_specific.append(ovar)
+                    sample_specific_aa.append(aaovar)
+            elif BG2 in report and ovar not in report[BG2]['match'] and ovar not in report[BG2]['non-match']:
+                if ovar not in sample_specific:
+                    sample_specific.append(ovar)
+                    sample_specific_aa.append(aaovar)
             if ovar not in all_var:
                 all_var.append(ovar)
                 all_aa.append(aaovar)
+      if i not in report:
+          report[i]=dict()
+      report[i]['sample_specific']=';'.join(sample_specific)
+      report[i]['sample_specific_aa']=';'.join(sample_specific_aa)
+
     #if exon8_dels=True:
     #    sample_specific.append('exon8_dels_not_shown')
-
-
-    report['sample_specific']=sample_specific
-    report['sample_specific_aa']=sample_specific_aa
     report['all_variation']=all_var
     report['all_variation_aa']=all_aa
 
 
-    return report
+    #return report
             
+    final=BG
+    final.loc[:,'matchDB']=""
+    final.loc[:,'matchDBn']=0
+    final.loc[:,'not_matchDB']=""
+    final.loc[:,'not_matchDBn']=0
+    final.loc[:,'matchDBaa']=""
+    final.loc[:,'not_matchDBaa']=""
+    final.loc[:,'Alias']=""
 
-def max_match(final):
+    
+    for i in BG_ix:
+
+        BG1_idx=BG.index[(BG.Index==i) & (BG.Allele=='A1'),].tolist()
+        BG2_idx=BG.index[(BG.Index==i) & (BG.Allele=='A2'),].tolist()
+
+        if len(BG1_idx)==1 and len(BG2_idx)==1 : 
+            BG1_idx=BG1_idx[0]
+            BG2_idx=BG2_idx[0]
+        else:
+            sys.exit('[accessory][var_compare] index error')
+
+        BG1_raw=BG.loc[BG1_idx, 'Bloodtype']
+        BG2_raw=BG.loc[BG2_idx, 'Bloodtype']
+
+        BG1=re.sub(".*@","",BG1_raw)
+        BG2=re.sub(".*@","",BG2_raw)
+
+        BG1_nou=re.sub("_"," ",BG1)
+        BG2_nou=re.sub("_"," ",BG2)
+
+        #print(BG1_idx, BG1_raw, BG1)
+        #print(BG2_idx, BG2_raw, BG2)
+       
+
+        if 'Alias' in rawDB.columns:
+            if not rawDB.loc[rawDB['Allele name']==BG1,].empty:
+                BGalias=rawDB.loc[rawDB['Allele name']==BG1,'Alias'].values[0]
+                if BG1 != BGalias: final.loc[BG1_idx, 'Alias']=BGalias
+            elif not rawDB.loc[rawDB['Allele name']==BG1_nou,].empty:
+                BGalias=rawDB.loc[rawDB['Allele name']==BG1_nou,'Alias'].values[0]
+                if BG1_nou != BGalias: final.loc[BG1_idx, 'Alias']=BGalias
+
+            if not rawDB.loc[rawDB['Allele name']==BG2,].empty:
+                BGalias=rawDB.loc[rawDB['Allele name']==BG2,'Alias'].values[0]
+                if BG2 != BGalias: final.loc[BG2_idx, 'Alias']=BGalias     
+            elif not rawDB.loc[rawDB['Allele name']==BG2_nou,'Alias'].empty:
+                BGalias=rawDB.loc[rawDB['Allele name']==BG2_nou,'Alias'].values[0]
+                if BG2_nou != BGalias: final.loc[BG2_idx, 'Alias']=BGalias
+
+
+        if BG1_raw in report:
+
+            final.loc[BG1_idx,'matchDB']=report[BG1_raw]['match']
+            final.loc[BG1_idx,'not_matchDB']=report[BG1_raw]['non-match']
+           
+            if ';' in report[BG1_raw]['non-match']:
+                final.loc[BG1_idx,'not_matchDBn']=len(report[BG1_raw]['non-match'].split(";")) 
+            elif report[BG1_raw]['non-match'] != '':
+                final.loc[BG1_idx,'not_matchDBn']=1
+            else:
+                final.loc[BG1_idx,'not_matchDBn']=0
+            if ';' in report[BG1_raw]['match']:
+                final.loc[BG1_idx,'matchDBn']=len(report[BG1_raw]['match'].split(";"))
+            elif report[BG1_raw]['match'] != '':
+                final.loc[BG1_idx,'matchDBn']=1
+            else:
+                final.loc[BG1_idx,'matchDBn']=0
+            final.loc[BG1_idx,'matchDBaa']=report[BG1_raw]['match_aa']
+            final.loc[BG1_idx,'not_matchDBaa']=report[BG1_raw]['non-match_aa']
+
+        if BG2_raw in report:
+            final.loc[BG2_idx,'matchDB']=report[BG2_raw]['match']
+            final.loc[BG2_idx,'not_matchDB']=report[BG2_raw]['non-match']
+
+            if ';' in report[BG2_raw]['non-match']:
+                final.loc[BG2_idx,'not_matchDBn']=len(report[BG2_raw]['non-match'].split(";"))
+            elif report[BG2_raw]['non-match'] !='':
+                final.loc[BG2_idx,'not_matchDBn']=1
+            else:
+                final.loc[BG2_idx,'not_matchDBn']=0
+            if ';' in report[BG2_raw]['match']:
+                final.loc[BG2_idx,'matchDBn']=len(report[BG2_raw]['match'].split(";"))
+            elif report[BG2_raw]['match'] !='':
+                final.loc[BG2_idx,'matchDBn']=1
+            else:
+                final.loc[BG2_idx,'matchDBn']=0
+            final.loc[BG2_idx,'matchDBaa']=report[BG2_raw]['match_aa']
+            final.loc[BG2_idx,'not_matchDBaa']=report[BG2_raw]['non-match_aa']
+
+        ### re-assign the BG name
+        final.loc[BG1_idx,'Bloodtype']=BG1
+        final.loc[BG2_idx,'Bloodtype']=BG2
+
+        ### assign extra variants  
+        final.loc[BG1_idx,'SampleExtraVar']=report[i]['sample_specific']
+        final.loc[BG1_idx,'SampleExtraVar_aa']=report[i]['sample_specific_aa']
+        final.loc[BG2_idx,'SampleExtraVar']=report[i]['sample_specific']
+        final.loc[BG2_idx,'SampleExtraVar_aa']=report[i]['sample_specific_aa']
+ 
+    final.loc[:,'AllVariations']=';'.join(report['all_variation'])
+    final.loc[:,'AllVariations_aa']=';'.join(report['all_variation_aa'])
+
+    return final
+
+
+def max_match(final, check_hybrid=False):
+    hybrid_alleles={'RHD*01N.02':'RHD*CE(1-9)-D',
+                    'RHD*01N.03':'RHD*D-CE(2-9)-D',
+                    'RHD*01N.04':'RHD*D-CE(3-9)-D',
+                    'RHD*01N.05':'RHD*D-CE(2-7)-D',
+                    'RHD*01N.07':'RHD*D-CE(4-7)-D',
+                    'RHD*01N.42':'RHD*CE(1)-D(6)-CE(7-10)',
+                    'RHD*01N.43':'RHD*CE(1-3)-D',
+                    'RHD*01EL.23 RHD*DEL23':'RHD*-CE(5-7)-D',
+                    'RHD*01EL.44 RHD*DEL44':'RHD*-CE(4-9)-D',
+                    'RHD*03N.01':'RHD*D-CE(4-7)-D'
+                    }
     xmDBn={}
     maxDBn=-1
     mmDBn={}
     minDBn=-1
+    EV={}
+    minEVn=-1
+    hybrid=[]
     for idx in final.Index.unique():
+        ### extra reported is consistent between A1 and A2, so only A1 is needed to be check
+        A1_extra=final.loc[(final['Index']==idx) & (final.Allele=='A1'),'SampleExtraVar'].values[0]
+        A1_bt=final.loc[(final['Index']==idx) & (final.Allele=='A1'),'Bloodtype'].values[0]
+        A2_bt=final.loc[(final['Index']==idx) & (final.Allele=='A2'),'Bloodtype'].values[0]
+
+        #print(final.loc[final['Index']==idx,'not_matchDB'].values[0])
+        #print(final.loc[final['Index']==idx,'matchDB'].values[0])
+
+        #print("[accessory][max_match] ",idx, A1_extra, A2_extra)
         max_not_matchDBn=final.loc[final['Index']==idx,'not_matchDBn'].sum()
         max_matchDBn    =final.loc[final['Index']==idx,'matchDBn'].sum()
+        if  ';' in A1_extra:
+            min_extra_Var_n =len(A1_extra.split(';'))
+        elif A1_extra != '':
+            min_extra_Var_n =1
+        else:
+            min_extra_Var_n =0
+
         if max_not_matchDBn not in mmDBn: mmDBn[max_not_matchDBn]=[]
         if max_matchDBn     not in xmDBn: xmDBn[max_matchDBn]    =[]
+        if min_extra_Var_n  not in EV:    EV[min_extra_Var_n]    =[]
         mmDBn[max_not_matchDBn].append(idx)
         xmDBn[max_matchDBn].append(idx)
+        EV[min_extra_Var_n].append(idx)
         if minDBn==-1: minDBn=max_not_matchDBn
         if maxDBn==-1: maxDBn=max_matchDBn
+        if minEVn==-1: minEVn=min_extra_Var_n
         if max_not_matchDBn < minDBn: minDBn=max_not_matchDBn
         if max_matchDBn > maxDBn: maxDBn=max_matchDBn
-    return xmDBn, maxDBn, mmDBn, minDBn 
+        if min_extra_Var_n  < minEVn: minEVn=min_extra_Var_n
+
+        if check_hybrid:
+            if A1_bt in hybrid_alleles.keys() or A2_bt in hybrid_alleles.keys():
+                 if idx not in hybrid: hybrid.append(idx)
+
+        #print(idx, A1_bt, A2_bt, max_not_matchDBn, minDBn)
+    return xmDBn, maxDBn, mmDBn, minDBn, EV, minEVn, hybrid
 

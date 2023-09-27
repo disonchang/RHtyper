@@ -7,7 +7,7 @@ import re, os
 package_directory = os.path.dirname(os.path.abspath(__file__))
 
 class bloodgroupDB(object):
-    def __init__(self, gene='RHD', DB="BGMUT", verbose=0):
+    def __init__(self, gene='RHD', DB="ISBT", verbose=0):
        
         self.BGMUTf=os.path.join(package_directory, 'database', 'bgmut_data_export-2017-10-20-bgmut_alleles.txt')
         self.BGMUTf2=os.path.join(package_directory, 'database', 'bgmut_data_export-2017-10-20-bgmut_alleles_submitted.txt')
@@ -17,6 +17,7 @@ class bloodgroupDB(object):
         self.verbose=verbose
 
     def BloodDB(self):
+        ''' deprecated'''
         db=None
         if self.DB=='BGMUT':
             db_in1=self.BGMUTf

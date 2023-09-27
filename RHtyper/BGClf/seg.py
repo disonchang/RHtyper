@@ -25,6 +25,10 @@ def max_tstat(x):
     b0, b1 = np.argmin(y), np.argmax(y)
     ### switch the index and make the index in order from low to high
     i, j = min(b0, b1), max(b0, b1)
+
+    ### if two values equal ... added 0117_2022
+    #if b0==b1: j=i
+
     ### 
     Y=x[i+1:j]
     Z=np.delete(x, np.arange(i+1,j))
@@ -44,6 +48,9 @@ def cbs(x, shuffles=1000, p=0.05, w=10):
         return False, max_t, max_start, max_end, 1
     if np.isnan(max_t):
         return False, max_t, max_start, max_end, 1
+    #if max_end==max_start:   ###... added 0117_2022
+    #    return False, max_t, max_start, max_end, 1
+
     ### adjust terminal block
     if max_start < w:
         max_start = 0
@@ -57,6 +64,10 @@ def cbs(x, shuffles=1000, p=0.05, w=10):
     for i in range(shuffles):
         np.random.shuffle(xt)
         s_max_t, s_max_startIx, s_max_endIx = max_tstat(xt)
+        
+        #if s_max_t is None: ####... added 0117_2022
+        #   continue
+
         if s_max_t > max_t:
            lowstat_count += 1
            

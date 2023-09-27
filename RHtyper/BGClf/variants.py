@@ -7,7 +7,7 @@ import pandas as pd
 from general import *
 from collections import OrderedDict
 
-def call(gene, cds, bam, output, gbuild='hg38', minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, verbose=5, ALT_n_LB=None, write_output=True):
+def call(gene, cds, bam, output, gbuild='hg38', minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, verbose=5, ALT_n_LB=None, VAF=None, write_output=True):
     skip_message = 'SKIPPED: {} {} {} {} {}'
     pass_message = 'PASSED: {} {} {}'
     out=[]
@@ -282,8 +282,12 @@ def call(gene, cds, bam, output, gbuild='hg38', minimum_base_quality = 15, minim
            final.append(row)
        else:
            alt=row['ALT']
-           if out_filtered_total.ix[idx, alt] >= ALT_n_LB:
-               final.append(row)
+           if out_filtered_total.at[idx, alt] < ALT_n_LB:
+               continue
+           if VAF is not None:
+               if (out_filtered_total.at[idx, alt]/out_filtered_total.at[idx, 'QC_n']) < VAF:
+                   continue 
+           final.append(row)
     
     final=pd.DataFrame(final)
     if final.shape[0] > 0:

@@ -155,6 +155,7 @@ def CDS_genome_coordinate_todf(df, ref, build='hg38'):
             for gpos in df[gene]['cds'][exon_n]['cpos']:
                 cpos=df[gene]['cds'][exon_n]['cpos'][gpos]
                 aapos=(cpos/3)+1 if cpos % 3 != 0 else cpos/3
+                aapos=int(aapos)
                 pos0based=gpos-1
                 
                 refbase =reffasta.fetch(chr, pos0based, pos0based+1)
@@ -178,7 +179,7 @@ def CDS_genome_coordinate_todf(df, ref, build='hg38'):
                 out.append({'gene':gene, 'acc':acc, 'exon':exon_n, 'chr': chr, 'start':start, 'end': end, 'strand':strand, 'gpos':gpos, 'cpos':cpos, 'REF': refbase, 'aapos': aapos})
         out=pd.DataFrame(out)
         out[['cpos','exon']]=out[['cpos','exon']].apply(pd.to_numeric)
-        if out.ix[out['cpos']==1,'exon'].values[0] > 1:
+        if out.loc[out['cpos']==1,'exon'].values[0] > 1:
             exon_num=out.exon.max()
             out.exon=(exon_num+1)-out.exon
         accs[acc]=out

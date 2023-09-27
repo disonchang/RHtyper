@@ -173,7 +173,7 @@ def create(training, input, cov, gene='RHD', QC_n_LB=None, ALT_n_LB=None, ALT_p_
 
 
 
-def SNP4likelihood(testdata,traindata,gene,QC_n_LB=None, ALT_n_LB=None, ALT_p_LB=None, reduce_target=True):
+def SNP4likelihood(testdata,traindata,gene,QC_n_LB=None, ALT_n_LB=None, ALT_p_LB=None, reduce_target=True, fuzzy_dist=0, keep_SNV_GT=False, skip_indel=False):
     '''
         provide the SNP candidates for calculating likelihood
     '''
@@ -217,16 +217,17 @@ def SNP4likelihood(testdata,traindata,gene,QC_n_LB=None, ALT_n_LB=None, ALT_p_LB
     target_train_mx=traindata.loc[target_train]
     target_train_mx=target_train_mx.loc[:, (target_train_mx != 0).any()] 
 
-
     if reduce_target:
-        target_train, target_train_mx=reduce_targetGT(target_am, target_train_mx)
+        target_train, target_train_mx=reduce_targetGT(target_am, target_train_mx, fuzzy_dist=fuzzy_dist, keep_SNV_GT=keep_SNV_GT)
+
 
     target_t=list(target_train_mx)
     return target_a, target_am, target_t, target_train, target_train_mx
 
-def reduce_targetGT(target_am, target_train_mx, fuzzy_dist=0):
+def reduce_targetGT(target_am, target_train_mx, fuzzy_dist=0, keep_SNV_GT=False, varmode='all'):
    '''
-       reduce the target_train_mx to only the pairs with minimal number of mismatch with the target SNPs
+       reduce the target_train_mx to only the pairs with mismatch number < minimal number of mismatch with the target SNPs + fuzzy_dist
+       if keep_SNV_GT: the GT contained SNVs will be kept, set for WES mainly
    '''
    ttarget_train_mx=target_train_mx.transpose()
    target_var=target_am.index.tolist()
@@ -236,6 +237,8 @@ def reduce_targetGT(target_am, target_train_mx, fuzzy_dist=0):
 
    dist_mx={}
    dist_min=9999999
+   dist_min_withSNV=9999999
+   type_with_SNV_ls=list()
    for i in range(0,(len(train_var_genotypes))):
        for j in range(i,len(train_var_genotypes)):
            matched_var=[]
@@ -244,32 +247,88 @@ def reduce_targetGT(target_am, target_train_mx, fuzzy_dist=0):
            type2=train_var_genotypes[j]
            type1_vars=list(ttarget_train_mx.loc[ttarget_train_mx[type1]>0, type1].index)
            type2_vars=list(ttarget_train_mx.loc[ttarget_train_mx[type2]>0, type2].index)
+           type_with_SNV=False
            for var in target_var:
                if var in type1_vars or var in type2_vars:
                    if var not in matched_var:
                        matched_var.append(var)
+                       if '-' not in var: type_with_SNV=True
+           var1=False
+           var2=False       
            for var in type1_vars:
                if var not in target_var:
                    if var not in extra_var: extra_var.append(var)
+               if '1136_C_T' in varmode:
+                   if var=='1136_C_T':
+                       var1=True
+                       break
+               if '48_G_C' in varmode:
+                   if var=='48_G_C':
+                       var1=True
+                       break
            for var in type2_vars:
                if var not in target_var:
                    if var not in extra_var: extra_var.append(var)
+               if '1136_C_T' in varmode:   
+                   if var=='1136_C_T':
+                       var2=True
+                       break
+               if '48_G_C' in varmode:
+                   if var=='48_G_C':
+                       var2=True
+                       break
+
+           ### check var_mode het or hom
+           if 'het' in varmode:
+               if var1 and var2:
+                   print("[reduce_targetGT] Var mode: {0}; GT {1} and {2} have homozyous zygosity of {0}... skipping".format(varmode, type1, type2))    
+                   continue 
+           if 'hom' in varmode:
+               if not var1 or not var2:
+                   print("[reduce_targetGT] Var mode: {0}; GT {1} and {2} have unmatched zygosity of {0}... skipping".format(varmode, type1, type2))
+                   continue
+             
+
+
            dist=len(target_var)-len(matched_var)+len(extra_var)
+           problematic=['RHCE@RHCE*01_or_RHCE*ce_RHCE*c_RHCE*e', 'RHCE@RHCE*01.05.01_RHCE*ce.05.01','RHCE@RHCE*01.08_RHCE*ce.08']
+           #if type1 in problematic and type2 in problematic:
+           #    print("[GT1] {0}; [GT2] {1}; [DIST] {2}; [TARGET_VAR] {3}; [MATCHED_VAR] {4}; [EXTRA_VAR] {5}".format(type1, type2, dist, len(target_var), len(matched_var), len(extra_var)))
+           #    print(type1_vars)
+           #    print(type2_vars)
+           #    print(target_var)
            if dist < dist_min: dist_min=dist
-           if dist not in dist_mx: dist_mx[dist]={}
-           if type1 not in dist_mx[dist]: dist_mx[dist][type1]=[]
-           if type2 not in dist_mx[dist][type1]: dist_mx[dist][type1].append(type2)
+           if dist not in dist_mx: 
+               dist_mx[dist]={}
+           if type1 not in dist_mx[dist]: 
+               dist_mx[dist][type1]=[]
+           if type2 not in dist_mx[dist][type1]: 
+               dist_mx[dist][type1].append(type2)
+           if type_with_SNV:
+               if type1 not in type_with_SNV_ls:
+                   type_with_SNV_ls.append(type1) 
+               if type2 not in type_with_SNV_ls:
+                   type_with_SNV_ls.append(type2)  
+               if dist < dist_min_withSNV: dist_min_withSNV=dist        
+
 
    target_gt=[]
    for d in dist_mx:
       for t1 in dist_mx[d]:
           for t2 in dist_mx[d][t1]:
+              #print("[Reduce]", t1,t2,d)
               if d <= dist_min + fuzzy_dist:
-                  #print(t1, t2, d)
+                  #print("[reduce_targetGT][Kept]", t1, t2, d)
                   if t1 not in target_gt: target_gt.append(t1)
                   if t2 not in target_gt: target_gt.append(t2)
+              if keep_SNV_GT and d <= dist_min_withSNV:
+                  if t1 in type_with_SNV_ls or t2 in type_with_SNV_ls:
+                      #print("[reduce_targetGT][KeptSNV_GT]", t1, t2, d)
+                      if t1 not in target_gt: target_gt.append(t1)
+                      if t2 not in target_gt: target_gt.append(t2)
 
    if len(target_gt)>0:
        target_train_mx=target_train_mx.loc[target_gt]
        target_train_mx=target_train_mx.loc[:, (target_train_mx != 0).any()]
+   print("[reduce_targetGT] # of target_gt for likelihood calculation: {0}".format(len(target_gt)))
    return target_gt, target_train_mx 

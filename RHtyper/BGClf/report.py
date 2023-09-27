@@ -10,7 +10,8 @@ from fpdf import FPDF
 
 ### html
 import plotly
-import plotly.plotly as py
+#import plotly.plotly as py
+import chart_studio.plotly as py
 import plotly.tools as ptls
 import plotly.graph_objs as go
 import plotly.figure_factory as ff
@@ -138,14 +139,14 @@ class HTML():
         ls_ref_cnt=[]
         ls_alt_cnt=[]
         for i in range(0, len(snp)):
-            ref=snp['REF'].ix[i]
-            alt=snp['ALT'].ix[i]
+            ref=snp['REF'].iloc[i]
+            alt=snp['ALT'].iloc[i]
             ls_ref.append(ref)
-            ls_ref_aa.append(snp['REFaa'].ix[i])
+            ls_ref_aa.append(snp['REFaa'].iloc[i])
             ls_alt.append(alt) 
-            ls_alt_aa.append(snp['ALTaa'].ix[i])
-            ls_ref_cnt.append(snp[ref].ix[i])
-            altn=snp[alt].ix[i] if alt in ['A','T','C','G'] else '.'
+            ls_alt_aa.append(snp['ALTaa'].iloc[i])
+            ls_ref_cnt.append(snp[ref].iloc[i])
+            altn=snp[alt].iloc[i] if alt in ['A','T','C','G'] else '.'
             ls_alt_cnt.append(altn)
 
         snp_table=go.Table(
@@ -173,14 +174,14 @@ class HTML():
         mafs=[]
         info=[]
         for i in range(0, len(snp)):
-            ref=snp['REF'].ix[i]
-            alt=snp['ALT'].ix[i]
-            refaa=snp['REFaa'].ix[i]
-            altaa=snp['ALTaa'].ix[i]
-            refn=int(snp[ref].ix[i])
-            altn=int(snp[alt].ix[i]) if alt in ['A','T','C','G'] else '.'
+            ref=snp['REF'].iloc[i]
+            alt=snp['ALT'].iloc[i]
+            refaa=snp['REFaa'].iloc[i]
+            altaa=snp['ALTaa'].iloc[i]
+            refn=int(snp[ref].iloc[i])
+            altn=int(snp[alt].iloc[i]) if alt in ['A','T','C','G'] else '.'
             if snp_pos is not None:
-                 if snp['gpos'].ix[i] in snp_pos: 
+                 if snp['gpos'].iloc[i] in snp_pos: 
                      maf=refn/float(refn+altn) if altn != '.' else 0
                  else:
                      maf=None
@@ -188,7 +189,7 @@ class HTML():
                  maf=refn/float(refn+altn) if altn != '.' else None
             mafs.append(maf)
             if maf is not None and maf >= 0:
-                infotext='[' + str(snp['gpos'].ix[i]) + '] [' + str(snp['cpos'].ix[i]) + ' ' + ref +'/' + alt + '] [' + str(snp['aapos'].ix[i]) + ' ' + refaa + '/' + altaa + ']'
+                infotext='[' + str(snp['gpos'].iloc[i]) + '] [' + str(snp['cpos'].iloc[i]) + ' ' + ref +'/' + alt + '] [' + str(snp['aapos'].iloc[i]) + ' ' + refaa + '/' + altaa + ']'
             else:
                 infotext=None 
             info.append(infotext)
@@ -313,7 +314,7 @@ def RHD_RHCE (sample, gene, BGtable, SNPtable, CNVtable, allpos_CNVplot, exon_CN
     pdf.set_font('Arial', 'B', 11)
     pdf.cell(0, 10, 'Copy number variation of the exon regions:', 0, 1)  
     pdf.set_font('Arial', '', 10) 
-    pdf.cell(0, 10, 'Mean coverage:'+ str(cnv['wgs_cov'].iloc[0]),0,1)
+    pdf.cell(0, 10, 'Mean coverage:'+ str(cnv['all_cov'].iloc[0]),0,1)
     pdf.set_font('Arial', '', 10); pdf.set_text_color(255,255,255)
     pdf.cell(20,7,'Exon','TB',0,'C', fill=True)
     pdf.cell(40,7,'RHD_log2R','TB',0,'C', fill=True)
@@ -323,22 +324,23 @@ def RHD_RHCE (sample, gene, BGtable, SNPtable, CNVtable, allpos_CNVplot, exon_CN
     pdf.set_text_color(0, 0,0)
     for i in range(0, len(cnv)):
         pdf.cell(20,7, '%s' % (cnv['exon'].iloc[i]),border,0,'C')
-        pdf.cell(40,7, '%s' % (round(cnv['RHD_log2cov'].ix[i],2)),border,0,'C')
+        pdf.cell(40,7, '%s' % (round(cnv['RHD_log2cov'].iloc[i],2)),border,0,'C')
         pdf.cell(40,7, '%s' % (cnv['RHD_status'].iloc[i]),border,0,'C')
-        pdf.cell(40,7, '%s' % (round(cnv['RHCE_log2cov'].ix[i],2)),border,0,'C')
+        pdf.cell(40,7, '%s' % (round(cnv['RHCE_log2cov'].iloc[i],2)),border,0,'C')
         pdf.cell(40,7, '%s' % (cnv['RHCE_status'].iloc[i]),border,1,'C')
     pdf.add_page()
 
         
 
     ### all pos CNV
-    pdf.set_text_color(0, 0,0)
-    pdf.set_font('Arial', 'B', 11)
-    pdf.cell(0, 10, 'Normalized coverage of the gene region', 0, 1)
-    pdf.set_font('Arial', '', 10)
-    pdf.image(allpos_CNVplot, x=pdf.get_x()-2, y=pdf.get_y()+3,w=180,h=60)
-    pdf.set_y(pdf.get_y()+60)
-    pdf.ln(3) 
+    if(os.path.exists(allpos_CNVplot)):
+        pdf.set_text_color(0, 0,0)
+        pdf.set_font('Arial', 'B', 11)
+        pdf.cell(0, 10, 'Normalized coverage of the gene region', 0, 1)
+        pdf.set_font('Arial', '', 10)
+        pdf.image(allpos_CNVplot, x=pdf.get_x()-2, y=pdf.get_y()+3,w=180,h=60)
+        pdf.set_y(pdf.get_y()+60)
+        pdf.ln(3) 
 
     if pdf.get_y() + 60 > 300: pdf.add_page()
 

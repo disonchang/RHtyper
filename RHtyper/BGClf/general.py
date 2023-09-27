@@ -39,6 +39,11 @@ def translate(seq):
         'TAC':'Y', 'TAT':'Y', 'TAA':'*', 'TAG':'*',
         'TGC':'C', 'TGT':'C', 'TGA':'*', 'TGG':'W',
     }
+    d = {'CYS': 'C', 'ASP': 'D', 'SER': 'S', 'GLN': 'Q', 'LYS': 'K',
+     'ILE': 'I', 'PRO': 'P', 'THR': 'T', 'PHE': 'F', 'ASN': 'N', 
+     'GLY': 'G', 'HIS': 'H', 'LEU': 'L', 'ARG': 'R', 'TRP': 'W', 
+     'ALA': 'A', 'VAL':'V', 'GLU': 'E', 'TYR': 'Y', 'MET': 'M'}
+
     protein =""
     if len(seq)%3 == 0:
         for i in range(0, len(seq), 3):

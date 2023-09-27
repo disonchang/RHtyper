@@ -45,7 +45,7 @@ class MLClassifier(object):
             return prob
 
 class LH(object):
-    def __init__(self, bam, gene, SNPm, GTm, gbuild='hg38', allele_type='all', minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, ALT_n_LB=None, verbose=0, het_cov=0.1):
+    def __init__(self, bam, gene, SNPm, GTm, gbuild='hg38', dtype='WGS', allele_type='all', problem_snv_type='NA', minimum_base_quality = 15, minimum_mapq = 10, minimum_read_quality = 15, ALT_n_LB=None, verbose=0, het_cov=0.1):
         '''
         Takes bam, target SNP and SNPmatrix for reverting back to genome pos
         '''
@@ -57,10 +57,12 @@ class LH(object):
         self.snp_matrix=SNPm
         self.selected_snp_matrix=pd.DataFrame()
         self.genotype_matrix=GTm.transpose()
-        self.allele_type=allele_type ### hete, homo, alli
+        self.allele_type=allele_type ### hete, homo, all
+        self.problem_snv_type=problem_snv_type
         self.het_cov=het_cov
         self.build=gbuild
         self.ALT_n_LB=ALT_n_LB
+        self.dtype=dtype
 
         for s in self.snp:
             a=s.split('_')
@@ -79,7 +81,6 @@ class LH(object):
             self.minimum_read_quality=minimum_read_quality
             self.ALT_n_LB = ALT_n_LB
 
-        
 
 
     def geno_ll(self):
@@ -196,7 +197,7 @@ class LH(object):
                          bn=self.snp_matrix.loc[self.snp_matrix['gpos']==gpos,b].values[0]
                          if self.het_cov is not None and (0 < bp < self.het_cov) and \
                             self.ALT_n_LB is not None and (0 < bn < self.ALT_n_LB):
-                             print("[genoLL] Skip low freq reads:", qname, 'at cpos:', cpos)
+                             print("[genoLL] Skip low freq reads:", qname, 'at cpos:', cpos, '; bp:', bp, '; bn:', bn)
                              continue
                     for i in range(0, self.genotype_matrix.shape[1]):
                         for j in range(i, self.genotype_matrix.shape[1]):
@@ -230,11 +231,22 @@ class LH(object):
                                         if self.build.upper()=='HG19':
                                             checkpos=25643553
 
-                                        if gpos==checkpos and self.allele_type in ['het','het RHD 1136_C_T']:
+                                        #if gpos==checkpos and self.allele_type in ['het','het RHD 1136_C_T']: ### major changes
+                                        if gpos==checkpos and self.problem_snv_type in ['het RHD 1136_C_T']:
                                             #if type1 == "RHD@RHD_DAU-0" or type2 == "RHD@RHD_DAU-0":
                                                #ll=0.5 * Decimal(ll)
                                                if (GTa1 == GTa2 and GTa1 == b) or (GTa1 != GTa2 and (GTa1 == b or GTa2 == b)):
                                                    ll=((1-e)/float(2))+(((e/float(3)))/float(2))
+
+                                        ### resolve the issue for 25420739 (HG38) for RHCE that have only 50% coverage in WES
+                                        if self.dtype in ['WES']:
+                                            checkpos=25420739
+                                            if self.build.upper()=='HG19':
+                                                checkpos=25747230
+                                            if gpos==checkpos and self.problem_snv_type in ['het RHCE 48_G_C']:
+                                               if (GTa1 == GTa2 and GTa1 == b) or (GTa1 != GTa2 and (GTa1 == b or GTa2 == b)):
+                                                   ll=((1-e)/float(2))+(((e/float(3)))/float(2))
+ 
 
                                         ### the print section below is for debugging
                                         #if gpos==25317062: 
@@ -485,9 +497,21 @@ class LH(object):
 
                                             if ( gpos==checkpos or gpos2==checkpos ) and ( type1 in problems or type2 in problems or self.allele_type in ['het','het RHD 1136_C_T'] ):
                                                 if (GTa1['g1'][0] != GTa2['g2'][0])  or (GTa1['g1_next'][0] != GTa2['g2_next'][0]):
-                                                    ### adjust those only if they are heterozygous
+                                                    ### adjust ll only if heterozygous
                                                     #ll=2 * Decimal(ll)
                                                     ll=1-Qerr
+                                            
+                                            ### resolve the issue for 25420739 (HG38) for RHCE that have only 50% coverage in WES
+                                            if self.dtype in ['WES']:
+                                                checkpos=25420739
+                                                if self.build.upper()=='HG19':
+                                                    checkpos=25747230
+                                                if ( gpos==checkpos or gpos2==checkpos ) and ( self.problem_snv_type in ['het RHCE 48_G_C'] ):
+                                                   if (GTa1['g1'][0] != GTa2['g2'][0])  or (GTa1['g1_next'][0] != GTa2['g2_next'][0]):
+                                                       ### adjust ll only if heterozygous
+                                                       ll=1-Qerr    
+
+ 
                                             ### test print
                                             #if type1 in ['RHD@RHD*04.04_RHD*DIV.4','RHD@RHD*49_RHD*DWN'] and type2=='RHD@RHD*01':
                                             #     print(type1, cpos1, type2, cpos2, ll, phase_type)
@@ -616,10 +640,10 @@ class LH(object):
             index=0
             for BG1 in genoLL:
                 for BG2 in genoLL[BG1]:
-                    if self.allele_type=='het':
+                    if 'het' in self.allele_type:
                         if BG1 == BG2:
                             continue
-                    elif self.allele_type=='hom':
+                    elif 'hom' in self.allele_type:
                         if BG1 != BG2:
                             continue
                         
