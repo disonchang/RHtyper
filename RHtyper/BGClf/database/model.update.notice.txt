@@ -1,0 +1,44 @@
+### in python 3.7
+import re, os, pickle
+
+
+model_fn='RHCE48.BorutaFeature.xgb.model'
+model = pickle.load(open(model_fn, 'rb'))
+model.save_model('RHCE48.BorutaFeature.xgb.0.90.model')
+
+model_fn='RHCEUCLC.BorutaFeature.xgb.model'
+model = pickle.load(open(model_fn, 'rb'))
+model.save_model('RHCEUCLC.BorutaFeature.xgb.0.90.model')
+
+model_fn='RHD1136.BorutaFeature.xgb.model'
+model = pickle.load(open(model_fn, 'rb'))
+model.save_model('RHD1136.BorutaFeature.xgb.0.90.model')
+
+
+
+
+### in python 3.10
+model_fn='RHDDEL.BorutaFeature.xgb.0.90.model'
+model=xgboost.Booster()
+model.load_model(model_fn)
+model.save_model('RHDDEL.BorutaFeature.xgb.1.5.0.model')
+
+model_fn='RHCE48.BorutaFeature.xgb.0.90.model'
+model=xgboost.Booster()
+model.load_model(model_fn)
+model.save_model('RHCE48.BorutaFeature.xgb.1.5.0.model')
+
+model_fn='RHCEUCLC.BorutaFeature.xgb.0.90.model'
+model=xgboost.Booster()
+model.load_model(model_fn)
+model.save_model('RHCEUCLC.BorutaFeature.xgb.1.5.0.model')
+
+model_fn='RHD1136.BorutaFeature.xgb.0.90.model'
+model=xgboost.Booster()
+model.load_model(model_fn)
+model.save_model('RHD1136.BorutaFeature.xgb.1.5.0.model')
+
+
+### 
+
+

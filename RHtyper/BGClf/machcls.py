@@ -15,6 +15,8 @@ def WES_RHD_DEL_CLF(sample_id, RHDcov_fn, RHCEcov_fn):
     '''
 
     model_fn=os.path.join(package_directory, 'database', 'RHDDEL.BorutaFeature.xgb.model') 
+    ### test
+    #model_fn='/home/tchang1/software/RHtyper/RHtyper/BGClf/database/RHDDEL.BorutaFeature.xgb.model'
     model = pickle.load(open(model_fn, 'rb'))
     res, prob, prob_class=WES_RH_prediction(sample_id, RHDcov_fn, RHCEcov_fn, model)
     hybrid='NotHybrid'
@@ -32,6 +34,7 @@ def WES_RHD_DEL_CLF(sample_id, RHDcov_fn, RHCEcov_fn):
     elif res=='Normal':
         typing=None
     return typing, hybrid, res, prob, prob_class 
+
 
 
 def WES_RHCE_UCLC_CLF(sample_id, RHDcov_fn, RHCEcov_fn, VAR_fn):
@@ -139,6 +142,67 @@ def WES_RH_prediction(sample_id, RHDcov_fn, RHCEcov_fn, rfmodel,feature_fn="posi
     return res, res_prob, res_class
 
 
+
+
+def WES_RH_prediction(sample_id, RHDcov_fn, RHCEcov_fn, rfmodel,feature_fn="position", VAR_fn=None, cpos2check=48, ref='G', alt='C'):
+    '''
+        predict sample type by coverage
+        rfmodel: RF model loaded from pickle
+    '''
+
+    #logging.debug('S1 load test dataset')
+    RHCEcov=pd.read_csv(RHCEcov_fn, header=0, sep="\t")
+    RHDcov=pd.read_csv(RHDcov_fn, header=0, sep="\t")
+    RHcov=pd.concat([RHDcov, RHCEcov])
+    #RHcov.prefix=RHcov.prefix.apply(clean_id)
+
+    RHcov['sample']=sample_id
+    RHcov['ratio']=RHcov['QCtotalReadN']/RHcov['all_cov']
+
+
+    #logging.debug('S3 getting selected feature')
+    #logging.info('Booster feature names')
+    #logging.info(rfmodel.get_booster().feature_names)
+    pos=list(rfmodel.get_booster().feature_names)
+
+    if 'ref' in pos: pos.remove('ref')
+    if 'alt' in pos: pos.remove('alt')
+
+    pos=[ int(x) for x in pos ]
+
+    keep=RHcov.position.isin(pos)
+    selectedRHcov=RHcov[keep]
+
+    #logging.info('Selected feature names')
+    #logging.info(selectedRHcov.columns)
+    df2=selectedRHcov.pivot_table(index=['sample'], columns='position', values='ratio')
+
+    if VAR_fn is not None and 'ref' in list(rfmodel.get_booster().feature_names) and 'alt' in list(rfmodel.get_booster().feature_names):
+        '''
+            add var info
+        '''
+        VAR=pd.read_csv(VAR_fn, header=0, sep="\t")
+        ref_c=VAR.loc[VAR.cpos==cpos2check,ref].values[0]
+        alt_c=VAR.loc[VAR.cpos==cpos2check,alt].values[0]
+        #logging.debug("cpos2check:{0} ... REF:{1}, REFcount:{2}, ALT:{3}, ALTcount:{4}".format(cpos2check, ref, ref_c, alt, alt_c))
+        df2['ref']=ref_c
+        df2['alt']=alt_c
+        #print(df2.columns)
+
+
+
+    #logging.debug('S4 prediction')
+    res =  rfmodel.predict(df2)
+    res_prob=rfmodel.predict_proba(df2)
+
+
+    ### single sample returns
+    res=res[0]
+    res_prob=res_prob[0]
+    res_class=rfmodel.classes_
+
+
+    return res, res_prob, res_class
 
 
 

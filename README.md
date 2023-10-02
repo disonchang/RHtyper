@@ -16,10 +16,10 @@ The *RHD* and *RHCE* genes encode Rh blood group antigens and exhibit extensive 
 
 ## **Installation**
 
-RHtyper with WES platform support can be installed from the Conda. 
+RHtyper with WES platform support can be installed from the Conda. NOTE: We suggest to use Mamba to speed up the installation process (https://mamba.readthedocs.io/en/latest/mamba-installation.html#mamba-install). After mamba installed, RHtyper can be installed with following steps: 
 
-1. conda create -n RHtyper
-2. conda install -c ticchang rhtyper
+1. mamba create -n RHtyper
+2. mamba install -c ticchang rhtyper
 
 ## **What does RHtyper do?**
 
