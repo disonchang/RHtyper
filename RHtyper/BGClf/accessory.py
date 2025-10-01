@@ -89,7 +89,7 @@ def PopFreq_57patient(bg,gene,frequency_table="pop_freq.txt"):
     return bg          
          
 
-def PopFreq(final,gene,frequency_table="pop_freq.txt"):
+def PopFreq(final,gene,frequency_table=None):
    '''
       rerank the allele combination based on the frequency setup in this fucntion
       the default table (see PopFreq_57patient) is based on the patient in the 56 validation cohort
@@ -98,7 +98,10 @@ def PopFreq(final,gene,frequency_table="pop_freq.txt"):
    INDEXls=final.Index.unique().tolist()
    if len(INDEXls) < 1: return final
 
-   fn=os.path.join(package_directory, 'database', frequency_table)
+   fn=frequency_table
+   if not fn:
+       frequency_table='pop_freq.txt'
+       fn=os.path.join(package_directory, 'database', frequency_table)
    if 'gz' in frequency_table:
         freq = pd.read_csv(fn, sep='\t', compression='gzip',comment='#',skiprows=1)
    else:
@@ -239,12 +242,16 @@ def RHD_RHCE_linked(bg1, bg2fn):
     bg1=bg1.loc[bg1['Likelihood']==bg1['Likelihood'].max()] 
     return bg1
                
-def RHD_RHCE_linked_type2(bg1, bg2fn, final_var, link_fn="linked_types.txt"):
+def RHD_RHCE_linked_type2(bg1, bg2fn, final_var, link_fn=None):
     """
       correct the alleles based on linked information
       INFO based on ISBT
     """
-    linkf=os.path.join(package_directory, 'database', link_fn)
+    linkf=link_fn
+    if not linkf:
+        link_fn='linked_types.txt'
+        linkf=os.path.join(package_directory, 'database', link_fn)
+    
     lf=pd.read_csv(linkf, sep='\t')
     lf['Allele name'] = lf['Allele name'].str.replace(' ', '_')    
     lf['Allele name'] = lf['Allele name'].astype(str)

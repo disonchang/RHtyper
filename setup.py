@@ -5,20 +5,7 @@ def readme():
     with open('README.rst') as f:
         return f.read()
 #logging not added
-install_reqPy3=[
-    'xgboost<1.0',
-    'python=3.7',
-    'scikit-learn<=1.0.2',
-    'plotly==3.10.0',
-    'matplotlib<=3.0.1',
-    'numpy<=1.21.1',
-    'pandas',
-    'scipy',
-    'pysam',
-    'fpdf',
-    'xlsxwriter',
-    'seaborn'
-]
+install_reqPy3=['xgboost<1.0', 'scikit-learn<=1.0.2', 'plotly==3.10.0', 'matplotlib<=3.0.1', 'numpy<=1.21.1', 'pandas', 'scipy', 'pysam', 'fpdf', 'xlsxwriter', 'seaborn<=0.11.0']
 #install_reqPy2=['numpy<=1.16.6','pandas<=0.24.0','scipy','pysam<=0.15.3','matplotlib<=2.1.0','fpdf==1.7.2','plotly<=2.1.0',"xlsxwriter"]
 install_reqPy2=['numpy<=1.16.6','pandas<=0.24.0','scipy','pysam<=0.15.3','matplotlib<=2.1.0','fpdf==1.7.2','plotly<=2.1.0',"xlsxwriter",'seaborn','scikit-learn']
 
@@ -30,7 +17,7 @@ else:
 
 
 setup(name='RHtyper',
-      version='0.2',
+      version='1.1',
       description='RH typing using whole genome sequencing data',
       long_description=readme(),
       classifiers=[
