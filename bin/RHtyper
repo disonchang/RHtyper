@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+import argparse, RHtyper
+from RHtyper import RHtyping 
+
+
+def main():
+    parser = argparse.ArgumentParser(description='RHtyper -- typing RH bloodgroup')
+    parser.add_argument('-bam' , '--bam', help='BAM file', required=True)
+#    parser.add_argument('-coord', '--gene_table', help='Coordinates of coding exons in BED format\n(can be obtained from UCSC table browser)', required=True)
+    parser.add_argument('-gene' , '--gene', help='Name of gene for typing', required=True)
+    parser.add_argument('-ref' , '--reference', help='Reference fasta file', required=True)
+    parser.add_argument('-gbuild' , '--genome_build', help='Genome build version', required=True, default='hg38') ### new
+    parser.add_argument('-pre' , '--prefix', help='Output filename prefix', required=True)
+    parser.add_argument('-call' , '--call_variant', help='Call variant. If not call variants, the variant file with name of <prefix>.full.variant.txt will be loaded for bloodtyping', action='store_true')
+    parser.add_argument('-cov' , '--coverage', help='Genome coverage depth. The coverage value is important for calling gene deletion. Use "est" or "estimate" for automatical coverage estimation', required=True)
+    parser.add_argument('-altN' , '--alt_read_n', help='Alternative read support N', type=int, required=True, default=3)
+    parser.add_argument('-hetCov' , '--heterozyoteCov', help='Cutoff to call as heterozygotes', type=int, required=False, default=0.1)
+    parser.add_argument('-wes' , '--wes', help='Input bam are WES', action='store_true')
+    #parser.add_argument('-phase2' , '--rescue_phase', help='Strategy applied when phasing using SNPs failed (options: ratio/reference). Ratio: The SNPs with alternative allele ratio < 0.4 or > 0.6 will be adjusted to 1. Reference: one allele will be considered with the reference allele always ', required=False, default=None)
+    parser.add_argument('-link' , '--linking_bloodtype', help='Link bloodgroup by providing typing result of another bloodtype (useful for RHD/RHCE)', required=False)
+    parser.add_argument('-linkdb' , '--linking_database', help='Databse used for linking bloodtypes. NOTE: if not specified, the linking will be based on ISBT information ', required=False)
+    parser.add_argument('-popfreq', '--popfreq', help='adjust prediction based on the population frequency of the allele type', action='store_true')
+    parser.add_argument('-popfreqdb', '--popfreqdb', help='Database for allele frequencies. NOTE: if not specified, the default database will be based on African American population', required=False)
+    parser.add_argument('-v' , '--verbose', help='Output verbose level', required=False, type=int, default=0)
+    args=parser.parse_args()
+    if 'est' not in str(args.coverage).lower():
+         args.coverage=float(args.coverage)
+    RHtyping.runRHtyper(args)
+
+
+if __name__ == "__main__":
+    main()
+
+
+
