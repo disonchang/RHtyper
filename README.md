@@ -81,6 +81,16 @@ Both databases are in tab-delimited text format and can be created using Excel (
    * *exonCNV.txt* - Copy number variation status per exon in a tab-delimited text format
    * *final.variant.txt* - Variant identified in a tab-delimited text format
 
+## 🤖 AI-Powered Workflow
+This project is **AI-Ready**. You can use LLMs (like ChatGPT, Claude, or GitHub Copilot) to help you run and adapt RHtyper.
+
+- **Expert Guidance:** See [AI-SKILLS.md](./AI-SKILLS.md) for the technical profile of this tool.
+- **System Prompt:** Use our [Expert Prompt](./prompts/rh-expert-system-prompt.txt) to turn any LLM into a specialized RHtyper assistant.
+- **Automation:** RHtyper supports tab-delimited output, making it easy for AI agents to parse results and generate clinical-style reports.
+
+> **Tip:** Try asking an AI: *"Based on the RHtyper output for Sample_01, generate a summary report following ISBT nomenclature."*
+
+
 ## **How to run RHtyper?**
 **NOTE**: the latest DNAnexus web interface is used for the following workflow
 
